@@ -188,7 +188,22 @@ While \Advantage{} can be spent on any damage roll to add a damage die to it, th
 For each attack a character makes in the same round, either as their action or in response to an attack against them, they roll one fewer damage dice, to a minimum of zero damage dice; they can still spend \Advantage{} to add additional damage dice to subsequent attacks.
 
 \subsection{Weapon Properties}
-{\color{red}\bf TODO}
+Properties of a weapon, or unarmed or magical attacks, such as damage and range are defined by keywords on the weapon.
+The keywords and their properties are as follows:
+\begin{itemize}
+  \item[-] \textbf{Melee}: can be used to make a melee attack, dealing 1d8 base damage.
+    A melee attack made without this keyword is \emph{Decreased}.
+  \item[-] \textbf{Ranged}: can be used to make a ranged attack at a Close or Mid-Range distance, dealing 1d6 base damage.
+    A ranged attack made without this keyword is \emph{Decreased}.
+    A ranged attack beyond a Mid-Range is \emph{Decreased}.
+  \item[-] \textbf{Accurate}: increases the base damage of a \emph{Ranged} weapon to 1d8.
+  \item[-] \textbf{Defensive}: grants a +1 bonus to \DamageResistance.
+  \item[-] \textbf{Explosive}: you can spend advantage to target a creature and all those adjacent to it at -1 damage dice.
+  \item[-] \textbf{Reach}: increases the range of a melee attack to a Near distance.
+  \item[-] \textbf{Far Shooter}: increases the range of a ranged attack to Far.
+  \item[-] \textbf{Piercing}: you can spend advantage to ignore the target's \DamageResistance.
+\end{itemize}
+
 
 \section{Character Attributes and Skills}
 Characters are defined by their \emph{Attributes} and by their \emph{Skills}.

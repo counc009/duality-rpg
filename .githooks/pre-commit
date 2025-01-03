@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# A hook script to compile the PDF and add it to the commit
+
+latexmk -pdf ./main.tex
+git add ./main.pdf
