@@ -38,7 +38,7 @@
 
 \newcommand{\Life}{\emph{Life}}
 \newcommand{\Recovery}{\emph{Recovery}}
-\newcommand{\DamageResistance}{\emph{Damage Resistance}}
+\newcommand{\Block}{\emph{Block}}
 \newcommand{\Size}{\emph{Size}}
 
 \newcommand{\Increase}{\emph{Increase}}
@@ -179,7 +179,7 @@ The attacker rolls adding their \emph{Weapon} skill for the weapon being used an
 Some creatures may have abilities that allow them to attack multiple targets simultaneously, in such cases the attacker rolls once and then computes and resolves their \Outcome{} against each target separately.
 
 If the attacker's result is \Mixed{} or better, they roll damage of their weapon and add their \emph{Weapon} skill.
-The target subtracts their \DamageResistance{} from this number and any remaining damage is subtracted from its \Life{}.
+The target subtracts their \Block{} from this number and any remaining damage is subtracted from its \Life{}.
 If the attacker's result is \VeryGood{} they gain an \Advantage{} as normal, which can be spent to gain an additional damage die on their damage roll.
 If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner, alternatively it can take an \Advantage{} or two on a \VeryBad{} result.
 
@@ -197,13 +197,16 @@ The keywords and their properties are as follows:
     A ranged attack made without this keyword is \emph{Decreased}.
     A ranged attack beyond a Mid-Range is \emph{Decreased}.
   \item[-] \textbf{Accurate}: increases the base damage of a \emph{Ranged} weapon to 1d8.
-  \item[-] \textbf{Defensive}: grants a +1 bonus to \DamageResistance.
-  \item[-] \textbf{Explosive}: you can spend advantage to target a creature and all those adjacent to it at -1 damage dice.
+  \item[-] \textbf{Defensive}: grants a +1 bonus to \Block.
+  \item[-] \textbf{Multihit}: you can spend advantage to target a creature and all those adjacent to it at -1 damage dice.
   \item[-] \textbf{Reach}: increases the range of a melee attack to a Near distance.
   \item[-] \textbf{Far Shooter}: increases the range of a ranged attack to Far.
-  \item[-] \textbf{Piercing}: you can spend advantage to ignore the target's \DamageResistance.
+  \item[-] \textbf{Piercing}: you can spend advantage to ignore the target's \Block.
 \end{itemize}
 
+\section{Adventuring}
+\subsection{Rest} {\color{red}\bf TODO}
+\subsection{Defeated} {\color{red}\bf TODO}
 
 \section{Character Attributes and Skills}
 Characters are defined by their \emph{Attributes} and by their \emph{Skills}.
@@ -213,12 +216,12 @@ Characters are defined by their \emph{Attributes} and by their \emph{Skills}.
 Character \textbf{Attributes} represent certain character abilities, in particular they describe certain aspects of health, movement, and wealth.
 
 \subsubsection{Health}
-There are two three related \emph{Attributes}: \textbf{Life}, \textbf{Recovery}, and \textbf{Damage Resistance}.
+There are two three related \emph{Attributes}: \textbf{Life}, \textbf{Recovery}, and \textbf{Block}.
 A creature's \Life{} defines how much damage it can it until it falls unconscious or dies.
 Its \Recovery{} defines how much \Life{} a creature regains when it heals, rests, and recuperates.
-\DamageResistance{} defines how much damage a creature can just absorb without any impact, as described later \DamageResistance{} is subtracted from damage dealt to a creature before subtracting the damage from its \Life.
+\Block{} defines how much damage a creature can just absorb without any impact, as described later \Block{} is subtracted from damage dealt to a creature before subtracting the damage from its \Life.
 
-A character's \Life{} has a numeric score between 1 and 40, its \Recovery{} a numeric score between 1 and 20, and its \DamageResistance{} a numeric score between 0 and 2.
+A character's \Life{} has a numeric score between 1 and 40, its \Recovery{} a numeric score between 1 and 20, and its \Block{} a numeric score between 0 and 2.
 Other creatures may have values outside of these ranges.
 
 \subsubsection{Movement}
@@ -302,7 +305,7 @@ The \emph{specialized} skills are listed in Table~\ref{tab:special-skills} along
     Codebreak &Convince &Defend \\
     Disguise &Escape &Fish \\
     Hide &Insight &Jump \\
-    Lift &Medicine &Perception \\
+    Lift &Medicine &Perceive \\
     Pick Lock &Pick Pocket
       &Plot\footnote{Planning and preparing for a heist of infiltration effort} \\
     Run &Search &Shove \\

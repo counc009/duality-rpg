@@ -2,5 +2,7 @@
 #
 # A hook script to compile the PDF and add it to the commit
 
+set -e
 latexmk -pdf ./main.tex
-git add ./main.pdf
+latexmk -pdf ./character.tex
+git add ./main.pdf ./character.pdf
