@@ -173,12 +173,12 @@ Characters are defined by their \emph{Attributes} and by their \emph{Skills}.
 Character \textbf{Attributes}\index{Attribute} represent certain character abilities, in particular they describe certain aspects of health, movement, and wealth.
 
 \subsubsection{Health}
-There are two three related \emph{Attributes}: \textbf{Life}\index{Life|seealso{Attribute}}, \textbf{Recovery}\index{Recovery|seealso{Attribute}}, and \textbf{Block}\index{Block|seealso{Attribute}}.
+There are three health related \emph{Attributes}: \textbf{Life}\index{Life|seealso{Attribute}}, \textbf{Recovery}\index{Recovery|seealso{Attribute}}, and \textbf{Block}\index{Block|seealso{Attribute}}.
 A creature's \Life{} defines how much damage it can it until it falls unconscious or dies.
 Its \Recovery{} defines how much \Life{} a creature regains when it heals, rests, and recuperates.
 \Block{} defines how much damage a creature can just absorb without any impact, as described later \Block{} is subtracted from damage dealt to a creature before subtracting the damage from its \Life.
 
-A character's \Life{} has a numeric score between 1 and 40, its \Recovery{} a numeric score between 1 and 20, and its \Block{} a numeric score between 0 and 2.
+A character's \emph{Maximum Life} has a numeric score between 1 and 40, its \Recovery{} a numeric score between 1 and 20, and its \Block{} a numeric score between 0 and 2.
 Other creatures may have values outside of these ranges.
 
 \subsubsection{Movement}
@@ -337,7 +337,7 @@ Similarly, any ranged attack\index{Ranged Attack} (any attack against a target n
 
 \begin{table}
   \centering
-  \begin{tabular}{|c|c|}\hline
+  \begin{tabular}{|c|l|}\hline
     \textbf{Keyword} &\textbf{Properties} \\ \hline
     Melee\index{Melee|see{Weapon}} &Can be used to make a melee attack, dealing 1d8 base damage \\
     Ranged\index{Ranged|see{Weapon}} &Can be used to make a ranged attack, dealing 1d6 base damage \\
@@ -352,13 +352,34 @@ Similarly, any ranged attack\index{Ranged Attack} (any attack against a target n
   \label{tab:weapons}
 \end{table}
 
-\section{Adventuring}
-
-\subsection{Rest}
-{\color{red}\bf TODO}
+\subsection{Healing}\index{Healing}
+To recover \Life{} lost during combat or otherwise during their adventures, creatures will need to \textbf{Heal}.
+When a creature successfully heals, it regains a number of \Life{} equal to its \Recovery{}.
+The easiest and simplest way to heal, is to get a night's rest; if a creature rests for 8 hours, with at least 6 hours of sleep and no strenuous activity over the period of time, they heal.
+Creatures can attempt to heal, or attempt to help another creature heal, in less time with a roll, with the difficulty depending on the time taken to heal.
+The GM should determine the \Skill{} to roll for healing based on the activities undertaken to heal.
+The \Difficulty{} is generally set based on the time taken to rest: if they spend 4 hours the roll is \emph{Very Easy}, 1 hour is \emph{Easy}, 30 minutes is \emph{Medium}, 10 minutes is \emph{Hard}, and 1 minute is \emph{Very Hard}.
+The GM may adjust these difficulties based on the situation, for instance a hospital might decrease the difficulty while a busy or dangerous environment may increase it.
+The time it takes to heal accounts both for time to tend wounds, relax, and so on, it also includes the time to find the necessary supplies; the GM may allow a shorter rest time without increasing the difficulty if sufficient supplies are available.
+Based on the situation, the GM may allow healing to be attempted as an \emph{Action} in combat, though such a roll is likely to be \emph{Very Hard} and \emph{Decreased}.
+On a healing roll, the target of the healing regains \Life{} equal to their \Recovery{} if the roll is \Good{} or \VeryGood{}, on a \Mixed{} result they heal half of their \Recovery{}.
+On a \Bad{} or \VeryBad{} result, the target does not heal but on a \Bad{} result the GM should not impose a negative outcome, reserving that for a \VeryBad{} result.
 
 \subsection{Defeat}
-{\color{red}\bf TODO}
+When a creature is reduced to 0 \Life{}, they are \textbf{Defeated}\index{Defeat}.
+Depending on the circumstances, the GM may declare that the creature falls unconscious or becomes incapacitated for a number of hours, at which point they will awake with 1 \Life{}.
+If the creature is still in danger, for instance in combat, the creature must choose one of the following options:
+\begin{itemize}
+  \item[-] \textbf{Blaze of Glory}: the creature dies, but gets to take a final Action whose result is \VeryGood.
+    This action may not be used to Heal itself.
+  \item[-] \textbf{Unconsciousness}: the creature falls unconscious and is stable for the moment.
+    At the GM's discretion, the creature may either awaken with 1 \Life{} in a number of hours or may require healing within a few hours or die.
+    If the creature is hit by an attack, it becomes \emph{Unstable}.
+  \item[-] \textbf{Unstable}: the creature remains alive but barely, with its fate hanging in the balance.
+    The creature remains conscious and can act, but all of its rolls are \emph{Decreased}.
+    At the end of each of its turns, it rolls 1d20 and must roll a \Mixed{} or better result with the \Difficulty{} of this roll initially \emph{Very Easy} and increasing by one level each round and each time the creature takes damage while in this state.
+    If it fails one of these rolls, it dies.
+\end{itemize}
 
 \clearpage
 \printindex
@@ -378,7 +399,7 @@ To Do List
 \begin{itemize}
   \item[-] Transformation/Companion abilities
   \item[-] Leveling Up and Experience Points
-  \item[-] Experience Points as money
+  \item[-] Experience Points as money/resources
   \item[-] Additional uses of advantage: retaliation attack on a successful hit, additional turn in combat
 \end{itemize}
 
