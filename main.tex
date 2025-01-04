@@ -14,9 +14,10 @@
 
 \usepackage{caption}
 \usepackage{slashbox}
+\usepackage{rpg-config}
 
-\newcommand{\thetitle}{DRAFT: RPG NAME TBD}
-\newcommand{\theversion}{Version 0.0.1}
+\usepackage{imakeidx}
+\makeindex[intoc]
 
 \title{\thetitle}
 \author{Aaron Councilman}
@@ -40,6 +41,7 @@
 \newcommand{\Recovery}{\emph{Recovery}}
 \newcommand{\Block}{\emph{Block}}
 \newcommand{\Size}{\emph{Size}}
+\newcommand{\Speed}{\emph{Speed}}
 
 \newcommand{\Increase}{\emph{Increase}}
 \newcommand{\Decrease}{\emph{Decrease}}
@@ -63,15 +65,15 @@
 \section{Rolls}
 When a Player Character (PC) attempts to do something that is not certain, they must roll for it.
 There are two types of roll: opposed rolls for when another character is resisting the effort and unopposed rolls for when success is not guaranteed but nobody is actively resisting the effort.
-The result of a roll is measured by an \textbf{Outcome}: \VeryBad, \Bad, \Mixed, \Good, or \VeryGood.
+The result of a roll is measured by an \textbf{Outcome}\index{Outcome}: \VeryBad, \Bad, \Mixed, \Good, or \VeryGood.
 
 When the \Outcome{} of a roll is \Mixed{} or better (\Mixed, \Good, or \VeryGood), the PC achieves what they rolled for; on a \VeryGood{} outcome they either achieve something extra or gain an \Advantage.
 When the \Outcome{} is \Mixed{} or worse (\Mixed, \Bad, or \VeryBad), their is either a negative repercussion, and a particularly bad repercussion on a \VeryBad{} result, or the GM gains an \Advantage, or two on a \VeryBad{} result.
 
-The GM may declare any roll to be \textbf{Dangerous} in which case a \Bad{} outcome is treated as a \VeryBad{} outcome.
+The GM may declare any roll to be \textbf{Dangerous}\index{Dangerous} in which case a \Bad{} outcome is treated as a \VeryBad{} outcome.
 
 \subsection{Unopposed Rolls}
-For an unopposed roll, the GM will select the appropriate \Skill{} for the task and set a \textbf{Difficulty} for the task, which is \emph{Very Easy}, \emph{Easy}, \emph{Medium}, \emph{Hard}, or \emph{Very Hard}.
+For an unopposed roll, the GM will select the appropriate \Skill{} for the task and set a \textbf{Difficulty}\index{Difficulty} for the task, which is \emph{Very Easy}, \emph{Easy}, \emph{Medium}, \emph{Hard}, or \emph{Very Hard}.
 The player then rolls 3d20 and generally takes the middle value and then adds their \Skill{} bonus and any relevant bonuses to the roll; this total is then compared to Table~\ref{tab:unopposed-outcome} to determine the \Outcome.
 
 \begin{table}
@@ -113,7 +115,7 @@ A Collective Roll is used when characters are working together on a large task t
 For example, a Collective Roll might be used when a group of PCs is researching in a large library looking for information pertaining to the location of an ancient ruin.
 In a Collective Roll, the GM may also allow multiple rounds of rolls to be collected together for tasks that might take more time and effort than just the single roll.
 
-For a Collective Roll, the GM sets a \Difficulty{} and a \textbf{Magnitude} (a whole number).
+For a Collective Roll, the GM sets a \Difficulty{} and a \textbf{Magnitude}\index{Magnitude} (a whole number).
 The characters then each roll as normal, but instead of converting their roll to an outcome, they instead total their rolls together.
 This total is then divided by the \emph{Magnitude} set by the GM (always rounding towards zero) and then this result is compared to Table~\ref{tab:unopposed-outcome} to determine the group's outcome of the roll.
 
@@ -141,19 +143,19 @@ If the party rolls two \Bad, one \Mixed, and one \VeryGood{} result, the outcome
 If, instead, they had rolled two \Bad, one \Good, and one \VeryGood{} the outcome would be \Good.
 
 \subsection{Helping Out}
-A character can \textbf{Help} another creature on a roll with that creature's and GM's approval.
+A character can \textbf{Help}\index{Help} another creature on a roll with that creature's and GM's approval.
 Based on how they are helping out, the GM will pick a skill for the helper to roll; this will generally be against a \emph{Medium} difficulty though the GM may adjust this for particularly difficult tasks or when the assistance is difficult to render.
 On a \Mixed{} or better result the creature being helped gains an \Advantage.
 
 \subsection{Increased and Decreased Rolls}
-In some circumstances a character's roll may be \textbf{Increased} or \textbf{Decreased}.
+In some circumstances a character's roll may be \textbf{Increased}\index{Increase} or \textbf{Decreased}\index{Decrease}.
 \emph{Increases} and \emph{Decreases} can stack and cancel each other out, so one \Increase{} and one \Decrease{} cancel out, while two \emph{Increases} and one \Decrease{} cancel out to one \Increase.
 
 On a roll with one \Increase{} the highest of the 3d20 is read, while on a roll with one \Decrease{} the lowest of the 3d20 is read.
 On a roll with two or more (net) \emph{Increases} it is treated as if a 20 had been rolled and on a roll with two or more \emph{Decreases} as if a 1 had been rolled.
 
 \section{Advantages}
-\textbf{Advantage} are meta-currency which represent power, preparation, luck, and other circumstances that may benefit the players or the GM.
+\textbf{Advantage}\index{Advantage} are meta-currency which represent power, preparation, luck, and other circumstances that may benefit the players or the GM.
 Each Player can collect \Advantage, as can the GM.
 \Advantage{} can be spent in a number of ways, detailed below and there may be other options that a GM allows or that are available based on particular creatures' abilities.
 \begin{enumerate}
@@ -169,7 +171,7 @@ During each round, the GM and Players alternate taking turns to have one creatur
 Either side may also spend \Advantage{} once each turn to have two creatures go instead of just one.
 No creature can act more than once per round, except as allowed by another feature or rule.
 
-On a creature's turn, they can move based on their speed, take an \textbf{Action}, any take any reasonable number of \textbf{Quick Actions}.
+On a creature's turn, they can move based on their \Speed{}\index{Speed}, take an \textbf{Action}\index{Action}, any take any reasonable number of \textbf{Quick Actions}\index{Action!Quick Action}.
 An action can be to make an attack, to take additional movement, to \emph{Help} someone else, or similar actions that the GM may permit.
 Quick Actions include simple tasks like drinking a potion or drawing a weapon.
 
@@ -179,7 +181,7 @@ The attacker rolls adding their \emph{Weapon} skill for the weapon being used an
 Some creatures may have abilities that allow them to attack multiple targets simultaneously, in such cases the attacker rolls once and then computes and resolves their \Outcome{} against each target separately.
 
 If the attacker's result is \Mixed{} or better, they roll damage of their weapon and add their \emph{Weapon} skill.
-The target subtracts their \Block{} from this number and any remaining damage is subtracted from its \Life{}.
+The target subtracts their \Block{}\index{Block} from this number and any remaining damage is subtracted from its \Life{}\index{Life}.
 If the attacker's result is \VeryGood{} they gain an \Advantage{} as normal, which can be spent to gain an additional damage die on their damage roll.
 If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner, alternatively it can take an \Advantage{} or two on a \VeryBad{} result.
 
@@ -187,36 +189,36 @@ While \Advantage{} can be spent on any damage roll to add a damage die to it, th
 
 For each attack a character makes in the same round, either as their action or in response to an attack against them, they roll one fewer damage dice, to a minimum of zero damage dice; they can still spend \Advantage{} to add additional damage dice to subsequent attacks.
 
-\subsection{Weapon Properties}
+\subsection{Weapon Properties}\index{Weapon}
 Properties of a weapon, or unarmed or magical attacks, such as damage and range are defined by keywords on the weapon.
 The keywords and their properties are as follows:
 \begin{itemize}
-  \item[-] \textbf{Melee}: can be used to make a melee attack, dealing 1d8 base damage.
+  \item[-] \textbf{Melee}\index{Melee|see{Weapon}}: can be used to make a melee attack, dealing 1d8 base damage.
     A melee attack made without this keyword is \emph{Decreased}.
-  \item[-] \textbf{Ranged}: can be used to make a ranged attack at a Close or Mid-Range distance, dealing 1d6 base damage.
+  \item[-] \textbf{Ranged}\index{Ranged|see{Weapon}}: can be used to make a ranged attack at a Close or Mid-Range distance, dealing 1d6 base damage.
     A ranged attack made without this keyword is \emph{Decreased}.
     A ranged attack beyond a Mid-Range is \emph{Decreased}.
-  \item[-] \textbf{Accurate}: increases the base damage of a \emph{Ranged} weapon to 1d8.
-  \item[-] \textbf{Defensive}: grants a +1 bonus to \Block.
-  \item[-] \textbf{Multihit}: you can spend advantage to target a creature and all those adjacent to it at -1 damage dice.
-  \item[-] \textbf{Reach}: increases the range of a melee attack to a Near distance.
-  \item[-] \textbf{Far Shooter}: increases the range of a ranged attack to Far.
-  \item[-] \textbf{Piercing}: you can spend advantage to ignore the target's \Block.
+  \item[-] \textbf{Accurate}\index{Accurate|see{Weapon}}: increases the base damage of a \emph{Ranged} weapon to 1d8.
+  \item[-] \textbf{Defensive}\index{Defensive|see{Weapon}} grants a +1 bonus to \Block.
+  \item[-] \textbf{Multihit}\index{Multihit|see{Weapon}}: you can spend advantage to target a creature and all those adjacent to it at -1 damage dice.
+  \item[-] \textbf{Reach}\index{Reach|see{Weapon}}: increases the range of a melee attack to a Near distance.
+  \item[-] \textbf{Far Shooter}\index{Far Shooter|see{Weapon}}: increases the range of a ranged attack to Far.
+  \item[-] \textbf{Piercing}\index{Piercing|see{Weapon}}: you can spend advantage to ignore the target's \Block.
 \end{itemize}
 
 \section{Adventuring}
 \subsection{Rest} {\color{red}\bf TODO}
-\subsection{Defeated} {\color{red}\bf TODO}
+\subsection{Defeat} {\color{red}\bf TODO}
 
 \section{Character Attributes and Skills}
 Characters are defined by their \emph{Attributes} and by their \emph{Skills}.
 \emph{Attributes} define certain properties of characters, such as their size, movement, wealth, and ability to take damage while \emph{Skills} define how good characters are at certain tasks and are used for rolls.
 
 \subsection{Attributes}
-Character \textbf{Attributes} represent certain character abilities, in particular they describe certain aspects of health, movement, and wealth.
+Character \textbf{Attributes}\index{Attribute} represent certain character abilities, in particular they describe certain aspects of health, movement, and wealth.
 
 \subsubsection{Health}
-There are two three related \emph{Attributes}: \textbf{Life}, \textbf{Recovery}, and \textbf{Block}.
+There are two three related \emph{Attributes}: \textbf{Life}\index{Life|seealso{Attribute}}, \textbf{Recovery}\index{Recovery|seealso{Attribute}}, and \textbf{Block}\index{Block|seealso{Attribute}}.
 A creature's \Life{} defines how much damage it can it until it falls unconscious or dies.
 Its \Recovery{} defines how much \Life{} a creature regains when it heals, rests, and recuperates.
 \Block{} defines how much damage a creature can just absorb without any impact, as described later \Block{} is subtracted from damage dealt to a creature before subtracting the damage from its \Life.
@@ -225,13 +227,13 @@ A character's \Life{} has a numeric score between 1 and 40, its \Recovery{} a nu
 Other creatures may have values outside of these ranges.
 
 \subsubsection{Movement}
-Each creature has a \textbf{Size} which describes its size and is used, along with its \textbf{Speeds} to determine how much it can move each turn.
+Each creature has a \textbf{Size}\index{Size|seealso{Attribute}} which describes its size and is used, along with its \textbf{Speeds}\index{Speed|seealso{Attribute}} to determine how much it can move each turn.
 A creature's \emph{Size} is one of \emph{Tiny}, \emph{Small}, \emph{Medium}, \emph{Large}, \emph{Huge}, or \emph{Gigantic}.
 Table~\ref{tab:sizes} lists each size along with a \emph{scale}; this \emph{scale} is used to define speeds, in addition a creature of a given \emph{Size} fits in a square area with side lengths of its size's scale.
 
 A creature has five different \textbf{Speeds}: \emph{Walking}, \emph{Swimming}, \emph{Flying}, \emph{Climbing}, and \emph{Burrowing}. 
 Each of these speeds has a value of \emph{None}, \emph{Slow}, \emph{Medium}, \emph{Fast}, or \emph{Very Fast}.
-Table~\ref{tab:speeds} lists each speed along with its corresponding \textbf{Distance} that a creature with that speed can move on a turn and a \emph{Scale} multiplier that defines that distance.
+Table~\ref{tab:speeds} lists each speed along with its corresponding \textbf{Distance}\index{Distance} that a creature with that speed can move on a turn and a \emph{Scale} multiplier that defines that distance.
 Note that a GM may allow creatures with speeds of None to still move in certain circumstances, for instance a creature with \emph{None} for its \emph{Swimming} or \emph{Climbing} speed may still be able to swim or climb but it may be quite slowly or may require a roll.
 
 \begin{figure}
@@ -247,7 +249,7 @@ Note that a GM may allow creatures with speeds of None to still move in certain 
       Huge &20' \\
       Gigantic &50' \\ \hline
     \end{tabular}
-    \captionof{table}{Sizes and Scales}
+    \captionof{table}{Sizes\index{Size} and Scales}
     \label{tab:sizes}
   \end{minipage}%
   \begin{minipage}{.5\textwidth}
@@ -260,13 +262,13 @@ Note that a GM may allow creatures with speeds of None to still move in certain 
       Fast &Mid-Range &$10 \times$ scale \\
       Very Fast &Far &$20 \times$ scale \\ \hline
     \end{tabular}
-    \captionof{table}{Speeds and Distances}
+    \captionof{table}{Speeds\index{Speed|seealso{Attribute}} and Distances\index{Distance}}
     \label{tab:speeds}
   \end{minipage}
 \end{figure}
 
 \subsubsection{Wealth}
-The \textbf{Wealth} \emph{Attribute} describes how much money a creature has and can easily spend.
+The \textbf{Wealth}\index{Wealth|seealso{Attribute}} \emph{Attribute} describes how much money a creature has and can easily spend.
 Creatures with a high \emph{Wealth} are able to make larger purchases, without expending other meta-resources, than a creature with low \emph{Wealth}.
 \emph{Wealth} has one of the values in Table~\ref{tab:wealth} which also describes the sorts of things that can be bought with that level.
 
@@ -281,14 +283,14 @@ Creatures with a high \emph{Wealth} are able to make larger purchases, without e
     Comfortable &a sailboat, a comfortable wagon, a day of skilled labor \\ \hline
     Luxurious &a mercenary, an abandoned warehouse or small property \\ \hline
   \end{tabular}
-  \caption{Wealth}
+  \caption{Wealth\index{Wealth}}
   \label{tab:wealth}
 \end{table}
 
 \subsection{Skills}
-\textbf{Skills} represent talents and abilities a creature has.
-Most skills are \emph{general} and all creatures will have a bonus to them, low as that bonus may be.
-Some skills, though, are \emph{specialized} and require specific training, ability, or knowledge.
+\textbf{Skills}\index{Skill} represent talents and abilities a creature has.
+Most skills are \emph{general}\index{Skill!General} and all creatures will have a bonus to them, low as that bonus may be.
+Some skills, though, are \emph{specialized}\index{Skill!Specialized} and require specific training, ability, or knowledge.
 The \emph{specialized} skills also have \emph{specializations}, they apply for a particular purpose.
 For example, characters can have separate \textbf{Weapon} skills for each type of weapon they know how to wield.
 For \emph{specialized} skills, creatures do not necessarily have a bonus for the skill and therefore may not be able to complete an action which requires a roll of that skill, though in some cases the GM may allow use of a similar skill though might impose a penalty by increasing the \Difficulty{} or \emph{Decreasing} the roll.
@@ -313,7 +315,7 @@ The \emph{specialized} skills are listed in Table~\ref{tab:special-skills} along
       &Survey\footnote{Map an area, find points of interest, judge survival aspects, etc.} &Swim \\
     Tame &Track &Willpower \\ \hline
   \end{tabular}
-  \caption{General Skills}
+  \caption{General Skills\index{Skill!General}}
   \label{tab:general-skills}
 \end{table}
 
@@ -337,17 +339,20 @@ The \emph{specialized} skills are listed in Table~\ref{tab:special-skills} along
     Weapon        &Weapon: knife, sword, bow, ... \\
     Language      &Language: common, local languages, sylvan, ... \\ \hline
   \end{tabular}
-  \caption{Specialized Skills}
+  \caption{Specialized Skills\index{Skill!Specialized}}
   \label{tab:special-skills}
 \end{table}
 
-\subsubsection{Magic}\label{sec:magic}
+\subsubsection{Magic}\label{sec:magic}\index{Magic}
 Magic is defined, like most everything else, as a \Skill.
 Magic is divided into fifty different magic skills, which are composed of a \emph{verb} describing what the magic can do and a \emph{noun} describing what the magic impacts.
 The verbs are: \emph{control}, \emph{create}, \emph{destroy}, \emph{perceive}, and \emph{transform}.
 The nouns are: \emph{air}, \emph{earth}, \emph{fire}, \emph{water}, \emph{animals}, \emph{plants}, \emph{body}, \emph{illusion}, \emph{mind}, and \emph{power}.
 
 The exact meaning of these verbs and nouns should be discussed by the Player and GM and can be given some breadth; for example \emph{fire} may include heat as well as literal fire, or \emph{air} may include lightning.
+
+\clearpage
+\printindex
 
 \clearpage
 \appendix

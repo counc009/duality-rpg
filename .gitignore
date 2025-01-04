@@ -4,3 +4,6 @@
 *.toc
 *.fdb_latexmk
 *.fls
+*.idx
+*.ilg
+*.ind
