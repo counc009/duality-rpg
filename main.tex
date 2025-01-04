@@ -165,51 +165,6 @@ Each Player can collect \Advantage, as can the GM.
   \item \emph{Decrease damage}: An \Advantage{} can be spent to reduce the number of damage dice rolled by a creature by one; a Player's character must be able to narratively impact the situation to use \Advantage{} in this way.
 \end{enumerate}
 
-\section{Combat}
-Combat is broken up into rounds during which each participant has the chance to act.
-During each round, the GM and Players alternate taking turns to have one creature act, until all participants have acted; if there are more participants on one side or the other the remaining creatures generally act at the end, though one side may pass to allow the other to act an additional time.
-Either side may also spend \Advantage{} once each turn to have two creatures go instead of just one.
-No creature can act more than once per round, except as allowed by another feature or rule.
-
-On a creature's turn, they can move based on their \Speed{}\index{Speed}, take an \textbf{Action}\index{Action}, any take any reasonable number of \textbf{Quick Actions}\index{Action!Quick Action}.
-An action can be to make an attack, to take additional movement, to \emph{Help} someone else, or similar actions that the GM may permit.
-Quick Actions include simple tasks like drinking a potion or drawing a weapon.
-
-\subsection{Making Attacks}
-When a creature makes an attack against another creature, the attacker and target make an opposed roll.
-The attacker rolls adding their \emph{Weapon} skill for the weapon being used and the target rolls with their \emph{Defend} skill.
-Some creatures may have abilities that allow them to attack multiple targets simultaneously, in such cases the attacker rolls once and then computes and resolves their \Outcome{} against each target separately.
-
-If the attacker's result is \Mixed{} or better, they roll damage of their weapon and add their \emph{Weapon} skill.
-The target subtracts their \Block{}\index{Block} from this number and any remaining damage is subtracted from its \Life{}\index{Life}.
-If the attacker's result is \VeryGood{} they gain an \Advantage{} as normal, which can be spent to gain an additional damage die on their damage roll.
-If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner, alternatively it can take an \Advantage{} or two on a \VeryBad{} result.
-
-While \Advantage{} can be spent on any damage roll to add a damage die to it, the GM cannot spend more \Advantage{} for additional damage on a single damage roll than the current round number (where the first round of combat is round 1).
-
-For each attack a character makes in the same round, either as their action or in response to an attack against them, they roll one fewer damage dice, to a minimum of zero damage dice; they can still spend \Advantage{} to add additional damage dice to subsequent attacks.
-
-\subsection{Weapon Properties}\index{Weapon}
-Properties of a weapon, or unarmed or magical attacks, such as damage and range are defined by keywords on the weapon.
-The keywords and their properties are as follows:
-\begin{itemize}
-  \item[-] \textbf{Melee}\index{Melee|see{Weapon}}: can be used to make a melee attack, dealing 1d8 base damage.
-    A melee attack made without this keyword is \emph{Decreased}.
-  \item[-] \textbf{Ranged}\index{Ranged|see{Weapon}}: can be used to make a ranged attack at a Close or Mid-Range distance, dealing 1d6 base damage.
-    A ranged attack made without this keyword is \emph{Decreased}.
-    A ranged attack beyond a Mid-Range is \emph{Decreased}.
-  \item[-] \textbf{Accurate}\index{Accurate|see{Weapon}}: increases the base damage of a \emph{Ranged} weapon to 1d8.
-  \item[-] \textbf{Defensive}\index{Defensive|see{Weapon}} grants a +1 bonus to \Block.
-  \item[-] \textbf{Multihit}\index{Multihit|see{Weapon}}: you can spend advantage to target a creature and all those adjacent to it at -1 damage dice.
-  \item[-] \textbf{Reach}\index{Reach|see{Weapon}}: increases the range of a melee attack to a Near distance.
-  \item[-] \textbf{Far Shooter}\index{Far Shooter|see{Weapon}}: increases the range of a ranged attack to Far.
-  \item[-] \textbf{Piercing}\index{Piercing|see{Weapon}}: you can spend advantage to ignore the target's \Block.
-\end{itemize}
-
-\section{Adventuring}
-\subsection{Rest} {\color{red}\bf TODO}
-\subsection{Defeat} {\color{red}\bf TODO}
-
 \section{Character Attributes and Skills}
 Characters are defined by their \emph{Attributes} and by their \emph{Skills}.
 \emph{Attributes} define certain properties of characters, such as their size, movement, wealth, and ability to take damage while \emph{Skills} define how good characters are at certain tasks and are used for rolls.
@@ -238,7 +193,7 @@ Note that a GM may allow creatures with speeds of None to still move in certain 
 
 \begin{figure}
   \centering
-  \begin{minipage}{.5\textwidth}
+  \begin{minipage}{.245\textwidth}
     \centering
     \begin{tabular}{|c|c|} \hline
       \textbf{Size} &\textbf{Scale} \\ \hline
@@ -252,7 +207,7 @@ Note that a GM may allow creatures with speeds of None to still move in certain 
     \captionof{table}{Sizes\index{Size} and Scales}
     \label{tab:sizes}
   \end{minipage}%
-  \begin{minipage}{.5\textwidth}
+  \begin{minipage}{.395\textwidth}
     \centering
     \begin{tabular}{|c|c|c|} \hline
       \textbf{Speed} &\textbf{Distance} &\textbf{Definition} \\ \hline
@@ -264,6 +219,25 @@ Note that a GM may allow creatures with speeds of None to still move in certain 
     \end{tabular}
     \captionof{table}{Speeds\index{Speed|seealso{Attribute}} and Distances\index{Distance}}
     \label{tab:speeds}
+  \end{minipage}%
+  \begin{minipage}{.357\textwidth}
+    \centering
+    \begin{tabular}{|ccc|} \hline
+      \multicolumn{3}{|c|}{\textbf{Skills}} \\ \hline
+      Balance &Bargain &Climb \\
+      Codebreak &Convince &Defend \\
+      Disguise &Escape &Fish \\
+      Hide &Insight &Jump \\
+      Lift &Medicine &Perceive \\
+      Pick Lock &Pick Pocket
+        &Plot\footnote{Planning and preparing for a heist of infiltration effort} \\
+      Run &Search &Shove \\
+      Sneak 
+        &Survey\footnote{Map an area, find points of interest, judge survival aspects, etc.} &Swim \\
+      Tame &Track &Willpower \\ \hline
+    \end{tabular}
+    \captionof{table}{General Skills\index{Skill!General}}
+    \label{tab:general-skills}
   \end{minipage}
 \end{figure}
 
@@ -301,26 +275,6 @@ The \emph{specialized} skills are listed in Table~\ref{tab:special-skills} along
 
 \begin{table}
   \centering
-  \begin{tabular}{|ccc|} \hline
-    \multicolumn{3}{|c|}{\textbf{Skills}} \\ \hline
-    Balance &Bargain &Climb \\
-    Codebreak &Convince &Defend \\
-    Disguise &Escape &Fish \\
-    Hide &Insight &Jump \\
-    Lift &Medicine &Perceive \\
-    Pick Lock &Pick Pocket
-      &Plot\footnote{Planning and preparing for a heist of infiltration effort} \\
-    Run &Search &Shove \\
-    Sneak 
-      &Survey\footnote{Map an area, find points of interest, judge survival aspects, etc.} &Swim \\
-    Tame &Track &Willpower \\ \hline
-  \end{tabular}
-  \caption{General Skills\index{Skill!General}}
-  \label{tab:general-skills}
-\end{table}
-
-\begin{table}
-  \centering
   \begin{tabular}{|c|l|} \hline
     \textbf{Skill} &\textbf{Specializations} \\ \hline
     Alchemy       &Products: acid, glue, salve, ... \\
@@ -351,6 +305,61 @@ The nouns are: \emph{air}, \emph{earth}, \emph{fire}, \emph{water}, \emph{animal
 
 The exact meaning of these verbs and nouns should be discussed by the Player and GM and can be given some breadth; for example \emph{fire} may include heat as well as literal fire, or \emph{air} may include lightning.
 
+\section{Combat}
+Combat is broken up into rounds during which each participant has the chance to act.
+During each round, the GM and Players alternate taking turns to have one creature act, until all participants have acted; if there are more participants on one side or the other the remaining creatures generally act at the end, though one side may pass to allow the other to act an additional time.
+Either side may also spend \Advantage{} once each turn to have two creatures go instead of just one.
+No creature can act more than once per round, except as allowed by another feature or rule.
+
+On a creature's turn, they can move based on their \Speed{}\index{Speed}, take an \textbf{Action}\index{Action}, any take any reasonable number of \textbf{Quick Actions}\index{Action!Quick Action}.
+An action can be to make an attack, to take additional movement, to \emph{Help} someone else, or similar actions that the GM may permit.
+Quick Actions include simple tasks like drinking a potion or drawing a weapon.
+
+\subsection{Making Attacks}
+When a creature makes an attack against another creature, the attacker and target make an opposed roll.
+The attacker rolls adding their \emph{Weapon} skill for the weapon being used and the target rolls with their \emph{Defend} skill.
+Some creatures may have abilities that allow them to attack multiple targets simultaneously, in such cases the attacker rolls once and then computes and resolves their \Outcome{} against each target separately.
+
+If the attacker's result is \Mixed{} or better, they roll damage of their weapon and add their \emph{Weapon} skill.
+The target subtracts their \Block{}\index{Block} from this number and any remaining damage is subtracted from its \Life{}\index{Life}.
+If the attacker's result is \VeryGood{} they gain an \Advantage{} as normal, which can be spent to gain an additional damage die on their damage roll.
+If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner, alternatively it can take an \Advantage{} or two on a \VeryBad{} result.
+
+While \Advantage{} can be spent on any damage roll to add a damage die to it, the GM cannot spend more \Advantage{} for additional damage on a single damage roll than the current round number (where the first round of combat is round 1).
+
+For each attack a character makes in the same round, either as their action or in response to an attack against them, they roll one fewer damage dice, to a minimum of zero damage dice; they can still spend \Advantage{} to add additional damage dice to subsequent attacks.
+
+\subsection{Weapon Properties}\index{Weapon}
+Properties of a weapon, or unarmed or magical attacks, such as damage and range are defined by keywords on the weapon.
+The keywords and their properties are detailed in Table~\ref{tab:weapons}.
+Note that the attack roll for any melee attacks\index{Melee Attack} (attacks against an adjacent creature) is \emph{Decreased} if the weapon does not have the \emph{Melee} keyword.
+Similarly, any ranged attack\index{Ranged Attack} (any attack against a target not adjacent) without the \emph{Ranged} keyword and any attack beyond a \emph{Mid-Range} are \emph{Decreased}.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|}\hline
+    \textbf{Keyword} &\textbf{Properties} \\ \hline
+    Melee\index{Melee|see{Weapon}} &Can be used to make a melee attack, dealing 1d8 base damage \\
+    Ranged\index{Ranged|see{Weapon}} &Can be used to make a ranged attack, dealing 1d6 base damage \\
+    Accurate\index{Accurate|see{Weapon}} &Increases the base damage of a \emph{Ranged} weapon to 1d8 \\
+    Defensive\index{Defensive|see{Weapon}} &Grants a +1 bonus to \Block \\
+    Multihit\index{Multihit|see{Weapon}} &Attacker can spend advantage to target a creature and all those adjacent to it at -1 damage dice \\
+    Reach\index{Reach|see{Weapon}} &Increases the range of a melee attack to a \emph{Near} distance \\
+    Far Shooter\index{Far Shooter|see{Weapon}} &Increases the range of a ranged attack to \emph{Far} \\
+    Piercing\index{Piercing|see{Weapon}} &Attacker can spend advantage to ignore the target's \Block \\ \hline
+  \end{tabular}
+  \caption{Weapon Keywords\index{Weapon}}
+  \label{tab:weapons}
+\end{table}
+
+\section{Adventuring}
+
+\subsection{Rest}
+{\color{red}\bf TODO}
+
+\subsection{Defeat}
+{\color{red}\bf TODO}
+
 \clearpage
 \printindex
 
@@ -367,7 +376,6 @@ The exact meaning of these verbs and nouns should be discussed by the Player and
 \section{Development Notes}
 To Do List
 \begin{itemize}
-  \item[-] Character Sheet
   \item[-] Transformation/Companion abilities
   \item[-] Leveling Up and Experience Points
   \item[-] Experience Points as money
