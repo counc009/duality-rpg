@@ -1,0 +1,23 @@
+\usepackage{tabularx}
+\usepackage{pifont}
+\usepackage{multirow}
+
+\newlength\TextFieldLength
+\newcommand\TextFieldFill[3][]{%
+  \setlength\TextFieldLength{#2}%
+  \settowidth{\dimen0}{#3 }%
+  \addtolength\TextFieldLength{-\dimen0}%
+  \TextField[#1,width=\TextFieldLength]{\raisebox{2pt}{#3}}%
+}
+
+\newcommand{\checkbox}[1]{\CheckBox[name=#1,checkboxsymbol=\ding{110}]{}}
+\newcommand{\checkedbox}[1]{{\LARGE\ding{110}}}
+\newcommand{\checkbelow}[2]{$\underset{#1}{\text{\checkbox{#2}}}$}
+\newcommand{\checkedbelow}[2]{$\underset{#1}{\text{\checkedbox{#2}}}$}
+
+\newcommand{\skillChecksZero}[1]{\checkbelow{0}{#1v0} \checkbelow{+1}{#1v1} \checkbelow{+2}{#1v2} \checkbelow{+3}{#1v3}}
+
+\newcommand{\genSkillChecks}[1]{\checkedbelow{-1}{#1vE} \skillChecksZero{#1}}
+\newcommand{\genSkill}[1]{#1 &\genSkillChecks{#1}}
+
+\newcommand{\specSkill}[1]{\TextField[name=#1,width=\linewidth]{} &\checkbelow{-1}{#1vE} \skillChecksZero{#1}}

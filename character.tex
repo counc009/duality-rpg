@@ -12,93 +12,14 @@
 \usepackage{hyperref}
 \usepackage{comment}
 
-\usepackage{tabularx}
-\usepackage{pifont}
-\usepackage{multirow}
 \usepackage{rpg-config}
-
-\newlength\TextFieldLength
-\newcommand\TextFieldFill[3][]{%
-  \setlength\TextFieldLength{#2}%
-  \settowidth{\dimen0}{#3 }%
-  \addtolength\TextFieldLength{-\dimen0}%
-  \TextField[#1,width=\TextFieldLength]{\raisebox{2pt}{#3}}%
-}
+\usepackage{charactersheet}
 
 \pagestyle{fancy}
 \rhead{\theversion}
 \renewcommand{\headrulewidth}{0pt}
 \fancyfoot{}
 
-\newcommand{\checkbox}[1]{\CheckBox[name=#1,checkboxsymbol=\ding{110}]{}}
-\newcommand{\checkedbox}[1]{{\LARGE\ding{110}}}
-\newcommand{\checkbelow}[2]{$\underset{#1}{\text{\checkbox{#2}}}$}
-\newcommand{\checkedbelow}[2]{$\underset{#1}{\text{\checkedbox{#2}}}$}
-
-\newcommand{\skillChecksZero}[1]{\checkbelow{0}{#1v0} \checkbelow{+1}{#1v1} \checkbelow{+2}{#1v2} \checkbelow{+3}{#1v3}}
-
-\newcommand{\genSkillChecks}[1]{\checkedbelow{-1}{#1vE} \skillChecksZero{#1}}
-\newcommand{\genSkill}[1]{#1 &\genSkillChecks{#1}}
-
-\newcommand{\specSkill}[1]{\TextField[name=#1,width=\linewidth]{} &\checkbelow{-1}{#1vE} \skillChecksZero{#1}}
-
 \begin{document}
-\begin{Form}
-\noindent
-\begin{tabularx}{\textwidth}{|Xc|Xc|Xc|} \hline
-  \multicolumn{6}{|c|}{\Large\textbf{Character Sheet}} \\ \hline
-  %
-  \multicolumn{4}{|l|}{\TextFieldFill[name=characterName]{.6\textwidth}{\textbf{Character Name}}}
-    &\multicolumn{2}{|l|}{\TextFieldFill[name=advantage]{.3\textwidth}{\textbf{Advantage}}} \\ \hline
-  %
-  \textbf{Max Life} &\TextField[name=lifemax,width=.16\textwidth]{}
-    &\textbf{Block} &\TextField[name=block,width=.16\textwidth]{}
-    &\textbf{Wealth} &\ChoiceMenu[name=wealth,combo,width=.16\textwidth]{}{None 0,Wretched 1,Squalid 2,Modest 3,Comfortable 4,Luxurious 5} \\
-  Cur Life &\TextField[name=lifecur,width=.16\textwidth]{}
-    &\textbf{Recovery} &\TextField[name=recovery,width=.16\textwidth]{}
-    &\textbf{Size} &\ChoiceMenu[name=size,combo,width=.16\textwidth]{}{Tiny 0,Small 1,Medium 2,Large 3,Huge 4,Gigantic 5} \\ \hline
-  %
-  \textbf{Walking} &\ChoiceMenu[name=walking,combo]{}{None 0,Slow 1,Medium 2,Fast 3,Very Fast 4}
-  &\textbf{Swimming} &\ChoiceMenu[name=swimming,combo]{}{None 0,Slow 1,Medium 2,Fast 3,Very Fast 4}
-  &\multirow{2}{*}{\textbf{Flying}} &\multirow{2}{*}{\ChoiceMenu[name=walking,combo]{}{None 0,Slow 1,Medium 2,Fast 3,Very Fast 4}} \\
-  \textbf{Climbing} &\ChoiceMenu[name=walking,combo]{}{None 0,Slow 1,Medium 2,Fast 3,Very Fast 4}
-  &\textbf{Burrowing} &\ChoiceMenu[name=walking,combo]{}{None 0,Slow 1,Medium 2,Fast 3,Very Fast 4} 
-  && \\ \hline
-  \multicolumn{6}{|c|}{\textbf{General Skills}} \\ \hline
-  %
-  \genSkill{Balance} &\genSkill{Bargain} &\genSkill{Climb} \\
-  \genSkill{Codebreak} &\genSkill{Convince} &\genSkill{Defend} \\
-  \genSkill{Disguise} &\genSkill{Escape} &\genSkill{Fish} \\
-  \genSkill{Hide} &\genSkill{Insight} &\genSkill{Jump} \\
-  \genSkill{Lift} &\genSkill{Medicine} &\genSkill{Perceive} \\
-  \genSkill{Pick Lock} &\genSkill{Pick Pocket} &\genSkill{Plot} \\
-  \genSkill{Run} &\genSkill{Search} &\genSkill{Shove} \\
-  \genSkill{Sneak} &\genSkill{Survey} &\genSkill{Swim} \\
-  \genSkill{Tame} &\genSkill{Track} &\genSkill{Willpower} \\ \hline
-  %
-  \multicolumn{6}{|c|}{\textbf{Specialized Skills}} \\ \hline
-  %
-  \specSkill{spec1} &\specSkill{spec2} &\specSkill{spec3} \\
-  \specSkill{spec4} &\specSkill{spec5} &\specSkill{spec6} \\
-  \specSkill{spec7} &\specSkill{spec8} &\specSkill{spec9} \\
-  \specSkill{spec10} &\specSkill{spec11} &\specSkill{spec12} \\ \hline
-\end{tabularx}
-\\
-% TODO: Move to two columns of keywords for each
-\begin{tabularx}{\textwidth}{|XlXl|XlXl|} \hline
-  \multicolumn{8}{|c|}{\textbf{Weapons}} \\ \hline
-  \multicolumn{4}{|l|}{\TextFieldFill[name=weapon1Desc]{.475\textwidth}{Description}}
-  &\multicolumn{4}{l|}{\TextFieldFill[name=weapon1Desc]{.475\textwidth}{Description}} \\
-  Melee &\checkbox{weapon1Melee} &Ranged &\checkbox{weapon1Ranged}
-    &Melee &\checkbox{weapon2Melee} &Ranged &\checkbox{weapon2Ranged} \\
-  Accurate &\checkbox{weapon1Accurate} &Defensive &\checkbox{weapon1Defensive}
-    &Accurate &\checkbox{weapon2Accurate} &Defensive &\checkbox{weapon2Defensive} \\
-  Multihit &\checkbox{weapon1Multihit} &Reach &\checkbox{weapon1Reach}
-    &Multihit &\checkbox{weapon2Multihit} &Reach &\checkbox{weapon2Reach} \\
-  Far Shooter &\checkbox{weapon1FarShooter} &Piercing &\checkbox{weapon1Piercing}
-    &Far Shooter &\checkbox{weapon2FarShooter} &Piercing &\checkbox{weapon2Piercing} \\
-  \hline
-\end{tabularx}
-\end{Form}
-
+\include{character-sheet}
 \end{document}

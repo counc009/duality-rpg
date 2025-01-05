@@ -15,6 +15,8 @@
 \usepackage{caption}
 \usepackage{slashbox}
 \usepackage{rpg-config}
+\usepackage{pdfpages}
+\usepackage{charactersheet}
 
 \usepackage{imakeidx}
 \makeindex[intoc]
@@ -305,6 +307,14 @@ The nouns are: \emph{air}, \emph{earth}, \emph{fire}, \emph{water}, \emph{animal
 
 The exact meaning of these verbs and nouns should be discussed by the Player and GM and can be given some breadth; for example \emph{fire} may include heat as well as literal fire, or \emph{air} may include lightning.
 
+\subsection{Character Creation}
+When creating a character, a player has 100 points which they can spend in creating their character.
+One point can be used to gain a \emph{Specialized Skill} (with a starting bonus of $-1$) or to increase the bonus of any \Skill{} by 1.
+The player spends a number of points equal to their desired \emph{Maximum Life} (with a maximum of 40), initial \Block{} (with a maximum of 2), and \Recovery{} (with a maximum of 20).
+These points are also spent to select the character's \emph{Wealth}, \emph{Size}, and \emph{Speeds}.
+The number of points for each value is shown in the \emph{Character Sheet} on page~\pageref{page:character}.
+Additionally, a single point can be used to add \emph{Weapon Keywords} to define their combat abilities.
+
 \section{Combat}
 Combat is broken up into rounds during which each participant has the chance to act.
 During each round, the GM and Players alternate taking turns to have one creature act, until all participants have acted; if there are more participants on one side or the other the remaining creatures generally act at the end, though one side may pass to allow the other to act an additional time.
@@ -381,6 +391,10 @@ If the creature is still in danger, for instance in combat, the creature must ch
     If it fails one of these rolls, it dies.
 \end{itemize}
 
+\clearpage\label{page:character}
+\addcontentsline{toc}{section}{Character Sheet}
+\include{character-sheet}
+
 \clearpage
 \printindex
 
@@ -397,6 +411,8 @@ If the creature is still in danger, for instance in combat, the creature must ch
 \section{Development Notes}
 To Do List
 \begin{itemize}
+  \item[-] Better character creation; rebalance costs
+  \item[-] Benefits of different sizes to make neutral?
   \item[-] Transformation/Companion abilities
   \item[-] Leveling Up and Experience Points
   \item[-] Experience Points as money/resources
