@@ -1,0 +1,91 @@
+\section{Rolls}
+When a Player Character (PC) attempts to do something that is not certain, they must roll for it.
+There are two types of roll: opposed rolls for when another character is resisting the effort and unopposed rolls for when success is not guaranteed but nobody is actively resisting the effort.
+The result of a roll is measured by an \textbf{Outcome}\index{Outcome}: \VeryBad, \Bad, \Mixed, \Good, or \VeryGood.
+
+When the \Outcome{} of a roll is \Mixed{} or better (\Mixed, \Good, or \VeryGood), the PC achieves what they rolled for; on a \VeryGood{} outcome they either achieve something extra or gain an \Advantage.
+When the \Outcome{} is \Mixed{} or worse (\Mixed, \Bad, or \VeryBad), their is either a negative repercussion, and a particularly bad repercussion on a \VeryBad{} result, or the GM gains an \Advantage, or two on a \VeryBad{} result.
+
+The GM may declare any roll to be \textbf{Dangerous}\index{Dangerous} in which case a \Bad{} outcome is treated as a \VeryBad{} outcome.
+
+\subsection{Unopposed Rolls}
+For an unopposed roll, the GM will select the appropriate \Skill{} for the task and set a \textbf{Difficulty}\index{Difficulty} for the task, which is \emph{Very Easy}, \emph{Easy}, \emph{Medium}, \emph{Hard}, or \emph{Very Hard}.
+The player then rolls 3d20 and generally takes the middle value and then adds their \Skill{} bonus and any relevant bonuses to the roll; this total is then compared to Table~\ref{tab:unopposed-outcome} to determine the \Outcome.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|} \hline
+   \backslashbox{\bf Difficulty}{\bf Outcome}
+        &\textbf{Very Bad} &\textbf{Bad} &\textbf{Mixed} &\textbf{Good} &\textbf{Very Good} \\ \hline
+    \textbf{Very Easy} &-- &$\leq 0$ &$1 - 4$ &$5 - 8$ &$\geq 9$ \\ \hline
+    \textbf{Easy} &$\leq 0$ &$1 - 4$ &$5 - 8$ &$9 - 12$ &$\geq 13$ \\ \hline
+    \textbf{Medium} &$\leq 4$ &$5 - 8$ &$9 - 12$ &$13 - 16$ &$\geq 17$ \\ \hline
+    \textbf{Hard} &$\leq 8$ &$9 - 12$ &$13 - 16$ &$17 - 20$ &$\geq 21$ \\ \hline
+    \textbf{Very Hard} &$\leq 12$ &$13 - 16$ &$17 - 20$ &$21 - 24$ &$\geq 25$ \\ \hline
+  \end{tabular}
+  \caption{Outcome Table for Unopposed Rolls}
+  \label{tab:unopposed-outcome}
+\end{table}
+
+\subsection{Opposed Rolls}
+For an opposed roll, both the Player and GM roll and add their appropriate \Skill{} bonuses and any other relevant bonuses as well.
+Then, the Player's result is computed as their roll minus the GM's roll and this is compared to Table~\ref{tab:opposed-outcome}.
+Similarly, the GM's result is computed as their roll minus the Player's and this is compared to Table~\ref{tab:opposed-outcome}.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|} \hline
+    \textbf{Difference} &$\leq \text{-}6$ &$\text{-}5 - \text{-}2$ &$\text{-}1 - 1$ &$2 - 5$ &$\geq 6$ \\ \hline
+    \textbf{Outcome} &Very Bad &Bad &Mixed &Good &Very Good \\ \hline
+  \end{tabular}
+  \caption{Outcome Table for Opposed Rolls}
+  \label{tab:opposed-outcome}
+\end{table}
+
+\subsection{Group Rolls}
+Groups rolls, for circumstances where multiple characters are working together on something or all doing something where failures can impact each other, have slightly different rules.
+There are two types of Group rolls, whose rules are detailed below.
+
+\subsubsection{Collective Rolls}
+A Collective Roll is used when characters are working together on a large task that could not be reasonably be completed by just one.
+For example, a Collective Roll might be used when a group of PCs is researching in a large library looking for information pertaining to the location of an ancient ruin.
+In a Collective Roll, the GM may also allow multiple rounds of rolls to be collected together for tasks that might take more time and effort than just the single roll.
+
+For a Collective Roll, the GM sets a \Difficulty{} and a \textbf{Magnitude}\index{Magnitude} (a whole number).
+The characters then each roll as normal, but instead of converting their roll to an outcome, they instead total their rolls together.
+This total is then divided by the \emph{Magnitude} set by the GM (always rounding towards zero) and then this result is compared to Table~\ref{tab:unopposed-outcome} to determine the group's outcome of the roll.
+
+In our example of searching a library, the GM may determine that this task is relatively easy and risk free and set a \Difficulty{} of \emph{Easy} but because of the massive size of the library determine that the \emph{Magnitude} is 10.
+Then, if the party rolls a total of 48, we divide this by the \emph{Magnitude} to get a 4, which is a \Bad{} outcome.
+
+When a GM allows multiple rounds of rolls, the party totals their rolls from each round together and then divides by the \emph{Magnitude} to determine the \Outcome{} for each round.
+While a \Bad{} or \VeryBad{} result on a round of rolls is not a failure of the entire effort, the GM may still impose negative outcomes or gain \Advantage{} for each round until the group reaches a \Mixed{} or better result.
+
+If the GM for the party searching the library allows the party another round, the GM may collect an \Advantage{} for the failure on the first round (or impose some negative outcome).
+The party then rolls a total of 33 on the next round, for a total of 81 now, which is an 8 after division by the \emph{Magnitude} and is therefore a \Mixed{} result now.
+The party therefore has now found the information they are looking for, but the GM may take another \Advantage{} or impose a negative outcome.
+
+\subsubsection{Cooperative Rolls}
+A Cooperative Roll is used when characters are each performing similar actions with similar goals but failures by some characters may impact the entire group.
+For example, a Cooperative Roll might be used when a group of PCs is sneaking into the collections of a museum seeking an artifact not on display.
+
+For a Cooperative Roll, the GM sets a \Difficulty{} for each character which each character rolls against.
+This \Difficulty{} and the \Skill{} used for the roll is often the same for all characters involved but not necessarily.
+Then, the total successes and failures are totaled, where a \VeryBad{} counts as $-2$, \Bad{} as $-1$, \Mixed{} as $0$, \Good{} as $+1$, and \VeryGood{} as $+2$.
+This total then is converted into an \Outcome{} in the same manner, so a result of $-2$ or less is \VeryBad, $-1$ is \Bad, $0$ is \Mixed, $1$ is \Good, and $2$ or higher is \VeryGood.
+
+For our party attempting to sneak into the museum collections, the GM may set a \Difficulty{} of \emph{Hard} and have each PC roll for stealth.
+If the party rolls two \Bad, one \Mixed, and one \VeryGood{} result, the outcome of the roll is \Mixed.
+If, instead, they had rolled two \Bad, one \Good, and one \VeryGood{} the outcome would be \Good.
+
+\subsection{Helping Out}
+A character can \textbf{Help}\index{Help} another creature on a roll with that creature's and GM's approval.
+Based on how they are helping out, the GM will pick a skill for the helper to roll; this will generally be against a \emph{Medium} difficulty though the GM may adjust this for particularly difficult tasks or when the assistance is difficult to render.
+On a \Mixed{} or better result the creature being helped gains an \Advantage.
+
+\subsection{Increased and Decreased Rolls}
+In some circumstances a character's roll may be \textbf{Increased}\index{Increase} or \textbf{Decreased}\index{Decrease}.
+\emph{Increases} and \emph{Decreases} can stack and cancel each other out, so one \Increase{} and one \Decrease{} cancel out, while two \emph{Increases} and one \Decrease{} cancel out to one \Increase.
+
+On a roll with one \Increase{} the highest of the 3d20 is read, while on a roll with one \Decrease{} the lowest of the 3d20 is read.
+On a roll with two or more (net) \emph{Increases} it is treated as if a 20 had been rolled and on a roll with two or more \emph{Decreases} as if a 1 had been rolled.

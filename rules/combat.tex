@@ -1,0 +1,75 @@
+\section{Combat}
+Combat is broken up into rounds during which each participant has the chance to act.
+During each round, the GM and Players alternate taking turns to have one creature act, until all participants have acted; if there are more participants on one side or the other the remaining creatures generally act at the end, though one side may pass to allow the other to act an additional time.
+Either side may also spend \Advantage{} once each turn to have two creatures go instead of just one.
+No creature can act more than once per round, except as allowed by another feature or rule.
+
+On a creature's turn, they can move based on their \Speed{}\index{Speed}, take an \textbf{Action}\index{Action}, any take any reasonable number of \textbf{Quick Actions}\index{Action!Quick Action}.
+An action can be to make an attack, to take additional movement, to \emph{Help} someone else, or similar actions that the GM may permit.
+Quick Actions include simple tasks like drinking a potion or drawing a weapon.
+
+\subsection{Making Attacks}
+When a creature makes an attack against another creature, the attacker and target make an opposed roll.
+The attacker rolls adding their \emph{Weapon} skill for the weapon being used and the target rolls with their \emph{Defend} skill.
+Some creatures may have abilities that allow them to attack multiple targets simultaneously, in such cases the attacker rolls once and then computes and resolves their \Outcome{} against each target separately.
+
+If the attacker's result is \Mixed{} or better, they roll damage of their weapon and add their \emph{Weapon} skill.
+The target subtracts their \Block{}\index{Block} from this number and any remaining damage is subtracted from its \Life{}\index{Life}.
+If the attacker's result is \VeryGood{} they gain an \Advantage{} as normal, which can be spent to gain an additional damage die on their damage roll.
+If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner, alternatively it can take an \Advantage{} or two on a \VeryBad{} result.
+
+While \Advantage{} can be spent on any damage roll to add a damage die to it, the GM cannot spend more \Advantage{} for additional damage on a single damage roll than the current round number (where the first round of combat is round 1).
+
+For each attack a character makes in the same round, either as their action or in response to an attack against them, they roll one fewer damage dice, to a minimum of zero damage dice; they can still spend \Advantage{} to add additional damage dice to subsequent attacks.
+
+\subsection{Weapon Properties}\index{Weapon}
+Properties of a weapon, or unarmed or magical attacks, such as damage and range are defined by keywords on the weapon.
+The keywords and their properties are detailed in Table~\ref{tab:weapons}.
+Note that the attack roll for any melee attacks\index{Melee Attack} (attacks against an adjacent creature) is \emph{Decreased} if the weapon does not have the \emph{Melee} keyword.
+Similarly, any ranged attack\index{Ranged Attack} (any attack against a target not adjacent) without the \emph{Ranged} keyword and any attack beyond a \emph{Mid-Range} are \emph{Decreased}.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|l|}\hline
+    \textbf{Keyword} &\textbf{Properties} \\ \hline
+    Melee\index{Melee|see{Weapon}} &Can be used to make a melee attack, dealing 1d8 base damage \\
+    Ranged\index{Ranged|see{Weapon}} &Can be used to make a ranged attack, dealing 1d6 base damage \\
+    Accurate\index{Accurate|see{Weapon}} &Increases the base damage of a \emph{Ranged} weapon to 1d8 \\
+    Defensive\index{Defensive|see{Weapon}} &Grants a +1 bonus to \Block \\
+    Multihit\index{Multihit|see{Weapon}} &Attacker can spend advantage to target a creature and all those adjacent to it at -1 damage dice \\
+    Reach\index{Reach|see{Weapon}} &Increases the range of a melee attack to a \emph{Near} distance \\
+    Far Shooter\index{Far Shooter|see{Weapon}} &Increases the range of a ranged attack to \emph{Far} \\
+    Piercing\index{Piercing|see{Weapon}} &Attacker can spend advantage to ignore the target's \Block \\ \hline
+  \end{tabular}
+  \caption{Weapon Keywords\index{Weapon}}
+  \label{tab:weapons}
+\end{table}
+
+\subsection{Healing}\index{Healing}
+To recover \Life{} lost during combat or otherwise during their adventures, creatures will need to \textbf{Heal}.
+When a creature successfully heals, it regains a number of \Life{} equal to its \Recovery{}.
+The easiest and simplest way to heal, is to get a night's rest; if a creature rests for 8 hours, with at least 6 hours of sleep and no strenuous activity over the period of time, they heal.
+Creatures can attempt to heal, or attempt to help another creature heal, in less time with a roll, with the difficulty depending on the time taken to heal.
+The GM should determine the \Skill{} to roll for healing based on the activities undertaken to heal.
+The \Difficulty{} is generally set based on the time taken to rest: if they spend 4 hours the roll is \emph{Very Easy}, 1 hour is \emph{Easy}, 30 minutes is \emph{Medium}, 10 minutes is \emph{Hard}, and 1 minute is \emph{Very Hard}.
+The GM may adjust these difficulties based on the situation, for instance a hospital might decrease the difficulty while a busy or dangerous environment may increase it.
+The time it takes to heal accounts both for time to tend wounds, relax, and so on, it also includes the time to find the necessary supplies; the GM may allow a shorter rest time without increasing the difficulty if sufficient supplies are available.
+Based on the situation, the GM may allow healing to be attempted as an \emph{Action} in combat, though such a roll is likely to be \emph{Very Hard} and \emph{Decreased}.
+On a healing roll, the target of the healing regains \Life{} equal to their \Recovery{} if the roll is \Good{} or \VeryGood{}, on a \Mixed{} result they heal half of their \Recovery{}.
+On a \Bad{} or \VeryBad{} result, the target does not heal but on a \Bad{} result the GM should not impose a negative outcome, reserving that for a \VeryBad{} result.
+
+\subsection{Defeat}
+When a creature is reduced to 0 \Life{}, they are \textbf{Defeated}\index{Defeat}.
+Depending on the circumstances, the GM may declare that the creature falls unconscious or becomes incapacitated for a number of hours, at which point they will awake with 1 \Life{}.
+If the creature is still in danger, for instance in combat, the creature must choose one of the following options:
+\begin{itemize}
+  \item[-] \textbf{Blaze of Glory}: the creature dies, but gets to take a final Action whose result is \VeryGood.
+    This action may not be used to Heal itself.
+  \item[-] \textbf{Unconsciousness}: the creature falls unconscious and is stable for the moment.
+    At the GM's discretion, the creature may either awaken with 1 \Life{} in a number of hours or may require healing within a few hours or die.
+    If the creature is hit by an attack, it becomes \emph{Unstable}.
+  \item[-] \textbf{Unstable}: the creature remains alive but barely, with its fate hanging in the balance.
+    The creature remains conscious and can act, but all of its rolls are \emph{Decreased}.
+    At the end of each of its turns, it rolls 1d20 and must roll a \Mixed{} or better result with the \Difficulty{} of this roll initially \emph{Very Easy} and increasing by one level each round and each time the creature takes damage while in this state.
+    If it fails one of these rolls, it dies.
+\end{itemize}

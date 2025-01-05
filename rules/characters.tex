@@ -1,0 +1,147 @@
+\section{Character Attributes and Skills}
+Characters are defined by their \emph{Attributes} and by their \emph{Skills}.
+\emph{Attributes} define certain properties of characters, such as their size, movement, wealth, and ability to take damage while \emph{Skills} define how good characters are at certain tasks and are used for rolls.
+
+\subsection{Attributes}
+Character \textbf{Attributes}\index{Attribute} represent certain character abilities, in particular they describe certain aspects of health, movement, and wealth.
+
+\subsubsection{Health}
+There are three health related \emph{Attributes}: \textbf{Life}\index{Life|seealso{Attribute}}, \textbf{Recovery}\index{Recovery|seealso{Attribute}}, and \textbf{Block}\index{Block|seealso{Attribute}}.
+A creature's \Life{} defines how much damage it can it until it falls unconscious or dies.
+Its \Recovery{} defines how much \Life{} a creature regains when it heals, rests, and recuperates.
+\Block{} defines how much damage a creature can just absorb without any impact, as described later \Block{} is subtracted from damage dealt to a creature before subtracting the damage from its \Life.
+
+A character's \emph{Maximum Life} has a numeric score between 1 and 40, its \Recovery{} a numeric score between 1 and 20, and its \Block{} a numeric score between 0 and 2.
+Other creatures may have values outside of these ranges.
+
+\subsubsection{Movement}
+Each creature has a \textbf{Size}\index{Size|seealso{Attribute}} which describes its size and is used, along with its \textbf{Speeds}\index{Speed|seealso{Attribute}} to determine how much it can move each turn.
+A creature's \emph{Size} is one of \emph{Tiny}, \emph{Small}, \emph{Medium}, \emph{Large}, \emph{Huge}, or \emph{Gigantic}.
+Table~\ref{tab:sizes} lists each size along with a \emph{scale}; this \emph{scale} is used to define speeds, in addition a creature of a given \emph{Size} fits in a square area with side lengths of its size's scale.
+
+A creature has five different \textbf{Speeds}: \emph{Walking}, \emph{Swimming}, \emph{Flying}, \emph{Climbing}, and \emph{Burrowing}. 
+Each of these speeds has a value of \emph{None}, \emph{Slow}, \emph{Medium}, \emph{Fast}, or \emph{Very Fast}.
+Table~\ref{tab:speeds} lists each speed along with its corresponding \textbf{Distance}\index{Distance} that a creature with that speed can move on a turn and a \emph{Scale} multiplier that defines that distance.
+Note that a GM may allow creatures with speeds of None to still move in certain circumstances, for instance a creature with \emph{None} for its \emph{Swimming} or \emph{Climbing} speed may still be able to swim or climb but it may be quite slowly or may require a roll.
+
+\begin{figure}
+  \centering
+  \begin{minipage}{.245\textwidth}
+    \centering
+    \begin{tabular}{|c|c|} \hline
+      \textbf{Size} &\textbf{Scale} \\ \hline
+      Tiny &1' \\
+      Small &2' \\
+      Medium &5' \\
+      Large &10' \\
+      Huge &20' \\
+      Gigantic &50' \\ \hline
+    \end{tabular}
+    \captionof{table}{Sizes\index{Size} and Scales}
+    \label{tab:sizes}
+  \end{minipage}%
+  \begin{minipage}{.395\textwidth}
+    \centering
+    \begin{tabular}{|c|c|c|} \hline
+      \textbf{Speed} &\textbf{Distance} &\textbf{Definition} \\ \hline
+      None &-- &$0 \times$ scale \\
+      Slow &Near &$3 \times$ scale \\
+      Medium &Close &$5 \times$ scale \\
+      Fast &Mid-Range &$10 \times$ scale \\
+      Very Fast &Far &$20 \times$ scale \\ \hline
+    \end{tabular}
+    \captionof{table}{Speeds\index{Speed|seealso{Attribute}} and Distances\index{Distance}}
+    \label{tab:speeds}
+  \end{minipage}%
+  \begin{minipage}{.357\textwidth}
+    \centering
+    \begin{tabular}{|ccc|} \hline
+      \multicolumn{3}{|c|}{\textbf{Skills}} \\ \hline
+      Balance &Bargain &Climb \\
+      Codebreak &Convince &Defend \\
+      Disguise &Escape &Fish \\
+      Hide &Insight &Jump \\
+      Lift &Medicine &Perceive \\
+      Pick Lock &Pick Pocket
+        &Plot\footnote{Planning and preparing for a heist of infiltration effort} \\
+      Run &Search &Shove \\
+      Sneak 
+        &Survey\footnote{Map an area, find points of interest, judge survival aspects, etc.} &Swim \\
+      Tame &Track &Willpower \\ \hline
+    \end{tabular}
+    \captionof{table}{General Skills\index{Skill!General}}
+    \label{tab:general-skills}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{Wealth}
+The \textbf{Wealth}\index{Wealth|seealso{Attribute}} \emph{Attribute} describes how much money a creature has and can easily spend.
+Creatures with a high \emph{Wealth} are able to make larger purchases, without expending other meta-resources, than a creature with low \emph{Wealth}.
+\emph{Wealth} has one of the values in Table~\ref{tab:wealth} which also describes the sorts of things that can be bought with that level.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|l|} \hline
+    \textbf{Wealth Value} &\textbf{Example Purchases} \\ \hline
+    None &nothing \\ \hline
+    Wretched &basic food and lodging daily \\ \hline
+    Squalid &basic (though sturdy) supplies like rope, arrows, and tents \\ \hline
+    Modest &rare supplies like climbing equipment, a day of unskilled labor, a beast of burden \\ \hline
+    Comfortable &a sailboat, a comfortable wagon, a day of skilled labor \\ \hline
+    Luxurious &a mercenary, an abandoned warehouse or small property \\ \hline
+  \end{tabular}
+  \caption{Wealth\index{Wealth}}
+  \label{tab:wealth}
+\end{table}
+
+\subsection{Skills}
+\textbf{Skills}\index{Skill} represent talents and abilities a creature has.
+Most skills are \emph{general}\index{Skill!General} and all creatures will have a bonus to them, low as that bonus may be.
+Some skills, though, are \emph{specialized}\index{Skill!Specialized} and require specific training, ability, or knowledge.
+The \emph{specialized} skills also have \emph{specializations}, they apply for a particular purpose.
+For example, characters can have separate \textbf{Weapon} skills for each type of weapon they know how to wield.
+For \emph{specialized} skills, creatures do not necessarily have a bonus for the skill and therefore may not be able to complete an action which requires a roll of that skill, though in some cases the GM may allow use of a similar skill though might impose a penalty by increasing the \Difficulty{} or \emph{Decreasing} the roll.
+For player characters, all skill bonuses fall in the range of $\text{-}1 - +3$.
+
+The \emph{general skills} are listed in Table~\ref{tab:general-skills}.
+The \emph{specialized} skills are listed in Table~\ref{tab:special-skills} along with examples of their specializations; others may be possible at the GM's discretion and based on the Player or creature's need.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|l|} \hline
+    \textbf{Skill} &\textbf{Specializations} \\ \hline
+    Alchemy       &Products: acid, glue, salve, ... \\
+    Art           &Medium: painting, drawing, composing, ... \\
+    Craft         &Material: glass, metal, jewelry, ... \\
+    Drive         &Vehicle: cart, carriage, boat, ... \\
+    Forage        &Environment: forest, mountain, jungle, ... \\
+    Forge         &Material: art, jewelry, documents, ... \\
+    Hunt          &Environment: forest, mountain, jungle, ... \\
+    Inquire       &Social Group: criminals, aristocracy, urchins, ... \\
+    Knowledge     &Subject: arcana, geography, history, nature, nobility, ... \\
+    Magic         &See Section~\ref{sec:magic} \\
+    Performance   &Medium: acting, dancing, piano, ... \\
+    Reputation    &Social Group: criminals, aristocracy, urchins, ... \\
+    Ride          &Mount: horse, camel, donkey, ... \\
+    Weapon        &Weapon: knife, sword, bow, ... \\
+    Language      &Language: common, local languages, sylvan, ... \\ \hline
+  \end{tabular}
+  \caption{Specialized Skills\index{Skill!Specialized}}
+  \label{tab:special-skills}
+\end{table}
+
+\subsubsection{Magic}\label{sec:magic}\index{Magic}
+Magic is defined, like most everything else, as a \Skill.
+Magic is divided into fifty different magic skills, which are composed of a \emph{verb} describing what the magic can do and a \emph{noun} describing what the magic impacts.
+The verbs are: \emph{control}, \emph{create}, \emph{destroy}, \emph{perceive}, and \emph{transform}.
+The nouns are: \emph{air}, \emph{earth}, \emph{fire}, \emph{water}, \emph{animals}, \emph{plants}, \emph{body}, \emph{illusion}, \emph{mind}, and \emph{power}.
+
+The exact meaning of these verbs and nouns should be discussed by the Player and GM and can be given some breadth; for example \emph{fire} may include heat as well as literal fire, or \emph{air} may include lightning.
+
+\subsection{Character Creation}
+When creating a character, a player has 100 points which they can spend in creating their character.
+One point can be used to gain a \emph{Specialized Skill} (with a starting bonus of $-1$) or to increase the bonus of any \Skill{} by 1.
+The player spends a number of points equal to their desired \emph{Maximum Life} (with a maximum of 40), initial \Block{} (with a maximum of 2), and \Recovery{} (with a maximum of 20).
+These points are also spent to select the character's \emph{Wealth}, \emph{Size}, and \emph{Speeds}.
+The number of points for each value is shown in the \emph{Character Sheet} on page~\pageref{page:character}.
+Additionally, a single point can be used to add \emph{Weapon Keywords} to define their combat abilities.
