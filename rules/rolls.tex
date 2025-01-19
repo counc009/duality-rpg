@@ -10,18 +10,18 @@ The GM may declare any roll to be \textbf{Dangerous}\index{Dangerous} in which c
 
 \subsection{Unopposed Rolls}
 For an unopposed roll, the GM will select the appropriate \Skill{} for the task and set a \textbf{Difficulty}\index{Difficulty} for the task, which is \emph{Very Easy}, \emph{Easy}, \emph{Medium}, \emph{Hard}, or \emph{Very Hard}.
-The player then rolls 3d20 and generally takes the middle value and then adds their \Skill{} bonus and any relevant bonuses to the roll; this total is then compared to Table~\ref{tab:unopposed-outcome} to determine the \Outcome.
+The player then rolls 2d8 and adds their \Skill{} bonus to that total; this is then compared to Table~\ref{tab:unopposed-outcome} to determine the \Outcome.
 
 \begin{table}
   \centering
   \begin{tabular}{|c|c|c|c|c|c|} \hline
    \backslashbox{\bf Difficulty}{\bf Outcome}
         &\textbf{Very Bad} &\textbf{Bad} &\textbf{Mixed} &\textbf{Good} &\textbf{Very Good} \\ \hline
-    \textbf{Very Easy} &-- &$\leq 0$ &$1 - 4$ &$5 - 8$ &$\geq 9$ \\ \hline
-    \textbf{Easy} &$\leq 0$ &$1 - 4$ &$5 - 8$ &$9 - 12$ &$\geq 13$ \\ \hline
-    \textbf{Medium} &$\leq 4$ &$5 - 8$ &$9 - 12$ &$13 - 16$ &$\geq 17$ \\ \hline
-    \textbf{Hard} &$\leq 8$ &$9 - 12$ &$13 - 16$ &$17 - 20$ &$\geq 21$ \\ \hline
-    \textbf{Very Hard} &$\leq 12$ &$13 - 16$ &$17 - 20$ &$21 - 24$ &$\geq 25$ \\ \hline
+    \textbf{Very Easy} &$\leq 1$ &$2 - 4$ &$5 - 7$ &$8 - 10$ &$\geq 11$ \\ \hline
+    \textbf{Easy} &$\leq 3$ &$4 - 6$ &$7 - 9$ &$10 - 12$ &$\geq 13$ \\ \hline
+    \textbf{Medium} &$\leq 5$ &$6 - 8$ &$9 - 11$ &$12 - 14$ &$\geq 15$ \\ \hline
+    \textbf{Hard} &$\leq 7$ &$8 - 10$ &$11 - 13$ &$14 - 16$ &$\geq 17$ \\ \hline
+    \textbf{Very Hard} &$\leq 9$ &$10 - 12$ &$13 - 15$ &$16 - 18$ &$\geq 19$ \\ \hline
   \end{tabular}
   \caption{Outcome Table for Unopposed Rolls}
   \label{tab:unopposed-outcome}
@@ -35,7 +35,7 @@ Similarly, the GM's result is computed as their roll minus the Player's and this
 \begin{table}
   \centering
   \begin{tabular}{|c|c|c|c|c|c|} \hline
-    \textbf{Difference} &$\leq \text{-}6$ &$\text{-}5 - \text{-}2$ &$\text{-}1 - 1$ &$2 - 5$ &$\geq 6$ \\ \hline
+    \textbf{Difference} &$\leq \text{-}6$ &$\text{-}5 - \text{-}3$ &$\text{-}2 - 2$ &$3 - 5$ &$\geq 6$ \\ \hline
     \textbf{Outcome} &Very Bad &Bad &Mixed &Good &Very Good \\ \hline
   \end{tabular}
   \caption{Outcome Table for Opposed Rolls}
@@ -87,5 +87,5 @@ On a \Mixed{} or better result the creature being helped gains an \Advantage.
 In some circumstances a character's roll may be \textbf{Increased}\index{Increase} or \textbf{Decreased}\index{Decrease}.
 \emph{Increases} and \emph{Decreases} can stack and cancel each other out, so one \Increase{} and one \Decrease{} cancel out, while two \emph{Increases} and one \Decrease{} cancel out to one \Increase.
 
-On a roll with one \Increase{} the highest of the 3d20 is read, while on a roll with one \Decrease{} the lowest of the 3d20 is read.
-On a roll with two or more (net) \emph{Increases} it is treated as if a 20 had been rolled and on a roll with two or more \emph{Decreases} as if a 1 had been rolled.
+On a roll which is \emph{Increased} $n$ times, roll $n+2$ d8s and total only the highest two.
+On a roll which is \emph{Decreased} $n$ times, roll $n+2$ d8s and total only the lowest two.
