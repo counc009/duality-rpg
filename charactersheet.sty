@@ -10,6 +10,23 @@
   \TextField[#1,width=\TextFieldLength]{\raisebox{2pt}{#3}}%
 }
 
+\newcommand\TextFieldSpace[4][]{%
+  \setlength\TextFieldLength{#2}%
+  \settowidth{\dimen0}{#4 }%
+  \addtolength\TextFieldLength{-\dimen0}%
+  \addtolength\TextFieldLength{-#3 }%
+  \TextField[#1,width=#3]{\raisebox{2pt}{#4\hspace{\TextFieldLength}}}%
+}
+
+\newcommand\ChoiceMenuSpaced[4][]{%
+  \setlength\TextFieldLength{#2}%
+  \settowidth{\dimen0}{#3}%
+  \addtolength\TextFieldLength{-\dimen0}%
+  \settowidth{\dimen0}{\ChoiceMenu[#1]{}{#4}}%
+  \addtolength\TextFieldLength{-\dimen0}%
+  \ChoiceMenu[#1]{\raisebox{2pt}{#3\hspace{\TextFieldLength}}}{#4}%
+}
+
 \newcommand{\checkbox}[1]{\CheckBox[name=#1,checkboxsymbol=\ding{110}]{}}
 \newcommand{\checkedbox}[1]{{\LARGE\ding{110}}}
 \newcommand{\checkbelow}[2]{$\underset{#1}{\text{\checkbox{#2}}}$}
@@ -21,3 +38,22 @@
 \newcommand{\genSkill}[1]{#1 &\genSkillChecks{#1}}
 
 \newcommand{\specSkill}[1]{\TextField[name=#1,width=\linewidth]{} &\checkbelow{-1}{#1vE} \skillChecksZero{#1}}
+
+\newcommand{\specialization}[1]{%
+  \hspace*{\fill}%
+  \ChoiceMenu[name=#1verb,combo]{}{control,create,destroy,perceive,know,transform}
+  \ChoiceMenu[name=#1noun,combo]{}{air,earth,fire,water,animals,plants,body,illusion,mind,arcana}%
+  \hfill%
+  \ChoiceMenu[name=#1tag,combo]{}{human,superhuman,simple \& weak,complex \& powerful}%
+  \hfill%
+  \TextField[name=#1bonus,width=.04\textwidth]{}%
+  \hspace*{\fill}%
+}
+
+\newcommand{\experience}[1]{%
+  \hspace*{\fill}%
+  \TextField[name=#1desc,width=.7\textwidth]{}%
+  \hfill%
+  \TextField[name=#1bonus,width=.07\textwidth]{}%
+  \hspace*{\fill}%
+}
