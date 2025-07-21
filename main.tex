@@ -29,12 +29,15 @@
 \fancyhf{}
 \chead{\thetitle}
 \rhead{\theversion}
-\lhead{\today}
+\lhead{\thedate}
 
 \renewcommand{\footrulewidth}{1pt}
 \rfoot{\thepage}
 
-\newcommand{\Skill}{\emph{Skill}}
+\newcommand{\Attribute}{\emph{Attribute}}
+\newcommand{\Specialization}{\emph{Specialization}}
+\newcommand{\Experience}{\emph{Experience}}
+\newcommand{\Ability}{\emph{Ability}}
 \newcommand{\Difficulty}{\emph{Difficulty}}
 \newcommand{\Outcome}{\emph{Outcome}}
 \newcommand{\Advantage}{\emph{Advantage}}
@@ -42,7 +45,6 @@
 \newcommand{\Life}{\emph{Life}}
 \newcommand{\Recovery}{\emph{Recovery}}
 \newcommand{\Block}{\emph{Block}}
-\newcommand{\Size}{\emph{Size}}
 \newcommand{\Speed}{\emph{Speed}}
 
 \newcommand{\Increase}{\emph{Increase}}
@@ -68,6 +70,7 @@
 \input{rules/advantages}
 \input{rules/characters}
 \input{rules/combat}
+\input{rules/items}
 
 \clearpage\label{page:character}
 \addcontentsline{toc}{section}{Character Sheet}
@@ -91,11 +94,11 @@
 To Do List
 \begin{itemize}
   \item[-] Better character creation; rebalance costs
-  \item[-] Benefits of different sizes to make neutral?
   \item[-] Transformation/Companion abilities
   \item[-] Leveling Up and Experience Points
   \item[-] Experience Points as money/resources
-  \item[-] Additional uses of advantage: retaliation attack on a successful hit, additional turn in combat
+  \item[-] Additional uses of advantage (as ability): retaliation attack on a successful hit, additional turn in combat
+  \item[-] Get the Index page typeset correctly
 \end{itemize}
 
 \end{document}

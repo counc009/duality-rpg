@@ -1,12 +1,31 @@
-\section{Character Attributes and Skills}
-Characters are defined by their \emph{Attributes} and by their \emph{Skills}.
-\emph{Attributes} define certain properties of characters, such as their size, movement, wealth, and ability to take damage while \emph{Skills} define how good characters are at certain tasks and are used for rolls.
+\section{Character Statistics}
+Characters are defined by their \emph{Attributes}, \emph{Specializations}, \emph{Experiences}, and \emph{Abilities}.
+\emph{Attributes} define the character's broad statistics as well as their movement, wealth, and ability to take damage.
+\emph{Specializations} define specific skills that the character possesses and the nature of those skills.
+\emph{Experiences} reflect the character's past and offer bonuses to rolls in certain circumstances.
+\emph{Abilities} provide unique mechanics for a character.
 
 \subsection{Attributes}
-Character \textbf{Attributes}\index{Attribute} represent certain character abilities, in particular they describe certain aspects of health, movement, and wealth.
+Character \textbf{Attributes}\index{Attribute} represent the character's basic abilities.
+Each character has four kinds of attributes that describe: their base statistics, their health, their movement abilities, and their wealth.
+
+\subsubsection{Basic Statistics}
+A character's basic statistics are defined by six \emph{Attributes}: \textbf{Strength}\index{Strength|see{Attribute}}, \textbf{Dexterity}\index{Dexterity|see{Attribute}}, \textbf{Willpower}\index{Willpower|see{Attribute}}, \textbf{Intelligence}\index{Intelligence|see{Attribute}}, \textbf{Wisdom}\index{Wisdom|see{Attribute}}, and \textbf{Charisma}\index{Charisma|see{Attribute}}.
+These \emph{Attributes} each have a numeric value between $-1$ and $+2$ (for starting characters) and may increase to $+3$ when a character levels up.
+
+These \Attribute{} values provide bonuses that are applied to rolls.
+The GM should pick the \Attribute{} that makes most sense for the roll:
+\begin{itemize}
+  \item \textbf{Strength}\index{Attribute!Strength}: A character's physical strength; their ability to lift, carry, climb, and so on.
+  \item \textbf{Dexterity}\index{Attribute!Dexterity}: A character's manual dexterity; their ability to tie knots, move carefully and quietly, and so on.
+  \item \textbf{Willpower}\index{Attribute!Willpower}: A character's will to live; this is used when a character is at risk of dying and can also be used in instances where luck is required.
+  \item \textbf{Intelligence}\index{Attribute!Intelligence}: A character's book smarts; their ability to remember information, learn something new, break a code, and so on.
+  \item \textbf{Wisdom}\index{Attribute!Wisdom}: A character's street smarts; their ability to analyze information and make plans, to understand deeper meaning, and so on.
+  \item \textbf{Charisma}\index{Attribute!Charisma}: A character's person skills; their ability to talk and convince or deceive, to act, and so on.
+\end{itemize}
 
 \subsubsection{Health}
-There are three health related \emph{Attributes}: \textbf{Life}\index{Life|seealso{Attribute}}, \textbf{Recovery}\index{Recovery|seealso{Attribute}}, and \textbf{Block}\index{Block|seealso{Attribute}}.
+There are three health related \emph{Attributes}: \textbf{Life}\index{Life|see{Attribute}}\index{Attribute!Life}, \textbf{Recovery}\index{Recovery|see{Attribute}}\index{Attribute!Recovery}, and \textbf{Block}\index{Block|see{Attribute}}\index{Attribute!Block}.
 A creature's \Life{} defines how much damage it can it until it falls unconscious or dies.
 Its \Recovery{} defines how much \Life{} a creature regains when it heals, rests, and recuperates.
 \Block{} defines how much damage a creature can just absorb without any impact, as described later \Block{} is subtracted from damage dealt to a creature before subtracting the damage from its \Life.
@@ -15,67 +34,14 @@ A character's \emph{Maximum Life} has a numeric score between 1 and 40, its \Rec
 Other creatures may have values outside of these ranges.
 
 \subsubsection{Movement}
-Each creature has a \textbf{Size}\index{Size|seealso{Attribute}} which describes its size and is used, along with its \textbf{Speeds}\index{Speed|seealso{Attribute}} to determine how much it can move each turn.
-A creature's \emph{Size} is one of \emph{Tiny}, \emph{Small}, \emph{Medium}, \emph{Large}, \emph{Huge}, or \emph{Gigantic}.
-Table~\ref{tab:sizes} lists each size along with a \emph{scale}; this \emph{scale} is used to define speeds, in addition a creature of a given \emph{Size} fits in a square area with side lengths of its size's scale.
+Each creature has a \textbf{Speed}\index{Speed|see{Attribute}}\index{Attribute!Speed} which determines how fast it moves and has \emph{Attributes} which determine by what means.
+A creature's \emph{Speed} is one of \emph{Slow}, \emph{Normal}, and \emph{Fast} which abstractly define how quickly it can move.
+Note that these speeds should be interpreted in the full context of a creature, a \emph{Slow} dragon may still fly faster than a \emph{Fast} snail or even mouse can move, though alternatively a \emph{Fast} dragon may still walk slower than a \emph{Normal} mouse can.
 
-A creature has five different \textbf{Speeds}: \emph{Walking}, \emph{Swimming}, \emph{Flying}, \emph{Climbing}, and \emph{Burrowing}. 
-Each of these speeds has a value of \emph{None}, \emph{Slow}, \emph{Medium}, \emph{Fast}, or \emph{Very Fast}.
-Table~\ref{tab:speeds} lists each speed along with its corresponding \textbf{Distance}\index{Distance} that a creature with that speed can move on a turn and a \emph{Scale} multiplier that defines that distance.
-Note that a GM may allow creatures with speeds of None to still move in certain circumstances, for instance a creature with \emph{None} for its \emph{Swimming} or \emph{Climbing} speed may still be able to swim or climb but it may be quite slowly or may require a roll.
-
-\begin{figure}
-  \centering
-  \begin{minipage}{.245\textwidth}
-    \centering
-    \begin{tabular}{|c|c|} \hline
-      \textbf{Size} &\textbf{Scale} \\ \hline
-      Tiny &1' \\
-      Small &2' \\
-      Medium &5' \\
-      Large &10' \\
-      Huge &20' \\
-      Gigantic &50' \\ \hline
-    \end{tabular}
-    \captionof{table}{Sizes\index{Size} and Scales}
-    \label{tab:sizes}
-  \end{minipage}%
-  \begin{minipage}{.395\textwidth}
-    \centering
-    \begin{tabular}{|c|c|c|} \hline
-      \textbf{Speed} &\textbf{Distance} &\textbf{Definition} \\ \hline
-      None &-- &$0 \times$ scale \\
-      Slow &Near &$3 \times$ scale \\
-      Medium &Close &$5 \times$ scale \\
-      Fast &Mid-Range &$10 \times$ scale \\
-      Very Fast &Far &$20 \times$ scale \\ \hline
-    \end{tabular}
-    \captionof{table}{Speeds\index{Speed|seealso{Attribute}} and Distances\index{Distance}}
-    \label{tab:speeds}
-  \end{minipage}%
-  \begin{minipage}{.357\textwidth}
-    \centering
-    \begin{tabular}{|ccc|} \hline
-      \multicolumn{3}{|c|}{\textbf{Skills}} \\ \hline
-      Balance &Bargain &Climb \\
-      Codebreak &Convince &Defend \\
-      Disguise &Escape &Fish \\
-      Hide &Insight &Jump \\
-      Lift &Medicine &Perceive \\
-      Pick Lock &Pick Pocket
-        &Plot\footnote{Planning and preparing for a heist of infiltration effort} \\
-      Run &Search &Shove \\
-      Sneak 
-        &Survey\footnote{Map an area, find points of interest, judge survival aspects, etc.} &Swim \\
-      Tame &Track &Willpower \\ \hline
-    \end{tabular}
-    \captionof{table}{General Skills\index{Skill!General}}
-    \label{tab:general-skills}
-  \end{minipage}
-\end{figure}
+By default a creature's speed is its \emph{Walking} speed, but a creature may also be able \emph{Climb}, \emph{Burrow}, \emph{Swim}, and \emph{Fly}; each of these is its own \Attribute{} a character can posses which indicates whether it can move in that manner.
 
 \subsubsection{Wealth}
-The \textbf{Wealth}\index{Wealth|seealso{Attribute}} \emph{Attribute} describes how much money a creature has and can easily spend.
+The \textbf{Wealth}\index{Wealth|see{Attribute}}\index{Attribute!Wealth} \emph{Attribute} describes how much money a creature has and can easily spend.
 Creatures with a high \emph{Wealth} are able to make larger purchases, without expending other meta-resources, than a creature with low \emph{Wealth}.
 \emph{Wealth} has one of the values in Table~\ref{tab:wealth} which also describes the sorts of things that can be bought with that level.
 
@@ -90,58 +56,82 @@ Creatures with a high \emph{Wealth} are able to make larger purchases, without e
     Comfortable &a sailboat, a comfortable wagon, a day of skilled labor \\ \hline
     Luxurious &a mercenary, an abandoned warehouse or small property \\ \hline
   \end{tabular}
-  \caption{Wealth\index{Wealth}}
+  \caption{Wealth\index{Attribute!Wealth}}
   \label{tab:wealth}
 \end{table}
 
-\subsection{Skills}
-\textbf{Skills}\index{Skill} represent talents and abilities a creature has.
-Most skills are \emph{general}\index{Skill!General} and all creatures will have a bonus to them, low as that bonus may be.
-Some skills, though, are \emph{specialized}\index{Skill!Specialized} and require specific training, ability, or knowledge.
-The \emph{specialized} skills also have \emph{specializations}, they apply for a particular purpose.
-For example, characters can have separate \textbf{Weapon} skills for each type of weapon they know how to wield.
-For \emph{specialized} skills, creatures do not necessarily have a bonus for the skill and therefore may not be able to complete an action which requires a roll of that skill, though in some cases the GM may allow use of a similar skill though might impose a penalty by increasing the \Difficulty{} or \emph{Decreasing} the roll.
-For player characters, all skill bonuses fall in the range of $\text{-}1 - +3$.
+\subsection{Specializations}
+\textbf{Specializations}\index{Specialization} represent talents and abilities a creature has.
+There are a total of sixty possible specializations, each described by the combination of a verb and noun and each character may possess a bonus associated with the specializations which can be used on relevant rolls and a \emph{tag} describing special mechanics for the character when they use that specialization.
+The verbs and nouns that define \emph{Specializations} are:
+\begin{itemize}
+  \item \textbf{Verbs}: \emph{Control}, \emph{Create}, \emph{Destroy}, \emph{Perceive}, \emph{Know}, \emph{Transform}
+  \item \textbf{Nouns}: \emph{Air}, \emph{Earth}, \emph{Fire}, \emph{Water}, \emph{Animals}, \emph{Plants}, \emph{Body}, \emph{Illusion}, \emph{Mind}, \emph{Arcana}
+\end{itemize}
+The bonus for each \Specialization{} can be $0$, $+1$, or $+2$ (for starting characters) and may increase up to $+4$ when a character levels up.
 
-The \emph{general skills} are listed in Table~\ref{tab:general-skills}.
-The \emph{specialized} skills are listed in Table~\ref{tab:special-skills} along with examples of their specializations; others may be possible at the GM's discretion and based on the Player or creature's need.
+Each \Specialization{} has has an associated tag that specify the limits of the character's ability with that \Specialization.
+These tags are:\index{Magic|see{Specialization}}
+\begin{itemize}
+  \item \textbf{Human}\index{Specialization!Human}: the character can only perform within normal human ability.
+  \item \textbf{Superhuman}\index{Specialization!Superhuman}: the character can perform within normal human ability easily ($-1$ \Difficulty) and can perform with superhuman ability (though within the laws of nature).
+  \item \textbf{Simple \& Weak}\index{Specialization!Simple \& Weak}: the character can perform simple acts of magic easily ($-1$ \Difficulty) and can perform trivial acts of magic without a roll; the extent of the ability must be narrowly defined between the Player and GM.
+  \item \textbf{Complex \& Powerful}\index{Specialization!Complex \& Powerful}: the character can perform complex acts of magic but any act of magic is difficult ($+1$ \Difficulty); the extent of the ability is widely defined and should be pushed to the limits. Failures on rolls to perform magic often result in magic gone awry.
+\end{itemize}
+In general, a tag cannot be changed after character creation unless the \Specialization{} only had a bonus of $+0$ and the \emph{Human} tag in which case the new tag represents learning a new ability.
+The GM may allow changing tags in other situations as makes sense with the story.
 
-\begin{table}
-  \centering
-  \begin{tabular}{|c|l|} \hline
-    \textbf{Skill} &\textbf{Specializations} \\ \hline
-    Alchemy       &Products: acid, glue, salve, ... \\
-    Art           &Medium: painting, drawing, composing, ... \\
-    Craft         &Material: glass, metal, jewelry, ... \\
-    Drive         &Vehicle: cart, carriage, boat, ... \\
-    Forage        &Environment: forest, mountain, jungle, ... \\
-    Forge         &Material: art, jewelry, documents, ... \\
-    Hunt          &Environment: forest, mountain, jungle, ... \\
-    Inquire       &Social Group: criminals, aristocracy, urchins, ... \\
-    Knowledge     &Subject: arcana, geography, history, nature, nobility, ... \\
-    Magic         &See Section~\ref{sec:magic} \\
-    Performance   &Medium: acting, dancing, piano, ... \\
-    Reputation    &Social Group: criminals, aristocracy, urchins, ... \\
-    Ride          &Mount: horse, camel, donkey, ... \\
-    Weapon        &Weapon: knife, sword, bow, ... \\
-    Language      &Language: common, local languages, sylvan, ... \\ \hline
-  \end{tabular}
-  \caption{Specialized Skills\index{Skill!Specialized}}
-  \label{tab:special-skills}
-\end{table}
+\subsection{Experiences}
+\emph{Experiences}\index{Experience} provide additional depth to a character by detailing parts of their past that may provide useful experience in circumstances they encounter in adventuring.
+Each \Experience{} has a short, couple word, description and a bonus attached to; when a character is attempting something related to one of their \emph{Experiences} they may spend an \Advantage{} to activate it and add the \emph{Experience's} bonus to their roll.
+Good experiences will be broad enough that there are a number of possible circumstances they could apply but they should not be able to apply in all circumstances.
+Work with your GM and group to determine the appropriate breadth of \emph{Experiences} for your game and to decide when an \Experience{} applies.
+The bonus associated with an \Experience{} is $+1$ or $+2$ for newly created characters and can be increased to $+3$ when a character levels up.
 
-\subsubsection{Magic}\label{sec:magic}\index{Magic}
-Magic is defined, like most everything else, as a \Skill.
-Magic is divided into fifty different magic skills, which are composed of a \emph{verb} describing what the magic can do and a \emph{noun} describing what the magic impacts.
-The verbs are: \emph{control}, \emph{create}, \emph{destroy}, \emph{perceive}, and \emph{transform}.
-The nouns are: \emph{air}, \emph{earth}, \emph{fire}, \emph{water}, \emph{animals}, \emph{plants}, \emph{body}, \emph{illusion}, \emph{mind}, and \emph{power}.
+\subsection{Abilities}
+Finally, \emph{Abilities}\index{Ability} provide additional unique mechanics for characters, generally to do with gaining or using \Advantage.
+While not solely for non-magical characters, these \Ability{} are designed to assist non-magical builds by offering additional options for play and ways to gain \Advantage{} which allows the more use of \emph{Experiences}.
+Below is a list of such abilities, along with their XP costs; players and GMs should feel free to build other \emph{Abilities} to match their desires.
+Several of these abilities have a \emph{level} $n$ which, for example, impacts the number of \Advantage{} that a character gains; to take the ability you at first gain it at level 1 and can then spend the specified cost to increase it to level 2 and so on.
+When acquiring an ability whose cost depends on $n$, you must spend XP based on the level ($n$) you are upgrading to, so \textbf{Take the Advantage} costs 2 XP for level 1, another 3 XP for level 2, and so on.
+\begin{itemize}
+  \item \textbf{Take the Advantage} ($n + 1$ XP): At the beginning of each session, gain $n$ \Advantage.
+  \item \textbf{Good Under Pressure} ($n + 1$ XP): Once per session, ask the GM how many \Advantage{} they have; if they have more than all Player Characters combined, gain $<n>$ \Advantage.
+\end{itemize}
 
-The exact meaning of these verbs and nouns should be discussed by the Player and GM and can be given some breadth; for example \emph{fire} may include heat as well as literal fire, or \emph{air} may include lightning.
+\subsection{Character Creation and Leveling-Up}
+When creating a new character for a campaign, the GM should specify the number of \emph{Experience Points} (XP) that the players have to start with to build their characters.
+A starting character (before spending any XP) has a $+0$ bonus for each of their basic statistics, a \Life{} of 20, a \Recovery{} of 10, a \Block{} of 0, a \emph{Speed} of \emph{Normal} (and only the ability to walk), and a bonus of $+0$ and the \emph{human} tag for all \emph{Specializations}.
+A starting character also has one \emph{Item} whose construction does not cost XP beyond the cost of the \emph{Item} itself (see Section~\ref{sec:items} for details).
+These statistics can be increased by spending XP, and in some cases decreased to gain XP, as follows:
+\begin{itemize}
+  \item To increase a basic statistic (to a maximum of $+2$) by $1$ costs $3 \times$ the score after the bonus; so increasing from $+0$ to $+1$ costs 3 XP, and from $+1$ to $+2$ costs 6.
+    A basic statistic can also be decreased to $-1$ to gain 3 XP.
+  \item To increase the character's Total \Life{} costs 1 XP for each point up to 30 Total \Life{} and then costs 2 XP for each point up to the maximum of 40.
+    The Total \Life{} can also be decreased to gain XP, gaining 1 XP per point down to 20 and then 2 XP per point down to a minimum of 1.
+  \item To increase the character's \Recovery{} costs 2 XP for each point up to 15 and then 4 XP for each point up to the maximum of 20.
+    \Recovery{} can also be reduced to gain XP, gaining 2 XP for each point down to 5 and 4 XP for each point down to the minimum of 1.
+  \item Increasing the character's \Block{} (up to a maximum of 2) costs $5 \times$ the new block; so a block of 1 costs 5 XP and increasing that to 2 costs 10 XP.
+  \item A character's \Speed{} can be increased to \emph{Fast} for 2 XP or can be reduced to \emph{Slow} to gain 2 XP.
+  \item To increase a \Specialization{} (up to a maximum of $+2$) bonus by $+1$ costs the score after the bonus; so increasing from $+0$ to $+1$ costs 1 XP and from $+1$ to $+2$ costs 2.
+  \item To add a tag to a \Specialization{} (that only has the default \emph{human} tag costs the following:
+    \begin{itemize}
+      \item \textbf{Superhuman}: 3 XP
+      \item \textbf{Simply \& Weak}: 2 XP
+      \item \textbf{Complex \& Powerful}: 2 XP
+    \end{itemize}
+  \item To gain a $+1$ \Experience{} costs 1 XP and then increasing it (to a maximum of $+2$) by $1$ costs the score after the increase; so increasing a $+1$ experience to a $+2$ experience costs 2 XP.
+  \item To gain an \Ability{}.
+  \item To add additional features to their initial item or to construct additional items as described in Section~\ref{sec:items}.
+\end{itemize}
 
-\subsection{Character Creation}
-When creating a character, a player has 100 points which they can spend in creating their character.
-One point can be used to gain a \emph{Specialized Skill} (with a starting bonus of $-1$) or to increase the bonus of any \Skill{} by 1.
-The player spends a number of points equal to their desired \emph{Maximum Life} (with a maximum of 40), initial \Block{} (with a maximum of 2), and \Recovery{} (with a maximum of 20).
-These points are also spent to select the character's \emph{Wealth}, \emph{Size}, and \emph{Speeds}.
-The number of points for each value is shown in the \emph{Character Sheet} on page~\pageref{page:character}.
-Additionally, a single point can be used to add \emph{Weapon Keywords} to define their combat abilities.
+Throughout their journeys, characters will also earn XP that they can use to improve their characters.
+These may be spent in the same ways as above, but can also be spent to:
+\begin{itemize}
+  \item Increase a basic statistic to $+3$; cost is as described above.
+  \item Increase a character's Total \Life{} beyond 40; the cost of each increase is one additional XP for each 10 points, so each point up to 50 costs 3 XP, up to 60 costs 4 XP, and so on.
+  \item Increase a character's \Recovery{} beyond 20; the cost of each increase is two additional XP for each 5 points, so each point up to 25 costs 6 XP, up to 30 costs 8 XP, and so on.
+  \item Increase a character's \Block{} up to 5; cost is as described above.
+  \item Increase a \Specialization{} bonus up to $+4$; cost is as described above.
+  \item Increase an \Experience{} bonus up to $+3$; cost is as described above.
+\end{itemize}

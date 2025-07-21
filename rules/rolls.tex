@@ -9,8 +9,10 @@ When the \Outcome{} is \Mixed{} or worse (\Mixed, \Bad, or \VeryBad), their is e
 The GM may declare any roll to be \textbf{Dangerous}\index{Dangerous} in which case a \Bad{} outcome is treated as a \VeryBad{} outcome.
 
 \subsection{Unopposed Rolls}
-For an unopposed roll, the GM will select the appropriate \Skill{} for the task and set a \textbf{Difficulty}\index{Difficulty} for the task, which is \emph{Very Easy}, \emph{Easy}, \emph{Medium}, \emph{Hard}, or \emph{Very Hard}.
-The player then rolls 2d8 and adds their \Skill{} bonus to that total; this is then compared to Table~\ref{tab:unopposed-outcome} to determine the \Outcome.
+For an unopposed roll, the GM will select the appropriate \Attribute{} for the task and whether the character has an appropriate \Specialization{} and determine whether an \Experience{} suggested by the player would apply.
+Then, accounting for the nature of the task, and the character's \Specialization{}, if any, the GM will determine the \textbf{Difficulty}\index{Difficulty} for the task, which is \emph{Very Easy}, \emph{Easy}, \emph{Medium}, \emph{Hard}, or \emph{Very Hard}.
+The player then rolls 2d8 and adds their \Attribute{} bonus, relevant \Specialization{} bonus if any, and relevant \Experience{} bonus if they are activating an experience.
+This total is then compared to Table~\ref{tab:unopposed-outcome} to determine the \Outcome.
 
 \begin{table}
   \centering
@@ -18,17 +20,17 @@ The player then rolls 2d8 and adds their \Skill{} bonus to that total; this is t
    \backslashbox{\bf Difficulty}{\bf Outcome}
         &\textbf{Very Bad} &\textbf{Bad} &\textbf{Mixed} &\textbf{Good} &\textbf{Very Good} \\ \hline
     \textbf{Very Easy} &$\leq 1$ &$2 - 4$ &$5 - 7$ &$8 - 10$ &$\geq 11$ \\ \hline
-    \textbf{Easy} &$\leq 3$ &$4 - 6$ &$7 - 9$ &$10 - 12$ &$\geq 13$ \\ \hline
-    \textbf{Medium} &$\leq 5$ &$6 - 8$ &$9 - 11$ &$12 - 14$ &$\geq 15$ \\ \hline
-    \textbf{Hard} &$\leq 7$ &$8 - 10$ &$11 - 13$ &$14 - 16$ &$\geq 17$ \\ \hline
-    \textbf{Very Hard} &$\leq 9$ &$10 - 12$ &$13 - 15$ &$16 - 18$ &$\geq 19$ \\ \hline
+    \textbf{Easy} &$\leq 4$ &$5 - 7$ &$8 - 10$ &$11 - 13$ &$\geq 14$ \\ \hline
+    \textbf{Medium} &$\leq 7$ &$8 - 10$ &$11 - 13$ &$14 - 16$ &$\geq 17$ \\ \hline
+    \textbf{Hard} &$\leq 10$ &$11 - 13$ &$14 - 16$ &$17 - 19$ &$\geq 20$ \\ \hline
+    \textbf{Very Hard} &$\leq 13$ &$14 - 16$ &$17 - 19$ &$20 - 22$ &$\geq 23$ \\ \hline
   \end{tabular}
   \caption{Outcome Table for Unopposed Rolls}
   \label{tab:unopposed-outcome}
 \end{table}
 
 \subsection{Opposed Rolls}
-For an opposed roll, both the Player and GM roll and add their appropriate \Skill{} bonuses and any other relevant bonuses as well.
+For an opposed roll, both the Player and GM roll and add their appropriate \Attribute{}, \Specialization{}, and \Experience{} bonuses as appropriate.
 Then, the Player's result is computed as their roll minus the GM's roll and this is compared to Table~\ref{tab:opposed-outcome}.
 Similarly, the GM's result is computed as their roll minus the Player's and this is compared to Table~\ref{tab:opposed-outcome}.
 
@@ -56,13 +58,13 @@ The characters then each roll as normal, but instead of converting their roll to
 This total is then divided by the \emph{Magnitude} set by the GM (always rounding towards zero) and then this result is compared to Table~\ref{tab:unopposed-outcome} to determine the group's outcome of the roll.
 
 In our example of searching a library, the GM may determine that this task is relatively easy and risk free and set a \Difficulty{} of \emph{Easy} but because of the massive size of the library determine that the \emph{Magnitude} is 10.
-Then, if the party rolls a total of 48, we divide this by the \emph{Magnitude} to get a 4, which is a \Bad{} outcome.
+Then, if the party rolls a total of 58, we divide this by the \emph{Magnitude} to get a 5, which is a \Bad{} outcome.
 
 When a GM allows multiple rounds of rolls, the party totals their rolls from each round together and then divides by the \emph{Magnitude} to determine the \Outcome{} for each round.
 While a \Bad{} or \VeryBad{} result on a round of rolls is not a failure of the entire effort, the GM may still impose negative outcomes or gain \Advantage{} for each round until the group reaches a \Mixed{} or better result.
 
 If the GM for the party searching the library allows the party another round, the GM may collect an \Advantage{} for the failure on the first round (or impose some negative outcome).
-The party then rolls a total of 33 on the next round, for a total of 81 now, which is an 8 after division by the \emph{Magnitude} and is therefore a \Mixed{} result now.
+The party then rolls a total of 43 on the next round, for a total of 101 now, which is a 10 after division by the \emph{Magnitude} and is therefore a \Mixed{} result now.
 The party therefore has now found the information they are looking for, but the GM may take another \Advantage{} or impose a negative outcome.
 
 \subsubsection{Cooperative Rolls}
@@ -70,17 +72,17 @@ A Cooperative Roll is used when characters are each performing similar actions w
 For example, a Cooperative Roll might be used when a group of PCs is sneaking into the collections of a museum seeking an artifact not on display.
 
 For a Cooperative Roll, the GM sets a \Difficulty{} for each character which each character rolls against.
-This \Difficulty{} and the \Skill{} used for the roll is often the same for all characters involved but not necessarily.
+This \Difficulty{} and the \Attribute{} used for the roll is often the same for all characters involved but not necessarily.
 Then, the total successes and failures are totaled, where a \VeryBad{} counts as $-2$, \Bad{} as $-1$, \Mixed{} as $0$, \Good{} as $+1$, and \VeryGood{} as $+2$.
 This total then is converted into an \Outcome{} in the same manner, so a result of $-2$ or less is \VeryBad, $-1$ is \Bad, $0$ is \Mixed, $1$ is \Good, and $2$ or higher is \VeryGood.
 
-For our party attempting to sneak into the museum collections, the GM may set a \Difficulty{} of \emph{Hard} and have each PC roll for stealth.
+For our party attempting to sneak into the museum collections, the GM may set a \Difficulty{} of \emph{Hard} and have each PC roll \emph{Dexterity} for sneaking.
 If the party rolls two \Bad, one \Mixed, and one \VeryGood{} result, the outcome of the roll is \Mixed.
 If, instead, they had rolled two \Bad, one \Good, and one \VeryGood{} the outcome would be \Good.
 
 \subsection{Helping Out}
-A character can \textbf{Help}\index{Help} another creature on a roll with that creature's and GM's approval.
-Based on how they are helping out, the GM will pick a skill for the helper to roll; this will generally be against a \emph{Medium} difficulty though the GM may adjust this for particularly difficult tasks or when the assistance is difficult to render.
+A character can \textbf{Help}\index{Help} another creature on a roll with approval from that creature and the GM.
+Based on how they are helping out, the GM will pick the parameters of the roll for the helper as usual; this will generally be against a \emph{Medium} difficulty though the GM may adjust this for particularly difficult tasks or when the assistance is difficult to render.
 On a \Mixed{} or better result the creature being helped gains an \Advantage.
 
 \subsection{Increased and Decreased Rolls}

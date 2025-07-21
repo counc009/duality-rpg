@@ -1,0 +1,63 @@
+\section{Items}\label{sec:items}\index{Item}\index{Weapon|see{Item}}\index{Armor|see{Item}}\index{Shield|see{Item}}
+Beyond a character's own abilities, they are also generally equipped with certain equipment that aids in their adventures.
+Much of the equipment is not noteworthy and can generally be assumed, but the key pieces of equipment are \textbf{Items} and given their own statistics.
+These statistics define bonuses and other features that the \emph{Item} may grant to the character using it.
+\emph{Items} fall into one of two categories: \textbf{Weapons} and \textbf{Relics}.
+Weapons, including defensive items like shields and armor, will grant some bonus to certain combat actions (attacking for weapons and defending for shields and armor) and either specify an amount of damage they cause or grant a bonus to the user's \Block, respectively.
+Relics are then any item that it is not classified as a Weapon and they will grant the user an additional \Experience{} that reflects the nature or possibly history of the Relic.
+Both Weapons and Relics can also grant other benefits, including bonuses to other \emph{Attributes} or \emph{Specializations}, additional \emph{Experiences}, or even new \emph{Abilities}.
+
+Some characters don't use weapons or armor, rather have innate abilities that allow them to fight.
+To build such a character, you will still define these innate abilities as a weapon, but mark it as an \emph{Innate Weapon} which means there is not physical item the character must be in possession of to benefit from the item.
+A character may only have one innate weapon but are allowed, when leveling up, to add additional features to their innate weapon though must pay an addition 1 XP each time this occurs.
+
+\subsection{Creating an Item}
+At character creation a character receives one Item for free, but otherwise creating an Item costs 1 XP which reflects the costs of time, money, and resources that procuring or creating the Item takes.
+For this cost, the item that is created is a \emph{Basic Item}, the properties of which depend on whether it is a \emph{Weapon} or \emph{Relic}.
+When the item is created you can also spend XP to add additional features or improve on the Items basic features.
+With the exception of an Innate Weapon, items cannot be changed after creation except with the GM's approval.
+
+\subsubsection{Creating a Basic Weapon}\index{Item!Weapon}
+To create a basic weapon, choose one of the following options and the item then grants the associated benefits:
+\begin{itemize}
+  \item \textbf{Melee}: This weapon is used in hand-to-hand combat; choose the attack \Attribute{} based on the nature of the weapon, the Item grants a $+ 1$ bonus to attack and deals 1d8 damage.
+  \item \textbf{Ranged}: This weapon is used in ranged combat (the range is ``whatever is reasonable''); choose the attack \Attribute{} based on the nature of the weapon, the Item grants a $+ 1$ bonus to attack and deals 1d6 damage.
+  \item \textbf{Defensive}: This weapon is used to defend against physical attacks; the Item grants a $+ 1$ bonus to defend against physical attacks and a $+1$ bonus to \Block{}.
+\end{itemize}
+
+\subsubsection{Creating a Basic Relic}\index{Item!Relic}
+To create a basic relic, define the \Experience{} that the Relic grants a $+1$ bonus for.
+At the beginning of each session, the Relic gains an \Advantage{} (if it does not have one already) that can only be spent on activating its \Experience{}.
+
+\subsubsection{Finishing an Item}
+Finally, additional features can be purchased for an Item using XP.
+\begin{itemize}
+  \item To make a weapon an \emph{Innate Weapon} costs 1 XP
+  \item To increase a bonus (to an \Attribute{} or \Specialization, to \Block{}, to rolls to attack or defend, or to an \Experience) costs a number of XP equal to the \emph{total bonus} the item will offer after the increase.
+    This means that if an item already grants two $+1$ bonuses increasing one of them to $+2$ costs 3 XP since the total bonus will now be $+3$.
+    The cost to add a new bonus of any of these kinds (including through adding a new \Experience) is the same.
+    The maximum bonus to an \Attribute{}, \Specialization, \Block, or \Experience{} is the same as it would be for the character themselves.
+    The maximum bonus to attack or defend is the same as the maximum bonus to a \Specialization.
+  \item To add a bonus to \Life{} costs 2 XP per point up to a maximum bonus of $+ 10$
+  \item To add a bonus to \Recovery{} costs 4 XP per point up to a maximum bonus of $+ 5$
+  \item To add an \Ability{} costs the cost of that \Ability{}
+\end{itemize}
+For weapons, the following options can also be added
+\begin{itemize}
+  \item To add an additional option (Melee, Ranged, or Defensive) costs 2 XP \emph{but does not grant the roll bonuses} so adding Defensive to a Melee weapon does not grant a $+ 1$ to defend but does grant a $+ 1$ to \Block{} still.
+  \item A weapon which is Ranged can be used at ``unreasonable range'' for 2 XP
+  \item A weapon which is Melee can be used ``just outside the reach of a similarly sized creature'' for 4 XP
+  \item An additional damage die (1d8 for melee attacks and 1d6 for ranged) can be added for $2 \times$ the new number of damage dice on that type of attack XP (so a second d8 for a Melee weapon costs 4 XP).
+    A d6 damage die on a ranged attack can also be increased to a d8 for 1 XP (paid for each damage die, so a Ranged weapon dealing 2d8 damage costs 6 XP, 2 for increasing the d6 to d8 and 4 for the second damage die).
+\end{itemize}
+
+\subsection{Other Item Rules}\index{Item}
+There are a few other Item rules, especially for governing how they interact.
+First, if a character has two Items which grant a bonus to the same thing (the same \Attribute{} or \Specialization) these bonuses do not stack, instead only the higher bonus applies.
+Similarly, if a character has multiple different weapons, the attack bonus only applies when using that specific weapon.
+For defensive weapons, similarly only the highest bonus to defend applies.
+
+Additionally, if a character has more than 2 items in use (a character can hold onto other item but if they are not in use they would require several hours to be able to use them) they must hold onto 1 XP for each item past 2 they have.
+
+Finally, sometimes a character outgrows a particular item, either they find something better or they have changed enough that the item no longer makes sense for them.
+In such case they can sell the item to regain all XP that they had invested in creating the item (make sure to track this for all Items); because this represents, in game, finding a buyer or perhaps melting down a weapon to forge it into something else the GM may not allow an Item to be sold in a circumstance where it does not fit the narrative.
