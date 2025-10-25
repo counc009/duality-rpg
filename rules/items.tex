@@ -7,8 +7,7 @@ Weapons, including defensive items like shields and armor, will grant some bonus
 Relics are then any item that it is not classified as a Weapon and they will grant the user an additional \Experience{} that reflects the nature or possibly history of the Relic.
 Both Weapons and Relics can also grant other benefits, including bonuses to other \emph{Attributes} or \emph{Specializations}, additional \emph{Experiences}, or even new \emph{Abilities}.
 
-Some characters don't use weapons or armor, rather have innate abilities that allow them to fight.
-To build such a character, you will still define these innate abilities as a weapon, but mark it as an \emph{Innate Weapon} which means there is not physical item the character must be in possession of to benefit from the item.
+For characters who use a \Specialization{} as their attack, perhaps because they use magic or other innate abilities to fight, such characters can define their fighting abilities using an \emph{Innate Weapon}, which is not a physical item but just reflects the abilities they have.
 A character may only have one innate weapon but are allowed, when leveling up, to add additional features to their innate weapon though must pay an addition 1 XP each time this occurs.
 
 \subsection{Creating an Item}
@@ -23,6 +22,7 @@ To create a basic weapon, choose one of the following options and the item then 
   \item \textbf{Melee}: This weapon is used in hand-to-hand combat; choose the attack \Attribute{} based on the nature of the weapon, the Item grants a $+ 1$ bonus to attack and deals 1d8 damage.
   \item \textbf{Ranged}: This weapon is used in ranged combat (the range is ``whatever is reasonable''); choose the attack \Attribute{} based on the nature of the weapon, the Item grants a $+ 1$ bonus to attack and deals 1d6 damage.
   \item \textbf{Defensive}: This weapon is used to defend against physical attacks; the Item grants a $+ 1$ bonus to defend against physical attacks and a $+1$ bonus to \Block{}.
+  \item \textbf{Innate}: For an \emph{Innate Weapon} pick Melee or Ranged for the weapon, and the weapon gains the range and damage die of that kind of basic weapon, but the \emph{Innate Weapon} does not grant any bonus to the attack.
 \end{itemize}
 
 \subsubsection{Creating a Basic Relic}\index{Item!Relic}
@@ -32,21 +32,19 @@ At the beginning of each session, the Relic gains an \Advantage{} (if it does no
 \subsubsection{Finishing an Item}
 Finally, additional features can be purchased for an Item using XP.
 \begin{itemize}
-  \item To make a weapon an \emph{Innate Weapon} costs 1 XP
   \item To increase a bonus (to an \Attribute{} or \Specialization, to \Block{}, to rolls to attack or defend, or to an \Experience) costs a number of XP equal to the \emph{total bonus} the item will offer after the increase.
     This means that if an item already grants two $+1$ bonuses increasing one of them to $+2$ costs 3 XP since the total bonus will now be $+3$.
     The cost to add a new bonus of any of these kinds (including through adding a new \Experience) is the same.
-    The maximum bonus to an \Attribute{}, \Specialization, \Block, or \Experience{} is the same as it would be for the character themselves.
-    The maximum bonus to attack or defend is the same as the maximum bonus to a \Specialization.
+    The maximum bonus to an \Attribute{}, \Specialization, \Block, or \Experience{} is $+2$ and the maximum bonus to attack or defend is the same as the maximum bonus for a character's \emph{Specializations}.
   \item To add a bonus to \Life{} costs 2 XP per point up to a maximum bonus of $+ 10$
   \item To add a bonus to \Recovery{} costs 4 XP per point up to a maximum bonus of $+ 5$
   \item To add an \Ability{} costs the cost of that \Ability{}
 \end{itemize}
 For weapons, the following options can also be added
 \begin{itemize}
-  \item To add an additional option (Melee, Ranged, or Defensive) costs 2 XP \emph{but does not grant the roll bonuses} so adding Defensive to a Melee weapon does not grant a $+ 1$ to defend but does grant a $+ 1$ to \Block{} still.
+  \item To add an additional range to the weapon (to make a ranged weapon also work in melee or vice-versa) costs 2 XP.
   \item A weapon which is Ranged can be used at ``unreasonable range'' for 2 XP
-  \item A weapon which is Melee can be used ``just outside the reach of a similarly sized creature'' for 4 XP
+  \item A weapon which is Melee can be used ``just outside the reach of a similarly sized creature'' for 2 XP
   \item An additional damage die (1d8 for melee attacks and 1d6 for ranged) can be added for $2 \times$ the new number of damage dice on that type of attack XP (so a second d8 for a Melee weapon costs 4 XP).
     A d6 damage die on a ranged attack can also be increased to a d8 for 1 XP (paid for each damage die, so a Ranged weapon dealing 2d8 damage costs 6 XP, 2 for increasing the d6 to d8 and 4 for the second damage die).
 \end{itemize}
