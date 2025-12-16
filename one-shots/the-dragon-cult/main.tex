@@ -1,0 +1,184 @@
+\documentclass[titlepage]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[top=2cm,right=2cm,left=2cm,bottom=2cm]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{tabularx}
+
+\usepackage{yfonts}
+\usepackage{pdfpages}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{For Version 0.2.5 (October 11, 2025)}
+\lhead{The Dragon Cult}
+
+\renewcommand{\footrulewidth}{1pt}
+\rfoot{\thepage}
+
+\begin{document}
+
+\yinipar{Y}our group has been brought in (hired, volunteered, whatever fits your character) to an expedition to retrieve a powerful artifact that has fallen into the hands of a dragon worshiping cult.
+You gathered at a druidic stronghold and headed north west through a swamp, then forest, and finally out onto the alpine tundra.
+It has taken about a week to reach where you are now, huddled behind an outcropping of rocks about 20 feet away from what appears to be a cave entrance from which a small plume of steam rises.
+
+A team of adventurers have gone into the cave to grab the artifact and bring it to you all.
+The plan is that they will hand the artifact off to you and act as a distraction to let you get away so that you can return the artifact to the stronghold.
+\emph{With the party waiting here, take a moment to introduce themselves and describe their characters.}
+
+You've been waiting here for about 15 minutes, what are you doing?
+\emph{Give the party a little bit of time to see how they're feeling and role play a little.}
+As it reaches about 30 minutes you hear a commotion coming up the cave and can hear the clashing of weapons.
+\emph{Give a brief pause in case the party wants to intervene.}
+You see a ball of fire that seems to have been hurled come out of the cave and a moment later the team sent in to retrieve the artifact bursts out of the cave battling what you can see now to be a group of about 20 cultists.
+Most seem to be the fighters, dressed in light armor and fighting with a variety of swords and shields but one cultist, dressed in a red robe, is firing balls of flame towards the adventurers.
+
+The first of the adventurers to emerge is a dwarven woman carrying a burlap sack that she tosses in your direction and you see for moment appears to be caught on the wind and fly towards you.
+And then, as the cultist in the red robe emerges you watch the bag suddenly drop to the ground, about 10 feet ahead of you.
+\emph{What do you do?}
+
+\hfill
+\begin{minipage}{\dimexpr\textwidth-1cm}
+If a party member goes to retrieve it the spellcaster will target them with fire.
+Have them roll Finesse and allow them to take a defense bonus or specialization on an opposed roll against a 12.
+On a Mixed or worse result have them take 2d6+2 damage.
+On a Bad or worse result they get to the bag but must roll again to return to the group.
+\end{minipage}
+\vspace{12pt} \\
+%
+%
+\textbf{The Escape.}
+The plan is for the adventurers who retrieved the object to hold off the cultists for enough time for the party to get away.
+The party makes a \emph{Cooperative Roll} to escape, be it quickly, stealthily, or in some way to make their trail hard to follow.
+The result of this role will determine where they start on the catch track of the journey (it starts at 0 on a Very Good result, a 2 on a Mixed, and 4 on a Very Bad).
+%
+\\[12pt]
+%
+\textbf{The Journey.}
+The journey is represented by a bit of a mini-game that determines what happens each day of the journey.
+This is represented by 4 tracks:
+\begin{itemize}
+  \item[-] \textbf{Progress:} this track is 9 elements long and determines the progress the party has made.
+    At the end of the day that the last element is marked, the party reaches the stronghold.
+    When 0-2 elements are marked the party is in the alpine tundra, when 3-7 are marked they are in the forest, and when 8-9 are marked they are in the swamp.
+  \item[-] \textbf{Pursuit:} this track is 6 elements long and determines how close the cultists are to catching the party.
+    If the last element is marked, the party encounters a group of cultists including the Mage and two Cultists less than the number of players.
+    If the party encounters and defeats the cultists, reset this track to 0; if they escape handle that as above but mark an additional spot immediately.
+  \item[-] \textbf{Survival:} this track is 6 elements long and determines how hard the party is pushing themselves.
+    At the beginning of the day, this track automatically marks one.
+    When 0-2 elements are marked there is no effect, when at least 3 are marked the party takes $-1$ to all rolls, when at least 4 are marked the party heals only half of their Recovery, when at least 5 are marked the party takes an additional $-2$ penalty, and 6 are marked the party cannot heal.
+  \item[-] \textbf{Lookout:} this track is 1 element long.
+    At the beginning of the day, this track automatically resets to 0.
+    If the track is marked then the encounter roll is rolled twice and the higher value is used.
+\end{itemize}
+
+Each day, the party makes a \emph{Cooperative Roll} and the party and GM can use the Advantage generated by this roll (or other Advantage they have already) to mark or unmark these tracks.
+If the result is Mixed, both the party and GM gain 1 Advantage.
+
+After the roll, the GM rolls on the appropriate encounter table based on where the party is at the time.
+%
+\begin{tabularx}{\textwidth}{|c|X|X|X|} \hline
+  \textbf{d8} &\textbf{Alpine Tundra} &\textbf{Forest} &\textbf{Swamp} \\ \hline
+   1 &1 Frost Giant
+     &1 Giant Spider
+     &1 Giant Ooze \\ \hline
+   2 &3 Ice Elementals
+     &2 Dire Wolves
+     &5 Rats \\ \hline
+   3 &An avalanche begins above the party
+     &A flock of ravens watch the group from the tree. If they are not scared off by night, one character loses an item.
+     &A group of will o'wisps attempting to lead an individual into a digestive bog \\ \hline
+   4 &A cultist and mage apparently searching for something, the cultist is acting as guard while the mage studies and updates a map.
+     &A dozen domestic cats of varying colors. They try to lead the party towards a forest clearing that contains a single rock pillar with magic glyphs on it and a faint humming noise. The cats cannot enter into the clearing themselves but can be brought in and if so transform back into their pixie forms.
+     &A digestive bog, when you walk into it you take 1 damage each round \\ \hline
+   5 &A smell of sulfur fills the air; nearby is a fissure that leads towards the volcanic core of the mountain. Following it, it gets warm and you can hear a growling and rattling of chains. Pushing forward, the party begins to take 1 damage every minute and they can see a dragon held by arcane chains.
+     &A character steps into a giant pitcher plant (and begins taking 1 damage each round).
+     &The party discovers a humanoid skull, digging  around they'll find the rest of the skeleton and a small wooden box that contains a large tooth (this was a dragon cultist that got caught by something). \\ \hline
+   6 &A smell of sulfur fills the air; nearby is a fissure that leads into the mountain core, the walls of the fissure and the small cave it dead-ends into are covered with runes of binding.
+     &Raging river, Hard to cross
+     &The party spots what looks to be a circle of white stones off a little into the water. They turn out to be skulls, small ferns appear to have been planted between them as part of a druidic circle. If the party disturbs the circle, the water begins to boil (causing 1 damage per round) and form into a Giant Ooze (gains 10 life per round up to its max). \\ \hline
+   7 &An abandoned giant fortress whose gate hangs off its hinges and is now covered in ice. Inside, a few giants lay dead, killed by tiny arrows with brightly colored fletching (these are pixie arrows).
+     &An abandoned druidic village with huts made from trees shaped by magic. Everything looks as if it was left in an instant, there are clothes left hanging to dry ages ago. If the party searches one tree has part of a message scratched into the bark: ``beware the c''
+     &The remains of a pixie village made out of mushroom huts that was burnt and left charred. \\ \hline
+   8 &A small cave almost completely filled with ice with a large blue egg frozen in the middle.
+     &A wishing well. Tossing a coin into the well grants a character 1 advantage (max 1 per day). Tossing a second coin causes it to begin to storm and in a flash of lightning the well disappears.
+     &On the wind the party can hear three voices chanting. If they follow the sounds, they find three women dressed in black standing around a cauldron chanting as they stir. They will invite the party to peer in and see whatever their heart desires; they will offer a trade but are Hard to convince for anything menial. If they reject 2 offers, they will vanish. \\ \hline
+\end{tabularx} % https://www.dndspeak.com/encounters/
+%
+\vspace{12pt}
+\\
+\textbf{An Ambush.}
+When the party marks box 5, instead of rolling on the encounter table, they run across an apparently abandoned campsite with a burnt out fire pit, some bones and scraps of meat, and some shavings from wood carving.
+If they investigate well, they may notice that the fire is still warm.
+Nearby the camp are 3 dragonkin who's main goal is to steal the artifact.
+
+If the party marked the lookout on this day then they notice the dragonkin hiding in the nearby area.
+%
+\vspace{12pt}
+\\
+\textbf{The Stronghold.}
+(If there is not enough time for these encounters, have the party arrive at the stronghold and deliver the artifact to the archdruid).
+
+As the party arrives at the stronghold, the fires that the guards maintain at the edges of the town are extinguished but the town itself is burning and cultists can be seen marching through town.
+\begin{itemize}
+  \item[-] If the party enters the town, they will have an encounter with 2 cultists immediately.
+    After the encounter, they can attempt to Hard roll to search town and find survivors.
+    If they fail, they encounter another group of cultists composed of 1d4+1 cultists and 1d4-2 mages.
+    If they succeed in tracking down survivors, they come upon a building that has been nearly completely burnt but there is a stone in the ground that can be easily shifted to reveal a hideout beneath the town.
+    Hiding here they will find the archdruid, a old elven woman whose long gray hair is woven with vines and pink flowers; in this hideout are a variety of artifacts they have been collecting over the years.
+  \item[-] If the party attempts to search the area (not the town) for survivors they make a Hard roll.
+    On a failure they encounter 1d4 cultists and 1d4-3 mages.
+    On a success, they notice perched in a tree about two dozen cardinals (transformed druids).
+\end{itemize}
+
+\newpage
+\section*{Enemies}
+
+\begin{tabularx}{\textwidth}{|X|X|} \hline
+  \textbf{Cultists of the Dragon}                     &\textbf{Mage of the Dragon} \\
+  Total Life: 15, Recovery: 10, Block: 1              &Total Life: 30, Recovery: 10, Block: 1 \\
+  Light Armor, total $+2$ on defense                  &Magic Armor, total $+3$ to defense \\
+  Bladed (melee) weapon, $+2$ to attack, 1d8+1 damage &Fire Blash (ranged), $+3$ to attack, 2d6+2 damage
+  \\ \hline
+  %
+  \textbf{Giant Spider}                               &\textbf{Dire Wolf} \\
+  Total Life: 30, Recovery: 20, Block: 1              &Total Life: 15, Recovery: 5, Block: 0 \\
+  Hard Carapace, total $+1$ on defense                &$+0$ on defense \\
+  Bite (melee) weapon, $+2$ to attack, 1d8+1 damage   &Bite (melee) weapon, $+2$ to attack, 1d8+1 damage \\
+  Poison: an enemy that was bitten makes a Hard roll or takes 1d6 damage
+                                                      &
+  \\ \hline
+  %
+  \textbf{Frost Giant}                                &\textbf{Ice Elemental} \\
+  Total Life: 40, Recovery: 20, Block: 2              &Total Life: 10, Recovery: 5, Block: 1 \\
+  Ice Skin, total $+2$ on defense                     &$+0$ on defense \\
+  Rock (ranged, 2 nearby creatures) weapon: $+3$ to attack, 2d6+2 damage 
+                                                      &Ice breath (ranged), $+1$ to attack, 1d6 damage. Target loses an Advantage
+  \\ \hline
+  %
+  \textbf{Giant Ooze}                                 &\textbf{Swamp Rat} \\
+  Total Life: 40, Recovery: 5, Block: 0               &Total Life: 5, Recovery: 2, Block: 0 \\
+  $-1$ on defense                                     &$+0$ on defense \\
+  Pseudopods (long melee): $+3$ to attack, 1d8+2      &Bite (melee): $+1$ to attack, 1d6 damage \\
+  Acidic, when hit the ooze can spend an Advantage to cause the attacker to take 1d6 damage
+                                                      &
+  \\ \hline
+  %
+  \textbf{Dragonkin}                                  & \\
+  Total Life: 20, Recovery: 10, Block: 1              & \\
+  Scale Hide, total $+2$ on defense                   & \\
+  Dagger (melee), $+2$ to attack, 1d8+1 damage        & \\
+  Firebreath (ranged, 2 nearby creatures): $+1$ to attack, 1d6+1 damage
+                                                      &
+  \\ \hline
+\end{tabularx}
+
+\end{document}
