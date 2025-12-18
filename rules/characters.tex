@@ -1,9 +1,10 @@
 \section{Character Statistics}
-Characters are defined by their \emph{Attributes}, \emph{Specializations}, \emph{Experiences}, and \emph{Abilities}.
+Characters are defined by their \emph{Attributes}, \emph{Specializations}, \emph{Experiences}, \emph{Abilities}, and \emph{Combat Styles}.
 \emph{Attributes} define the character's broad statistics as well as their movement, wealth, and ability to take damage.
 \emph{Specializations} define specific skills that the character possesses and the nature of those skills.
 \emph{Experiences} reflect the character's past and offer bonuses to rolls in certain circumstances.
 \emph{Abilities} provide unique mechanics for a character.
+\emph{Combat Styles} define a character's fighting style, both offensive and defensive.
 
 \subsection{Attributes}
 Character \textbf{Attributes}\index{Attribute} represent the character's basic abilities.
@@ -111,7 +112,7 @@ Work with your GM and group to determine the appropriate breadth of \emph{Experi
 The bonus associated with an \Experience{} is $+1$ or $+2$ for newly created characters and can be increased to $+3$ when a character levels up.
 
 \subsection{Abilities}
-Finally, \emph{Abilities}\index{Ability} provide additional unique mechanics for characters, generally to do with gaining or using \Advantage.
+\emph{Abilities}\index{Ability} provide additional unique mechanics for characters, generally to do with gaining or using \Advantage.
 While not solely for non-magical characters, these \Ability{} are designed to assist non-magical builds by offering additional options for play and ways to gain \Advantage{} which allows the more use of \emph{Experiences}.
 Below is a list of such abilities, along with their XP costs; players and GMs should feel free to build other \emph{Abilities} to match their desires.
 Several of these abilities have a \emph{level} $n$ which, for example, impacts the number of \Advantage{} that a character gains; to take the ability you at first gain it at level 1 and can then spend the specified cost to increase it to level 2 and so on.
@@ -125,9 +126,77 @@ When acquiring an ability whose cost depends on $n$, you must spend XP based on 
   \item \textbf{Draw Blood} ($n$ XP): When you hit a target with an attack, you can spend two \Advantage{} to inflict a \emph{bleed} on the target. The target takes $n$ damage at the beginning of each of their turns until they spend an action or spend an \Advantage{} to end the condition.
 \end{itemize}
 
+\subsection{Combat Styles}\label{sec:combat-styles}
+\emph{Combat Styles}\index{Combat Style} define the character's abilities in combat, including their bonus to attack and defend, their range on attacks, their damage die, and other special abilities.
+Combat Styles are divided into \emph{Offensive} and \emph{Defensive} styles.
+Except at character creation, gaining a new Combat Style costs 3 XP.
+Each Combat Style, when chosen, is associated with a particular Basic Statistic which forms the base of the bonus for the style; when an additional Combat Style is chosen using the same statistic as another Combat Style the character already has, an additional 3 XP must be paid per such Combat Style (i.e., if a character has two Combat Styles that use Finesse then 6 XP must be paid to add a third Combat Style using Finesse).
+For Combat Styles that provide a bonus to attack or defend, this bonus can be increased for the same XP costs as a \emph{Specialization} and is subject to the same maximum cap (as described below).
+For Offensive Combat Styles, the number of damage dice it grants can be increased by 1 for a number of XP equal to $3 \times$ the new number of damage die (after the increase), so an increase from 1 die to 2 dice costs 6 XP.
+Some Combat Styles have other upgrade options that are described with them.
+The Combat Style options are detailed below:
+
+\subsubsection{Offensive Styles}\index{Combat Style!Offensive}
+\paragraph{Melee}
+Choose a Basic Statistic as the base attack bonus; the character gains a $+1$ bonus to attacks with this style on top of the Basic Statistic's bonus.
+The range of attacks with this style is \emph{in hand-to-hand combat}.
+The damage die for attacks with this style is d8; and attacks with this style deal a base of 1 damage die.
+Describe a new Experience (ideally related in some way to the character's combat abilities this style represents, for example related to knowledge of weapons, combat tactics, etc.); this Experience has a bonus equal to the attack bonus (not including the Basic Statistic) granted by this style.
+\\
+\underline{Upgrades:}
+\begin{itemize}
+  \item[-] The range can be changed to \emph{just oustide the reach of a similarly sized creature} for 2 XP.
+\end{itemize}
+
+\paragraph{Ranged}
+Choose a Basic Statistic as the base attack bonus; the character gains a $+1$ bonus to attacks with this style on top of the Basic Statistic's bonus.
+The range of attacks with this style is \emph{within a reasonable distance}.
+The damage die for attacks with this style is d6; and attacks with this style deal a base of 1 damage die.
+Describe a new Experience (ideally related in some way to the character's combat abilities this style represents, for example related to knowledge of weapons, combat tactics, etc.); this Experience has a bonus equal to the attack bonus (not including the Basic Statistic) granted by this style.
+\\
+\underline{Upgrades:}
+\begin{itemize}
+  \item[-] The range can be changed to \emph{from an unreasonable distance} for 2 XP.
+  \item[-] The damage die for this style can be changed to d8 for 5 XP.
+\end{itemize}
+
+\paragraph{Simple \& Weak}
+Choose a Basic Statistic as the base attack bonus; choose a \emph{Specialization} with the Simple \& Weak tag, this Specialization is the attack bonus with this style (on top of the Basic Statistic's bonus).
+The range of attacks with this style is \emph{nearby}, meaning that the attacker can be targeted by both ranged and melee attacks from their target.
+The damage die for attacks with this style is d4; and attacks with this style deal a base of 1 damage die.
+\\
+\underline{Upgrades:}
+\begin{itemize}
+  \item[-] The range can be changed to either \emph{in hand-to-hand combat} or \emph{within a reasonable distance} for 2 XP.
+  \item[-] The damage die for this style can be changed to d6 for 5 XP.
+\end{itemize}
+
+\paragraph{Complex \& Powerful}
+Choose a Basic Statistic as the base attack bonus; choose a \emph{Specialization} with the Complex \& Powerful tag, this Specialization is the attack bonus with this style (on top of the Basic Statistic's bonus).
+The range of attacks with this style is \emph{from an unreasonable distance}, but for attacks from a long range an additional $-1$ penalty should be applied to the roll.
+The damage die for attacks with this style is d10; and attacks with this style deal a base of 1 damage die.
+\\
+\underline{Upgrades:}
+\begin{itemize}
+  \item[-] The penalty for attacks at long range can be eliminated for 2 XP.
+\end{itemize}
+
+\subsubsection{Defensive Styles}\index{Combat Style!Defensive}
+\paragraph{Evasive}
+Choose a Basic Statistic as the base bonus to defend; the character gains a $+1$ bonus to defend with this style on top of the Basic Statistic's bonus.
+
+\paragraph{Armored}
+Choose a Basic Statistic as the base bonus to defend.
+The character also gains a $+1$ bonus to Block (this bonus can be increased, up to a maximum of $+2$ at character creation or $+5$ thereafter, for XP equal to $3\times$ the new bonus).
+
+\paragraph{Shielded}
+Choose a Basic Statistic as the base bonus to defend.
+When hit by an attack, the character can spend an Advantage to reduce the damage by this Basic Statistic.
+
 \subsection{Character Creation and Leveling-Up}
 When creating a new character for a campaign, the GM should specify the number of \emph{Experience Points} (XP) that the players have to start with to build their characters.
 A starting character (before spending any XP) has a $+0$ bonus for each of their basic statistics, a \Life{} of 20, a \Recovery{} of 10, a \Block{} of 0, a \emph{Speed} of \emph{Normal} (and only the ability to walk), and a bonus of $+0$ and the \emph{human} tag for all \emph{Specializations}.
+A starting character also has one Offensive and one Defensive Combat Styles (for these to have the same Basic Statistic still costs 3 XP). 
 A starting character also has one \emph{Item} whose construction does not cost XP beyond the cost of the \emph{Item} itself (see Section~\ref{sec:items} for details).
 These statistics can be increased by spending XP, and in some cases decreased to gain XP, as follows:
 \begin{itemize}
@@ -148,6 +217,7 @@ These statistics can be increased by spending XP, and in some cases decreased to
     \end{itemize}
   \item To gain a $+1$ \Experience{} costs 1 XP and then increasing it (to a maximum of $+2$) by $1$ costs the score after the increase; so increasing a $+1$ experience to a $+2$ experience costs 2 XP.
   \item To gain an \Ability{}.
+  \item To upgrade a \emph{Combat Style} or gain a new one as described in Section~\ref{sec:combat-styles}.
   \item To add additional features to their initial item or to construct additional items as described in Section~\ref{sec:items}.
 \end{itemize}
 
