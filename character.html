@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Character Sheet</title>
+    <style>
+      .bonus {
+        width: 3ch;
+      }
+
+      .value {
+        width: 4ch;
+      }
+
+      table {
+        text-align: center;
+      }
+
+      th { padding: 0 10px; }
+    </style>
+    <script>
+      let specializations = [];
+
+      function redrawSpecializations() {
+        let html = "";
+      }
+
+      function addSpecialization() {
+        document.getElementById("specializations").innerHTML += document.getElementById("specialization-template").innerHTML + "<br>";
+      }
+
+      function deleteSpecialization(n) {
+        document.getElementById("specializations").innerHTML = "<b>" + n + "</b><br>"
+      }
+    </script>
+  </head>
+  <body>
+    <b>Character Name</b>
+    <input type="text" id="name"> <br>
+
+    <table>
+      <tr>
+        <th>Strength</th>
+        <th>Finesse</th>
+        <th>Willpower</th>
+        <th>Instinct</th>
+        <th>Presence</th>
+        <th>Knowledge</th>
+      </tr>
+      <tr>
+        <td><input type="number" id="strength" class="bonus"></td>
+        <td><input type="number" id="finesse" class="bonus"></td>
+        <td><input type="number" id="willpower" class="bonus"></td>
+        <td><input type="number" id="instinct" class="bonus"></td>
+        <td><input type="number" id="presence" class="bonus"></td>
+        <td><input type="number" id="knowledge" class="bonus"></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>Max Life</th>
+        <th>Recovery</th>
+        <th>Block</th>
+        <th>Wealth</th>
+      </tr>
+      <tr>
+        <td><input type="number" id="life" class="value"></td>
+        <td><input type="number" id="recovery" class="value"></td>
+        <td><input type="number" id="block" class="value"></td>
+        <td>
+          <select name="wealth" id="wealth">
+            <option selected="selected" value="none">None</option>
+            <option value="wretched">Wretched</option>
+            <option value="squalid">Squalid</option>
+            <option value="modest">Modest</option>
+            <option value="comfortable">Comfortable</option>
+            <option value="luxurious">Luxurious</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>Speeds</th>
+        <th>Walk</th>
+        <th>Climb</th>
+        <th>Swim</th>
+        <th>Burrow</th>
+        <th>Fly</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <select name="walk" id="walk">
+            <option value="na">N/A</option>
+            <option value="slow">Slow</option>
+            <option selected="selected" value="normal">Normal</option>
+            <option value="fast">Fast</option>
+          </select>
+        </td>
+        <td>
+          <select name="climb" id="climb">
+            <option selected="selected" value="na">N/A</option>
+            <option value="slow">Slow</option>
+            <option value="normal">Normal</option>
+            <option value="fast">Fast</option>
+          </select>
+        </td>
+        <td>
+          <select name="swim" id="swim">
+            <option selected="selected" value="na">N/A</option>
+            <option value="slow">Slow</option>
+            <option value="normal">Normal</option>
+            <option value="fast">Fast</option>
+          </select>
+        </td>
+        <td>
+          <select name="burrow" id="burrow">
+            <option selected="selected" value="na">N/A</option>
+            <option value="slow">Slow</option>
+            <option value="normal">Normal</option>
+            <option value="fast">Fast</option>
+          </select>
+        </td>
+        <td>
+          <select name="fly" id="fly">
+            <option selected="selected" value="na">N/A</option>
+            <option value="slow">Slow</option>
+            <option value="normal">Normal</option>
+            <option value="fast">Fast</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    <h3>Specializations</h3>
+    <div id="specializations">
+    </div>
+    <div class="specialization" id="specialization-template" style="display: none;">
+      <select name="verb" id="verb">
+        <option disabled selected value></option>
+        <option value="control">Control</option>
+        <option value="create">Create</option>
+        <option value="destroy">Destroy</option>
+        <option value="perceive">Perceive</option>
+        <option value="know">Know</option>
+        <option value="transform">Transform</option>
+      </select>
+      <select name="noun" id="noun">
+        <option disabled selected value></option>
+        <option value="air">Air</option>
+        <option value="earth">Earth</option>
+        <option value="fire">Fire</option>
+        <option value="water">Water</option>
+        <option value="animals">Animals</option>
+        <option value="plants">Plants</option>
+        <option value="body">Body</option>
+        <option value="illusion">Illusion</option>
+        <option value="mind">Mind</option>
+        <option value="arcana">Arcana</option>
+      </select>
+      <select name="tag" id="tag">
+        <option disabled selected value></option>
+        <option value="human">Human</option>
+        <option value="superhuman">Superhuman</option>
+        <option value="simple">Simple &amp; Weak</option>
+        <option value="complex">Complex &amp; Powerful</option>
+      </select>
+      <input type="number" class="bonus">
+      <button type="button" onclick="deleteSpecialization(0)">X</button>
+    </div>
+    <button type="button" onclick="addSpecialization()">+</button>
+  </body>
+</html>
