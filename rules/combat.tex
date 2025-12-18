@@ -10,26 +10,16 @@ Quick Actions include simple tasks like drinking a potion or drawing a weapon.
 
 \subsection{Making Attacks}
 When a creature makes an attack against another creature, the attacker and target make an opposed roll.
-The attacker rolls adding the \Attribute{} specified by the weapon and any bonus the weapon grants (see Section~\ref{sec:items} for discussion of weapons).
-The target rolls using an appropriate \Attribute{} based on their defense style (which may be based on any defensive items like armor or shields that they carry) and add any relevant bonuses.
+The attacker chooses one of their Offensive \emph{Combat Styles} for the attack and rolls the specified \Attribute{} plus any bonus for the \emph{Combat Style} and Weapon if they are using one associated with that \emph{Combat Style}.
+The target chooses one of their Defensive \emph{Combat Styles} and rolls the specified \Attribute{} plus any bonus for the \emph{Combat Style} and Weapon if they are using one associated with that \emph{Combat Style}.
 Some creatures may have abilities that allow them to attack multiple targets simultaneously, in such cases the attacker rolls once and then computes and resolves their \Outcome{} against each target separately.
 
-If the attacker's result is \Mixed{} or better, they roll damage of their weapon and add the same \Attribute{} bonus as on the attack.
+If the attacker's result is \Mixed{} or better, they roll damage based on the \emph{Combat Style} and any relevant Weapon and add the same \Attribute{} bonus as on the attack (though they do not add the other bonuses to the attack).
 The target subtracts their \Block{}\index{Attribute!Block} from this number and any remaining damage is subtracted from its \Life{}\index{Attribute!Life}.
 If the attacker's result is \VeryGood{} they gain an \Advantage{} as normal, which can be spent to gain an additional damage die on their damage roll.
-If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner, alternatively it can take \Advantage{} as usual.
+If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner (though does not add any damage dice from a \emph{Combat Style} and add the \Attribute{} they rolled to defend unless another rule specifies otherwise; they may add dice from a Weapon), alternatively it can take \Advantage{} as usual.
 
 While \Advantage{} can be spent on any damage roll to add a damage die to it, the GM cannot spend more \Advantage{} for additional damage on a single damage roll than the current round number (where the first round of combat is round 1).
-
-\subsubsection{Attacks using Specializations}
-Instead of using a Weapon, some creatures are able to use their \emph{Specializations} to fight, for instance through wielding magic.
-Using a \Specialization{}, the attacker rolls and adds their \Attribute{} and \Specialization{} bonuses and deal damage equal to the sum of their \Attribute{} and \Specialization{} bonuses.
-The base range of a \Specialization{}-based attack is ``nearby'' meaning that the attacker can be targeted by both ranged and melee attacks from their target.
-Additional damage dice can be added to the attack, and the ranged of the attack can be changed, through an innate weapon, as described in Section~\ref{sec:items}.
-
-If the \Specialization{} used has the Simple \& Weak tag, then the attacker must spend an \Advantage{} when they deal damage and the abilities that can be performed using the \Specialization{} must reasonably be able to do damage.
-If the \Specialization{} used has the Complex \& Powerful tag, then on a Mixed or worse result, the GM can spend an \Advantage{} to have the magic splash back on the attacker who takes the same damage as the target.
-Finally, when spending \Advantage{} to add additional damage dice to an attack using a \Specialization{}, if the tag for the specialization is Simple \& Weak the extra damage die is only a d4 and if the tag is Complex \& Powerful the extra damage die is a d10.
 
 \subsection{Healing}\index{Healing}
 To recover \Life{} lost during combat or otherwise during their adventures, creatures will need to \textbf{Heal}.
