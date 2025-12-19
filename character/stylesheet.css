@@ -1,0 +1,13 @@
+.bonus {
+  width: 4ch;
+}
+
+.value {
+  width: 5ch;
+}
+
+table {
+  text-align: center;
+}
+
+th { padding: 0 10px; }

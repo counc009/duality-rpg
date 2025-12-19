@@ -2,36 +2,10 @@
 <html>
   <head>
     <title>Character Sheet</title>
-    <style>
-      .bonus {
-        width: 3ch;
-      }
-
-      .value {
-        width: 4ch;
-      }
-
-      table {
-        text-align: center;
-      }
-
-      th { padding: 0 10px; }
-    </style>
-    <script>
-      let specializations = [];
-
-      function redrawSpecializations() {
-        let html = "";
-      }
-
-      function addSpecialization() {
-        document.getElementById("specializations").innerHTML += document.getElementById("specialization-template").innerHTML + "<br>";
-      }
-
-      function deleteSpecialization(n) {
-        document.getElementById("specializations").innerHTML = "<b>" + n + "</b><br>"
-      }
-    </script>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="specializations.js"></script>
+    <script src="experiences.js"></script>
+    <script src="abilities.js"></script>
   </head>
   <body>
     <b>Character Name</b>
@@ -135,41 +109,15 @@
     </table>
 
     <h3>Specializations</h3>
-    <div id="specializations">
-    </div>
-    <div class="specialization" id="specialization-template" style="display: none;">
-      <select name="verb" id="verb">
-        <option disabled selected value></option>
-        <option value="control">Control</option>
-        <option value="create">Create</option>
-        <option value="destroy">Destroy</option>
-        <option value="perceive">Perceive</option>
-        <option value="know">Know</option>
-        <option value="transform">Transform</option>
-      </select>
-      <select name="noun" id="noun">
-        <option disabled selected value></option>
-        <option value="air">Air</option>
-        <option value="earth">Earth</option>
-        <option value="fire">Fire</option>
-        <option value="water">Water</option>
-        <option value="animals">Animals</option>
-        <option value="plants">Plants</option>
-        <option value="body">Body</option>
-        <option value="illusion">Illusion</option>
-        <option value="mind">Mind</option>
-        <option value="arcana">Arcana</option>
-      </select>
-      <select name="tag" id="tag">
-        <option disabled selected value></option>
-        <option value="human">Human</option>
-        <option value="superhuman">Superhuman</option>
-        <option value="simple">Simple &amp; Weak</option>
-        <option value="complex">Complex &amp; Powerful</option>
-      </select>
-      <input type="number" class="bonus">
-      <button type="button" onclick="deleteSpecialization(0)">X</button>
-    </div>
+    <div id="specializations"></div>
     <button type="button" onclick="addSpecialization()">+</button>
+
+    <h3>Experiences</h3>
+    <div id="experiences"></div>
+    <button type="button" onclick="addExperience()">+</button>
+
+    <h3>Abilities</h3>
+    <div id="abilities"></div>
+    <button type="button" onclick="addAbility()">+</button>
   </body>
 </html>
