@@ -6,10 +6,15 @@
     <script src="specializations.js"></script>
     <script src="experiences.js"></script>
     <script src="abilities.js"></script>
+    <script src="calculator.js"></script>
   </head>
   <body>
     <b>Character Name</b>
-    <input type="text" id="name"> <br>
+    <input type="text" id="name">
+    <b>Character Creation</b>
+    <input type="checkbox" id="mode" checked onchange="modeChange()">
+    <br>
+    <b>XP Used:</b> <span id="xp">0</span>
 
     <table>
       <tr>
@@ -21,12 +26,12 @@
         <th>Knowledge</th>
       </tr>
       <tr>
-        <td><input type="number" id="strength" class="bonus"></td>
-        <td><input type="number" id="finesse" class="bonus"></td>
-        <td><input type="number" id="willpower" class="bonus"></td>
-        <td><input type="number" id="instinct" class="bonus"></td>
-        <td><input type="number" id="presence" class="bonus"></td>
-        <td><input type="number" id="knowledge" class="bonus"></td>
+        <td><input type="number" id="strength" class="bonus" value="0" onchange="statChange(event)"></td>
+        <td><input type="number" id="finesse" class="bonus" value="0" onchange="statChange(event)"></td>
+        <td><input type="number" id="willpower" class="bonus" value="0" onchange="statChange(event)"></td>
+        <td><input type="number" id="instinct" class="bonus" value="0" onchange="statChange(event)"></td>
+        <td><input type="number" id="presence" class="bonus" value="0" onchange="statChange(event)"></td>
+        <td><input type="number" id="knowledge" class="bonus" value="0" onchange="statChange(event)"></td>
       </tr>
     </table>
 
@@ -38,9 +43,9 @@
         <th>Wealth</th>
       </tr>
       <tr>
-        <td><input type="number" id="life" class="value"></td>
-        <td><input type="number" id="recovery" class="value"></td>
-        <td><input type="number" id="block" class="value"></td>
+        <td><input type="number" id="life" class="value" value="20" onchange="attrChange(event)"></td>
+        <td><input type="number" id="recovery" class="value" value="10" onchange="attrChange(event)"></td>
+        <td><input type="number" id="block" class="value" value="0" onChange="attrChange(event)"></td>
         <td>
           <select name="wealth" id="wealth">
             <option selected="selected" value="none">None</option>
