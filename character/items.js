@@ -3,6 +3,9 @@ var weapon_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life
 
 var items = [];
 
+// TODO: Validate when mode changes
+// TODO: Prevent adding a Block bonus on a defensive weapon
+
 function new_weapon_style() {
   let res = { style: '' };
 
@@ -453,12 +456,14 @@ function addWeapon() {
   let item = new_weapon();
   items.push(item);
   document.getElementById('items').appendChild(item.div);
+  updateXP();
 }
 
 function addRelic() {
   let item = new_relic();
   items.push(item);
   document.getElementById('items').appendChild(item.div);
+  updateXP();
 }
 
 function deleteItem(item) {
@@ -466,4 +471,75 @@ function deleteItem(item) {
   items.splice(idx, 1); // delete the item
   item.div.remove();
   updateXP();
+}
+
+function itemsXP() {
+  var xp = 0;
+
+  // Everything after the first item costs 1 XP to get
+  if (items.length > 1) { xp += items.length - 1; }
+
+  for (const item of items) {
+    var totalBonus = 0; // Total bonus the weapon grants
+
+    for (const addon of item.addons.addons) {
+      console.log(addon.addon_kind);
+      switch (addon.addon_kind) {
+        case 'ability':
+          xp += abilityXP(addon.kind, addon.level);
+          break;
+        case 'attribute':
+          let n = addon.bonus;
+          totalBonus += n;
+          xp += 2 * n * (n + 1) / 2; // Extra cost
+          break;
+        case 'block':
+          let m = addon.bonus;
+          totalBonus += m;
+          xp += 2 * m * (m + 1) / 2; // Extra cost
+          break;
+        case 'experience':
+          totalBonus += addon.bonus;
+          break;
+        case 'life':
+          xp += 2 * addon.bonus;
+          break;
+        case 'recovery':
+          xp += 4 * addon.bonus;
+          break;
+        case 'specialization':
+          totalBonus += addon.bonus;
+          xp += specTagXP(addon.tag);
+          break;
+        case 'style': xp += 3;
+          break;
+      }
+    }
+
+    switch (item.kind) {
+      case 'weapon':
+        totalBonus += item.bonus;
+
+        if (isDefensive(item.style.style)) {
+          // Defensive, so feature is block
+          let n = item.feature;
+          totalBonus += n;
+          xp += 2 * n * (n + 1) / 2;
+        } else if (isOffensive(item.style.style)) {
+          // Offensive, so feature is damage dice
+          let n = item.feature;
+          xp += 5 * n * (n + 1) / 2 - 5; // -5 since first die is free
+        }
+        break;
+      case 'relic':
+        totalBonus += item.bonus;
+        break;
+    }
+
+    if (totalBonus >= 1) {
+      xp += totalBonus * (totalBonus + 1) / 2 - 1; // -1 since initial bonus is free
+    }
+  }
+
+  return xp;
 }

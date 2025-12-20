@@ -4,6 +4,15 @@ const stats = ["Strength", "Finesse", "Willpower", "Instinct", "Presence", "Know
 
 // TODO: Add experience for melee/ranged styles
 
+function isOffensive(nm) {
+  switch (nm) {
+    case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
+      return true;
+    case 'Evasive': case 'Armored': case 'Shielded': case 'Parry':
+      return false;
+  }
+}
+
 function isDefensive(nm) {
   switch (nm) {
     case 'Evasive': case 'Armored': case 'Shielded': case 'Parry':

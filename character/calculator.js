@@ -206,8 +206,7 @@ function updateXP() {
   xp += experiencesXP();
   xp += abilitiesXP();
   xp += combatStylesXP();
-
-  // TODO: everything else
+  xp += itemsXP();
 
   document.getElementById('xp').textContent = xp;
 }
