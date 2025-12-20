@@ -6,167 +6,128 @@ const tags  = ["Human", "Superhuman", "Simple & Weak", "Complex & Powerful"];
 
 var specializations = [];
 
-function redrawSpecializations() {
-  let specs = document.getElementById("specializations");
+function new_spec() {
+  let spec = { verb: '', noun: '', tag: 'Human', bonus: 0 };
 
-  while (specs.firstChild) {
-    specs.removeChild(specs.firstChild);
+  let spec_div = document.createElement('div');
+  spec_div.className = "specialization";
+
+  // Create the verb drop-down
+  let verb = document.createElement('select');
+  verb.onchange = function() { spec.verb = verb.value; updateXP(); };
+
+  let verb_empty = document.createElement('option');
+  verb_empty.setAttribute("disabled", "");
+  verb_empty.setAttribute("selected", "");
+  verb_empty.setAttribute("value", "");
+  verb.appendChild(verb_empty);
+
+  for (const v of verbs) {
+    let verb_option = document.createElement('option');
+    verb_option.setAttribute("value", v);
+    verb_option.textContent = v;
+    verb.appendChild(verb_option);
   }
 
-  for (const [idx, spec] of specializations.entries()) {
-    let spec_div = document.createElement('div');
-    spec_div.className = "specialization";
-    spec_div.setAttribute("id", "spec" + idx);
+  spec_div.appendChild(verb);
 
-    // Create the verb drop-down
-    let verb = document.createElement('select');
-    verb.setAttribute("name", "verb" + idx);
-    verb.setAttribute("id", "verb" + idx);
-    verb.onchange = function() { spec.verb = verb.value; updateXP(); };
+  // Create the noun drop-down
+  let noun = document.createElement('select');
+  noun.onchange = function() { spec.noun = noun.value; updateXP(); };
 
-    let verb_empty = document.createElement('option');
-    verb_empty.setAttribute("disabled", "");
-    if (spec.verb == "") {
-      verb_empty.setAttribute("selected", "");
-    }
-    verb_empty.setAttribute("value", "");
-    verb.appendChild(verb_empty);
+  let noun_empty = document.createElement('option');
+  noun_empty.setAttribute("disabled", "");
+  noun_empty.setAttribute("selected", "");
+  noun_empty.setAttribute("value", "");
+  noun.appendChild(noun_empty);
 
-    for (const v of verbs) {
-      let verb_option = document.createElement('option');
-      verb_option.setAttribute("value", v);
-      verb_option.textContent = v;
-
-      if (spec.verb == v) {
-        verb_option.setAttribute("selected", "");
-      }
-
-      verb.appendChild(verb_option);
-    }
-
-    spec_div.appendChild(verb);
-
-    // Create the noun drop-down
-    let noun = document.createElement('select');
-    noun.setAttribute("name", "noun" + idx);
-    noun.setAttribute("id", "noun" + idx);
-    noun.onchange = function() { spec.noun = noun.value; updateXP(); };
-
-    let noun_empty = document.createElement('option');
-    noun_empty.setAttribute("disabled", "");
-    if (spec.noun == "") {
-      noun_empty.setAttribute("selected", "");
-    }
-    noun_empty.setAttribute("value", "");
-    noun.appendChild(noun_empty);
-
-    for (const n of nouns) {
-      let noun_option = document.createElement('option');
-      noun_option.setAttribute("value", n);
-      noun_option.textContent = n;
-
-      if (spec.noun == n) {
-        noun_option.setAttribute("selected", "");
-      }
-
-      noun.appendChild(noun_option);
-    }
-
-    spec_div.appendChild(noun);
-
-    // Create the tag drop-down
-    let tag = document.createElement('select');
-    tag.setAttribute("name", "tag" + idx);
-    tag.setAttribute("id", "tag" + idx);
-    tag.onchange = function() { spec.tag = tag.value; updateXP(); };
-
-    let tag_empty = document.createElement('option');
-    tag_empty.setAttribute("disabled", "");
-    if (spec.tag == "") {
-      tag_empty.setAttribute("selected", "");
-    }
-    tag_empty.setAttribute("value", "");
-    tag.appendChild(tag_empty);
-
-    for (const t of tags) {
-      let tag_option = document.createElement('option');
-      tag_option.setAttribute("value", t);
-      tag_option.textContent = t;
-
-      if (spec.tag == t) {
-        tag_option.setAttribute("selected", "");
-      }
-
-      tag.appendChild(tag_option);
-    }
-
-    spec_div.appendChild(tag);
-
-    // Create the bonus input
-    let bonus = document.createElement('input');
-    bonus.setAttribute("name", "sbonus" + idx);
-    bonus.setAttribute("id", "sbonus" + idx);
-    bonus.setAttribute("type", "number");
-    bonus.className = "bonus";
-    bonus.value = spec.bonus;
-    bonus.onchange = function() {
-      let val = parseInt(bonus.value);
-
-      if (val == NaN) {
-        val = spec.bonus;
-      } else if (val < 0) {
-        val = 0;
-      } else if (val > 2 && creation_mode) {
-        val = 2;
-      } else if (val > 4) {
-        val = 4;
-      }
-
-      spec.bonus = val;
-      bonus.value = val;
-      updateXP();
-    };
-    spec_div.appendChild(bonus);
-
-    // Create the delete button
-    let del = document.createElement('button');
-    del.setAttribute("type", "button");
-    del.setAttribute("onclick", "deleteSpecialization(" + idx + ")");
-    del.textContent = "X";
-    spec_div.appendChild(del);
-
-    specs.appendChild(spec_div);
+  for (const n of nouns) {
+    let noun_option = document.createElement('option');
+    noun_option.setAttribute("value", n);
+    noun_option.textContent = n;
+    noun.appendChild(noun_option);
   }
+
+  spec_div.appendChild(noun);
+
+  // Create the tag drop-down
+  let tag = document.createElement('select');
+  tag.onchange = function() { spec.tag = tag.value; updateXP(); };
+
+  let tag_empty = document.createElement('option');
+  tag_empty.setAttribute("disabled", "");
+  tag_empty.setAttribute("value", "");
+  tag.appendChild(tag_empty);
+
+  for (const t of tags) {
+    let tag_option = document.createElement('option');
+    tag_option.setAttribute("value", t);
+    tag_option.textContent = t;
+
+    if (t == 'Human') {
+      tag_option.setAttribute("selected", "");
+    }
+
+    tag.appendChild(tag_option);
+  }
+
+  spec_div.appendChild(tag);
+
+  // Create the bonus input
+  let bonus = document.createElement('input');
+  bonus.setAttribute("type", "number");
+  bonus.className = "bonus";
+  bonus.value = 0;
+  bonus.onchange = function() {
+    let val = parseInt(bonus.value);
+
+    if (val == NaN) {
+      val = spec.bonus;
+    } else if (val < 0) {
+      val = 0;
+    } else if (val > 2 && creation_mode) {
+      val = 2;
+    } else if (val > 4) {
+      val = 4;
+    }
+
+    spec.bonus = val;
+    bonus.value = val;
+    updateXP();
+  };
+  spec_div.appendChild(bonus);
+
+  // Create the delete button
+  let del = document.createElement('button');
+  del.setAttribute("type", "button");
+  del.onclick = function() { deleteSpecialization(spec) };
+  del.textContent = "X";
+  spec_div.appendChild(del);
+
+  spec.div = spec_div;
+  return spec;
 }
 
 function addSpecialization() {
-  specializations.push({verb: '', noun: '', tag: '', bonus: ''});
-  // TODO: Don't need to fully redraw, could just add a single entry at the
-  // end
-  redrawSpecializations();
+  let spec = new_spec();
+  specializations.push(spec);
+  document.getElementById('specializations').append(spec.div);
 }
 
-function deleteSpecialization(n) {
-  specializations.splice(n, 1); // delete the element
-  // TODO: Don't need to fully redraw, could just remove child (though we'd
-  // have to track that)
-  redrawSpecializations();
+function deleteSpecialization(spec) {
+  let idx = specializations.indexOf(spec);
+  specializations.splice(idx, 1); // delete the element
+  spec.div.remove();
   updateXP();
 }
 
 function specBonusXP(n) {
-  console.log(n);
-  if (n == '') {
-    return 0;
-  } else {
-    return n * (n + 1) / 2;
-  }
+  return n * (n + 1) / 2;
 }
 
 function specTagXP(t) {
   switch (t) {
     case 'Human':
-    case '':
       return 0;
     case 'Superhuman': return 3;
     case 'Simple & Weak':
