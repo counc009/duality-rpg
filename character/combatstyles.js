@@ -2,13 +2,25 @@ const offensive_styles = ["Melee", "Ranged", "Simple & Weak", "Complex & Powerfu
 const defensive_styles = ["Evasive", "Armored", "Shielded", "Parry"];
 const stats = ["Strength", "Finesse", "Willpower", "Instinct", "Presence", "Knowledge"];
 
+// TODO: Add experience for melee/ranged styles
+
+function isDefensive(nm) {
+  switch (nm) {
+    case 'Evasive': case 'Armored': case 'Shielded': case 'Parry':
+      return true;
+    case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
+      return false;
+  }
+}
+
 var offensives = [];
 var defensives = [];
 
-function addOptions(select, options, selected=1) {
+function addOptions(select, options, selected=1, first='') {
   let empty = document.createElement('option');
   empty.setAttribute('disabled', '');
-  empty.setAttribute('value', '');
+  empty.setAttribute('value', first);
+  empty.textContent = first;
   if (selected == 0) {
     empty.setAttribute('selected', '');
   }
@@ -380,7 +392,7 @@ function combatBonusXP(n) {
 }
 
 function damageDiceXP(n) {
-  return 3 * n * (n + 1) / 2;
+  return 5 * n * (n + 1) / 2;
 }
 
 function combatStylesXP() {

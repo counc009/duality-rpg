@@ -2,7 +2,7 @@ const ability_kinds = ["Take the Advantage", "Good Under Pressure", "Tank", "Nat
 
 var abilities = [];
 
-function new_ability() {
+function new_ability(ondelete=(ability) => (() => { deleteAbility(ability); })) {
   let ability = { kind: '', level: 0 };
 
   let abil_div = document.createElement('div');
@@ -50,7 +50,7 @@ function new_ability() {
   // Create the delete button
   let del = document.createElement('button');
   del.setAttribute("type", "button");
-  del.onclick = function() { deleteAbility(ability); };
+  del.onclick = ondelete(ability);
   del.textContent = "X";
   abil_div.appendChild(del);
 

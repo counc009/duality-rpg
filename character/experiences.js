@@ -1,6 +1,6 @@
 var experiences = [];
 
-function new_experience() {
+function new_experience(ondelete=(exp) => (() => { deleteExperience(exp); })) {
   let exp = { bonus: 0, desc: '' };
 
   let exp_div = document.createElement('div');
@@ -41,7 +41,7 @@ function new_experience() {
   // Create the delete button
   let del = document.createElement('button');
   del.setAttribute("type", "button");
-  del.onclick = function() { deleteExperience(exp); };
+  del.onclick = ondelete(exp);
   del.textContent = "X";
   exp_div.appendChild(del);
 

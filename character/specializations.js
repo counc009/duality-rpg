@@ -6,7 +6,7 @@ const tags  = ["Human", "Superhuman", "Simple & Weak", "Complex & Powerful"];
 
 var specializations = [];
 
-function new_spec() {
+function new_spec(ondelete=(sepc) => (() => { deleteSpecialization(spec); })) {
   let spec = { verb: '', noun: '', tag: 'Human', bonus: 0 };
 
   let spec_div = document.createElement('div');
@@ -100,7 +100,7 @@ function new_spec() {
   // Create the delete button
   let del = document.createElement('button');
   del.setAttribute("type", "button");
-  del.onclick = function() { deleteSpecialization(spec); };
+  del.onclick = ondelete(spec);
   del.textContent = "X";
   spec_div.appendChild(del);
 
