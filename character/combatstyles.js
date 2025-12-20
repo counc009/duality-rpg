@@ -2,8 +2,6 @@ const offensive_styles = ["Melee", "Ranged", "Simple & Weak", "Complex & Powerfu
 const defensive_styles = ["Evasive", "Armored", "Shielded", "Parry"];
 const stats = ["Strength", "Finesse", "Willpower", "Instinct", "Presence", "Knowledge"];
 
-// TODO: Add experience for melee/ranged styles
-
 function isOffensive(nm) {
   switch (nm) {
     case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
@@ -47,7 +45,7 @@ function addOptions(select, options, selected=1, first='') {
 }
 
 function new_offensive() {
-  let style = { kind: '', stat: '', bonus: 0, spec: '', dice: 0, die: 0, range: '' };
+  let style = { kind: '', stat: '', bonus: 0, experience: '', spec: '', dice: 0, die: 0, range: '' };
 
   let style_div = document.createElement('div');
   style_div.className = "combatStyle";
@@ -119,6 +117,13 @@ function new_offensive() {
   };
   style_div.appendChild(bonus);
 
+  // Add an experience (for melee and ranged)
+  let experience = document.createElement('input');
+  experience.setAttribute('type', 'text');
+  experience.style.display = 'none';
+  experience.onchange = function() { style.experience = experience.value; };
+  style_div.appendChild(experience);
+
   // Add a specialization field (to select an appropriate specialization)
   let spec = document.createElement('select');
   spec.onchange = function() { style.spec = spec.value; };
@@ -169,6 +174,10 @@ function new_offensive() {
     bonus.value = 0;
     bonus.style.display = 'none';
 
+    style.experience = '';
+    experience.value = '';
+    experience.style.display = 'none';
+
     style.spec = '';
     spec.value = '';
     while (spec.firstChild) {
@@ -200,6 +209,8 @@ function new_offensive() {
         bonus.value = 1;
         bonus.style.display = 'inline-block';
 
+        experience.style.display = 'inline-block';
+
         style.die = 'd8';
         addOptions(die, ['d8']);
 
@@ -210,6 +221,8 @@ function new_offensive() {
         style.bonus = 1;
         bonus.value = 1;
         bonus.style.display = 'inline-block';
+
+        experience.style.display = 'inline-block';
 
         style.die = 'd6';
         addOptions(die, ['d6', 'd8']);

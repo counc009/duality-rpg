@@ -1,6 +1,6 @@
-var relic_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization']
-var offensive_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
-var defensive_addon_options = ['Ability', 'Attribute', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
+const relic_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization']
+const offensive_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
+const defensive_addon_options = ['Ability', 'Attribute', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
 
 var items = [];
 
@@ -297,7 +297,7 @@ function new_weapon() {
   let name = document.createElement('input');
   name.setAttribute('type', 'text');
   name.className = 'itemName';
-  name.onchange = function() { weapon.name = name; };
+  name.onchange = function() { weapon.name = name.value; };
   weapon_div.appendChild(name);
 
   let style = new_weapon_style();

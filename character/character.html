@@ -11,6 +11,7 @@
     <script src="combatstyles.js"></script>
     <script src="items.js"></script>
     <script src="calculator.js"></script>
+    <script src="io.js"></script>
   </head>
   <body>
     <b>Character Name</b>
@@ -142,5 +143,10 @@
     <div id="items"></div>
     <button type="button" onclick="addWeapon()">+ Weapon</button>
     <button type="button" onclick="addRelic()">+ Relic</button>
+
+    <hr>
+    <button type="button" onclick="dump()">Save Character</button>
+    <label for="load">Load Character</label>
+    <input type="file" id="load" accept="application/json" onchange="load()" />
   </body>
 </html>
