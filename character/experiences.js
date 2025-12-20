@@ -59,3 +59,7 @@ function deleteExperience(n) {
   experiences.splice(n, 1); // delete the element
   redrawExperiences();
 }
+
+function experiencesXP() {
+  return 0;
+}

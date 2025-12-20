@@ -1,5 +1,5 @@
 var statistics = { strength: 0, finesse: 0, willpower: 0, instinct: 0, presence: 0, knowledge: 0 };
-var attributes = { life: 20, recovery: 10, block: 0, wealth: 'None' };
+var attributes = { life: 20, recovery: 10, block: 0, wealth: 'Limited' };
 var speeds = { walk: 'Normal', climb: 'N/A', swim: 'N/A', burrow: 'N/A', fly: 'N/A' };
 
 var creation_mode = true;
@@ -197,6 +197,9 @@ function updateXP() {
   xp += speedXP(speeds.burrow, 10);
   xp += speedXP(speeds.fly, 16);
 
+  xp += specializationsXP();
+  xp += experiencesXP();
+  xp += abilitiesXP();
   // TODO: everything else
 
   document.getElementById('xp').textContent = xp;

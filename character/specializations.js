@@ -2,16 +2,9 @@ const verbs = ["Control", "Create", "Destroy", "Perceive", "Know", "Transform"];
 const nouns = ["Air", "Earth", "Fire", "Water", "Animals", "Plants", "Body", "Illusion", "Mind", "Arcana"];
 const tags  = ["Human", "Superhuman", "Simple & Weak", "Complex & Powerful"];
 
-var specializations = [];
+// TODO: Validate that there are no repeated specializations
 
-function saveSpecializations() {
-  for ([idx, spec] of specializations.entries()) {
-    spec.verb  = document.getElementById("verb"   + idx).value;
-    spec.noun  = document.getElementById("noun"   + idx).value;
-    spec.tag   = document.getElementById("tag"    + idx).value;
-    spec.bonus = document.getElementById("sbonus" + idx).value;
-  }
-}
+var specializations = [];
 
 function redrawSpecializations() {
   let specs = document.getElementById("specializations");
@@ -29,6 +22,7 @@ function redrawSpecializations() {
     let verb = document.createElement('select');
     verb.setAttribute("name", "verb" + idx);
     verb.setAttribute("id", "verb" + idx);
+    verb.onchange = function() { spec.verb = verb.value; updateXP(); };
 
     let verb_empty = document.createElement('option');
     verb_empty.setAttribute("disabled", "");
@@ -50,12 +44,13 @@ function redrawSpecializations() {
       verb.appendChild(verb_option);
     }
 
-    spec_div.append(verb);
+    spec_div.appendChild(verb);
 
     // Create the noun drop-down
     let noun = document.createElement('select');
     noun.setAttribute("name", "noun" + idx);
     noun.setAttribute("id", "noun" + idx);
+    noun.onchange = function() { spec.noun = noun.value; updateXP(); };
 
     let noun_empty = document.createElement('option');
     noun_empty.setAttribute("disabled", "");
@@ -77,12 +72,13 @@ function redrawSpecializations() {
       noun.appendChild(noun_option);
     }
 
-    spec_div.append(noun);
+    spec_div.appendChild(noun);
 
     // Create the tag drop-down
     let tag = document.createElement('select');
     tag.setAttribute("name", "tag" + idx);
     tag.setAttribute("id", "tag" + idx);
+    tag.onchange = function() { spec.tag = tag.value; updateXP(); };
 
     let tag_empty = document.createElement('option');
     tag_empty.setAttribute("disabled", "");
@@ -104,7 +100,7 @@ function redrawSpecializations() {
       tag.appendChild(tag_option);
     }
 
-    spec_div.append(tag);
+    spec_div.appendChild(tag);
 
     // Create the bonus input
     let bonus = document.createElement('input');
@@ -113,27 +109,79 @@ function redrawSpecializations() {
     bonus.setAttribute("type", "number");
     bonus.className = "bonus";
     bonus.value = spec.bonus;
-    spec_div.append(bonus);
+    bonus.onchange = function() {
+      let val = parseInt(bonus.value);
+
+      if (val == NaN) {
+        val = spec.bonus;
+      } else if (val < 0) {
+        val = 0;
+      } else if (val > 2 && creation_mode) {
+        val = 2;
+      } else if (val > 4) {
+        val = 4;
+      }
+
+      spec.bonus = val;
+      bonus.value = val;
+      updateXP();
+    };
+    spec_div.appendChild(bonus);
 
     // Create the delete button
     let del = document.createElement('button');
     del.setAttribute("type", "button");
     del.setAttribute("onclick", "deleteSpecialization(" + idx + ")");
     del.textContent = "X";
-    spec_div.append(del);
+    spec_div.appendChild(del);
 
     specs.appendChild(spec_div);
   }
 }
 
 function addSpecialization() {
-  saveSpecializations();
   specializations.push({verb: '', noun: '', tag: '', bonus: ''});
+  // TODO: Don't need to fully redraw, could just add a single entry at the
+  // end
   redrawSpecializations();
 }
 
 function deleteSpecialization(n) {
-  saveSpecializations();
   specializations.splice(n, 1); // delete the element
+  // TODO: Don't need to fully redraw, could just remove child (though we'd
+  // have to track that)
   redrawSpecializations();
+  updateXP();
+}
+
+function specBonusXP(n) {
+  console.log(n);
+  if (n == '') {
+    return 0;
+  } else {
+    return n * (n + 1) / 2;
+  }
+}
+
+function specTagXP(t) {
+  switch (t) {
+    case 'Human':
+    case '':
+      return 0;
+    case 'Superhuman': return 3;
+    case 'Simple & Weak':
+    case 'Complex & Powerful':
+      return 2;
+  }
+}
+
+function specializationsXP() {
+  var xp = 0;
+
+  for (spec of specializations) {
+    xp += specBonusXP(spec.bonus);
+    xp += specTagXP(spec.tag);
+  }
+
+  return xp;
 }

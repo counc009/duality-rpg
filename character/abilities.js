@@ -80,3 +80,6 @@ function deleteAbility(n) {
   redrawAbilities();
 }
 
+function abilitiesXP() {
+  return 0;
+}
