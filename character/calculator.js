@@ -23,6 +23,7 @@ function modeChange() {
     validateSpecializations();
     validateExperiences();
     // There are (currently) no restrictions on abilities, so no validation required
+    validateCombatStyles();
 
     updateXP();
   }
@@ -204,6 +205,7 @@ function updateXP() {
   xp += specializationsXP();
   xp += experiencesXP();
   xp += abilitiesXP();
+  xp += combatStylesXP();
 
   // TODO: everything else
 

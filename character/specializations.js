@@ -14,7 +14,7 @@ function new_spec() {
 
   // Create the verb drop-down
   let verb = document.createElement('select');
-  verb.onchange = function() { spec.verb = verb.value; updateXP(); };
+  verb.onchange = function() { spec.verb = verb.value; specializationChange(); };
 
   let verb_empty = document.createElement('option');
   verb_empty.setAttribute("disabled", "");
@@ -33,7 +33,7 @@ function new_spec() {
 
   // Create the noun drop-down
   let noun = document.createElement('select');
-  noun.onchange = function() { spec.noun = noun.value; updateXP(); };
+  noun.onchange = function() { spec.noun = noun.value; specializationChange(); };
 
   let noun_empty = document.createElement('option');
   noun_empty.setAttribute("disabled", "");
@@ -52,7 +52,7 @@ function new_spec() {
 
   // Create the tag drop-down
   let tag = document.createElement('select');
-  tag.onchange = function() { spec.tag = tag.value; updateXP(); };
+  tag.onchange = function() { spec.tag = tag.value; specializationChange(); updateXP(); };
 
   let tag_empty = document.createElement('option');
   tag_empty.setAttribute("disabled", "");
@@ -118,6 +118,7 @@ function deleteSpecialization(spec) {
   let idx = specializations.indexOf(spec);
   specializations.splice(idx, 1); // delete the element
   spec.div.remove();
+  specializationChange();
   updateXP();
 }
 
