@@ -1,10 +1,8 @@
 var relic_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization']
-var weapon_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
+var offensive_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
+var defensive_addon_options = ['Ability', 'Attribute', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
 
 var items = [];
-
-// TODO: Prevent adding a Block bonus on a defensive weapon
-// TODO: Update combat styles
 
 function new_weapon_style() {
   let res = { style: '' };
@@ -287,9 +285,11 @@ function new_item_adds(addon_options) {
 }
 
 function new_weapon() {
-  let addons = new_item_adds(weapon_addon_options);
+  let addons = new_item_adds([]);
   let weapon = { kind: 'weapon', name: '', style: '', bonus: 0, feature: 0,
                  addons: addons };
+
+  addons.div.children[1].disabled = true; // Disable add-ons until style is selected
 
   let weapon_div = document.createElement('div');
   weapon_div.className = 'item';
@@ -382,10 +382,29 @@ function new_weapon() {
     bonus.value = 1;
     feature.value = 1;
 
+    let addon_select = addons.div.children[1];
+    addon_select.disabled = false;
+    while (addon_select.firstChild) {
+      addon_select.removeChild(addon_select.firstChild);
+    }
+
     if (isDefensive(style.style)) {
       feature_text.textContent = ' Block ';
+      addOptions(addon_select, defensive_addon_options, 0, 'Add...');
+
+      var res_addons = [];
+      for (addon of weapon.addons.addons) {
+        if (addon.addon_kind == 'block') {
+          addon.div.remove();
+        } else {
+          res_addons.push(addon);
+        }
+      }
+      weapon.addons.addons = res_addons;
+      updateXP();
     } else {
       feature_text.textContent = ' Dice ';
+      addOptions(addon_select, offensive_addon_options, 0, 'Add...');
     }
 
     property_div.style.display = 'inline';
@@ -523,7 +542,8 @@ function itemsXP() {
           // Defensive, so feature is block
           let n = item.feature;
           totalBonus += n;
-          xp += 2 * n * (n + 1) / 2;
+          xp += 2 * n * (n + 1) / 2 - 2; // -2 since first block is free
+          xp -= 2; // -2 since we start with one to defend and one to block
         } else if (isOffensive(item.style.style)) {
           // Offensive, so feature is damage dice
           let n = item.feature;
@@ -575,6 +595,33 @@ function validateItems() {
           }
           break;
       }
+    }
+  }
+}
+
+// Called when a combat style's kind is changed so we can update the combat
+// styles available to weapons
+function combatStylesChanged() {
+  for (item of items) {
+    if (item.kind == 'weapon') {
+      let selector = item.style.div;
+      let selected = selector.value;
+
+      let new_options = offensives.map((s) => (s.kind)).concat(defensives.map((s) => (s.kind)));
+
+      while (selector.firstChild) { selector.removeChild(selector.firstChild); }
+      addOptions(selector, new_options, 0);
+
+      if (new_options.includes(selected)) {
+        selector.value = selected;
+      } else {
+        item.style.style = '';
+        selector.value = '';
+        item.div.children[4].style.display = 'none';
+        item.bonus = 0;
+        item.feature = 0;
+      }
+      console.log("HERE");
     }
   }
 }

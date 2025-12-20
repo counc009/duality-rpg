@@ -239,6 +239,7 @@ function new_offensive() {
         break;
     }
 
+    combatStylesChanged();
     updateXP();
   };
 
@@ -264,6 +265,7 @@ function deleteOffensiveStyle(style) {
   let idx = offensives.indexOf(style);
   offensives.splice(idx, 1); // delete the element
   style.div.remove();
+  combatStylesChanged();
   updateXP();
 }
 
@@ -361,6 +363,7 @@ function new_defensive() {
         break;
     }
 
+    combatStylesChanged();
     updateXP();
   };
 
@@ -386,6 +389,7 @@ function deleteDefensiveStyle(style) {
   let idx = defensives.indexOf(style);
   defensives.splice(idx, 1); // delete the element
   style.div.remove();
+  combatStylesChanged();
   updateXP();
 }
 
