@@ -51,11 +51,11 @@ Creatures with a high \emph{Wealth} are able to make larger purchases, without e
   \begin{tabular}{|c|l|} \hline
     \textbf{Wealth Value} &\textbf{Example Purchases} \\ \hline
     None &nothing \\ \hline
-    Wretched &basic food and lodging daily \\ \hline
-    Squalid &basic (though sturdy) supplies like rope, arrows, and tents \\ \hline
-    Modest &rare supplies like climbing equipment, a day of unskilled labor, a beast of burden \\ \hline
-    Comfortable &a sailboat, a comfortable wagon, a day of skilled labor \\ \hline
-    Luxurious &a mercenary, an abandoned warehouse or small property \\ \hline
+    Limited &basic food and lodging daily \\ \hline
+    Modest &basic (though sturdy) supplies like rope, arrows, and tents \\ \hline
+    Comfortable &rare supplies like climbing equipment, a day of unskilled labor, a beast of burden \\ \hline
+    Luxurious &a sailboat, a comfortable wagon, a day of skilled labor \\ \hline
+    Aristocratic &a mercenary, an abandoned warehouse or small property \\ \hline
   \end{tabular}
   \caption{Wealth\index{Attribute!Wealth}}
   \label{tab:wealth}
@@ -207,6 +207,7 @@ When creating a new character for a campaign, the GM should specify the number o
 A starting character (before spending any XP) has a $+0$ bonus for each of their basic statistics, a \Life{} of 20, a \Recovery{} of 10, a \Block{} of 0, a \emph{Speed} of \emph{Normal} (and only the ability to walk), and a bonus of $+0$ and the \emph{human} tag for all \emph{Specializations}.
 A starting character also has one Offensive and one Defensive Combat Styles (for these to have the same Basic Statistic still costs 3 XP). 
 A starting character also has one \emph{Item} whose construction does not cost XP beyond the cost of the \emph{Item} itself (see Section~\ref{sec:items} for details).
+A starting character also has a \emph{Wealth} of \emph{Limited}.
 These statistics can be increased by spending XP, and in some cases decreased to gain XP, as follows:
 \begin{itemize}
   \item To increase a basic statistic (to a maximum of $+2$) by $1$ costs $3 \times$ the score after the bonus; so increasing from $+0$ to $+1$ costs 3 XP, and from $+1$ to $+2$ costs 6.
@@ -217,7 +218,7 @@ These statistics can be increased by spending XP, and in some cases decreased to
     \Recovery{} can also be reduced to gain XP, gaining 2 XP for each point down to 5 and 4 XP for each point down to the minimum of 1.
   \item Increasing the character's \Block{} (up to a maximum of 2) costs $3 \times$ the new block; so a block of 1 costs 3 XP and increasing that to 2 costs 6 XP.
   \item A character's \Speed{} can be increased to \emph{Fast} for 1 XP or can be reduced to \emph{Slow} to gain 1 XP.
-  \item A character can add a Climb or Swim speed at \emph{Slow} for 6 XP, with it costing 1 XP to increase to \emph{Normal} and another 1 XP to increase to \emph{Fast}, a a Burrow speed at \emph{Slow} for 10 XP (with increasing speed costing the same), or a Fly speed for 16 XP (with increases costing the same).
+  \item A character can add a Climb or Swim speed at \emph{Slow} for 6 XP, with it costing 1 XP to increase to \emph{Normal} and another 1 XP to increase to \emph{Fast}, a Burrow speed at \emph{Slow} for 10 XP (with increasing speed costing the same), or a Fly speed for 16 XP (with increases costing the same).
   \item To increase a \Specialization{} (up to a maximum of $+2$) bonus by $+1$ costs the score after the bonus; so increasing from $+0$ to $+1$ costs 1 XP and from $+1$ to $+2$ costs 2.
   \item To add a tag to a \Specialization{} (that only has the default \emph{human} tag costs the following:
     \begin{itemize}
@@ -229,6 +230,7 @@ These statistics can be increased by spending XP, and in some cases decreased to
   \item To gain an \Ability{}.
   \item To upgrade a \emph{Combat Style} or gain a new one as described in Section~\ref{sec:combat-styles}.
   \item To add additional features to their initial item or to construct additional items as described in Section~\ref{sec:items}.
+  \item To increase their \emph{Wealth} from Limited to Modest for 2 XP, from Modest to Comfortable for 6 XP, from Comfortable to Luxurious to 10 XP, or Luxurious to Aristocratic for 25 XP. A creature can also decrease their Wealth from Limited to None to gain 2 XP. 
 \end{itemize}
 
 Throughout their journeys, characters will also earn XP that they can use to improve their characters.
