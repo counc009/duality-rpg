@@ -3,8 +3,8 @@ var weapon_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life
 
 var items = [];
 
-// TODO: Validate when mode changes
 // TODO: Prevent adding a Block bonus on a defensive weapon
+// TODO: Update combat styles
 
 function new_weapon_style() {
   let res = { style: '' };
@@ -483,7 +483,6 @@ function itemsXP() {
     var totalBonus = 0; // Total bonus the weapon grants
 
     for (const addon of item.addons.addons) {
-      console.log(addon.addon_kind);
       switch (addon.addon_kind) {
         case 'ability':
           xp += abilityXP(addon.kind, addon.level);
@@ -542,4 +541,40 @@ function itemsXP() {
   }
 
   return xp;
+}
+
+function validateItems() {
+  for (item of items) {
+    if (item.bonus > 2 && creation_mode) {
+      item.bonus = 2;
+      if (item.kind == 'weapon') {
+        item.div.children[4].children[1].value = 2;
+      } else {
+        item.div.children[1].value = 2;
+      }
+    }
+
+    for (addon of item.addons.addons) {
+      switch (addon.addon_kind) {
+        case 'attribute': case 'block':
+          if (addon.bonus > 2 && creation_mode) {
+            addon.bonus = 2;
+            addon.div.children[1].value = 2;
+          }
+          break;
+        case 'experience':
+          if (addon.bonus > 2 && creation_mode) {
+            addon.bonus = 2;
+            addon.div.children[0].value = 2;
+          }
+          break;
+        case 'specialization':
+          if (addon.bonus > 2 && creation_mode) {
+            addon.bonus = 2;
+            addon.div.children[3].value = 2;
+          }
+          break;
+      }
+    }
+  }
 }

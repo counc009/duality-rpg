@@ -2,8 +2,6 @@ const verbs = ["Control", "Create", "Destroy", "Perceive", "Know", "Transform"];
 const nouns = ["Air", "Earth", "Fire", "Water", "Animals", "Plants", "Body", "Illusion", "Mind", "Arcana"];
 const tags  = ["Human", "Superhuman", "Simple & Weak", "Complex & Powerful"];
 
-// TODO: Validate that there are no repeated specializations
-
 var specializations = [];
 
 function new_spec(ondelete=(sepc) => (() => { deleteSpecialization(spec); })) {

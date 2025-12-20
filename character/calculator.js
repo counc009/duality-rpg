@@ -24,6 +24,7 @@ function modeChange() {
     validateExperiences();
     // There are (currently) no restrictions on abilities, so no validation required
     validateCombatStyles();
+    validateItems();
 
     updateXP();
   }
