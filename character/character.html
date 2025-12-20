@@ -47,13 +47,13 @@
         <td><input type="number" id="recovery" class="value" value="10" onchange="attrChange(event)"></td>
         <td><input type="number" id="block" class="value" value="0" onChange="attrChange(event)"></td>
         <td>
-          <select name="wealth" id="wealth">
-            <option selected="selected" value="none">None</option>
-            <option value="wretched">Wretched</option>
-            <option value="squalid">Squalid</option>
-            <option value="modest">Modest</option>
-            <option value="comfortable">Comfortable</option>
-            <option value="luxurious">Luxurious</option>
+          <select name="wealth" id="wealth" onchange="wealthChange()">
+            <option value="None">None</option>
+            <option selected="selected" value="Limited">Limited</option>
+            <option value="Modest">Modest</option>
+            <option value="Comfortable">Comfortable</option>
+            <option value="Luxurious">Luxurious</option>
+            <option value="Aristocratic">Aristocratic</option>
           </select>
         </td>
       </tr>
@@ -71,43 +71,43 @@
       <tr>
         <td></td>
         <td>
-          <select name="walk" id="walk">
-            <option value="na">N/A</option>
-            <option value="slow">Slow</option>
-            <option selected="selected" value="normal">Normal</option>
-            <option value="fast">Fast</option>
+          <select name="walk" id="walk" onchange="speedChange(event)">
+            <option value="N/A">N/A</option>
+            <option value="Slow">Slow</option>
+            <option selected="selected" value="Normal">Normal</option>
+            <option value="Fast">Fast</option>
           </select>
         </td>
         <td>
-          <select name="climb" id="climb">
-            <option selected="selected" value="na">N/A</option>
-            <option value="slow">Slow</option>
-            <option value="normal">Normal</option>
-            <option value="fast">Fast</option>
+          <select name="climb" id="climb" onchange="speedChange(event)">
+            <option selected="selected" value="N/A">N/A</option>
+            <option value="Slow">Slow</option>
+            <option value="Normal">Normal</option>
+            <option value="Fast">Fast</option>
           </select>
         </td>
         <td>
-          <select name="swim" id="swim">
-            <option selected="selected" value="na">N/A</option>
-            <option value="slow">Slow</option>
-            <option value="normal">Normal</option>
-            <option value="fast">Fast</option>
+          <select name="swim" id="swim" onchange="speedChange(event)">
+            <option selected="selected" value="N/A">N/A</option>
+            <option value="Slow">Slow</option>
+            <option value="Normal">Normal</option>
+            <option value="Fast">Fast</option>
           </select>
         </td>
         <td>
-          <select name="burrow" id="burrow">
-            <option selected="selected" value="na">N/A</option>
-            <option value="slow">Slow</option>
-            <option value="normal">Normal</option>
-            <option value="fast">Fast</option>
+          <select name="burrow" id="burrow" onchange="speedChange(event)">
+            <option selected="selected" value="N/A">N/A</option>
+            <option value="Slow">Slow</option>
+            <option value="Normal">Normal</option>
+            <option value="Fast">Fast</option>
           </select>
         </td>
         <td>
-          <select name="fly" id="fly">
-            <option selected="selected" value="na">N/A</option>
-            <option value="slow">Slow</option>
-            <option value="normal">Normal</option>
-            <option value="fast">Fast</option>
+          <select name="fly" id="fly" onchange="speedChange(event)">
+            <option selected="selected" value="N/A">N/A</option>
+            <option value="Slow">Slow</option>
+            <option value="Normal">Normal</option>
+            <option value="Fast">Fast</option>
           </select>
         </td>
       </tr>

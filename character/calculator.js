@@ -1,6 +1,6 @@
 var statistics = { strength: 0, finesse: 0, willpower: 0, instinct: 0, presence: 0, knowledge: 0 };
 var attributes = { life: 20, recovery: 10, block: 0, wealth: 'None' };
-var speeds = { walk: 'Normal', climb: 'N/A', swin: 'N/A', burrow: 'N/A', fly: 'N/A' };
+var speeds = { walk: 'Normal', climb: 'N/A', swim: 'N/A', burrow: 'N/A', fly: 'N/A' };
 
 var creation_mode = true;
 
@@ -103,6 +103,11 @@ function attrChange(evnt) {
   updateXP();
 }
 
+function wealthChange() {
+  attributes.wealth = document.getElementById('wealth').value;
+  updateXP();
+}
+
 function speedChange(evnt) {
   let src = evnt.srcElement;
   speeds[src.id] = src.value;
@@ -120,6 +125,77 @@ function updateXP() {
   xp += statXP(statistics.instinct);
   xp += statXP(statistics.presence);
   xp += statXP(statistics.knowledge);
+
+  // Calculate XP of other attributes
+  let lifeXP = function(n) {
+    let t = Math.floor(n / 10); // ten's place, used for base cost
+    let o = n % 10; // one's place, final adjustment
+
+    if (t == 0) {
+      return -30 + 2 * o;
+    } else if (t == 1) {
+      return -10 + o;
+    } else {
+      //     costt(t)              + o * costp(t)
+      return 5 * (t - 2) * (t - 1) + o * (t - 1);
+    }
+  };
+  xp += lifeXP(attributes.life);
+
+  let recoveryXP = function(n) {
+    let t = Math.floor(n / 5); // step on the XP scale
+    let o = n % 5; // final adjustment
+
+    if (t == 0) {
+      return -30 + 4 * o;
+    } else if (t == 1) {
+      return -10 + 2 * o;
+    } else {
+      //     costt(t)              + o * costp(t)
+      return 5 * (t - 2) * (t - 1) + o * 2 * (t - 1);
+    }
+  };
+  xp += recoveryXP(attributes.recovery);
+
+  let blockXP = function(n) {
+    switch (n) {
+      case 0: return 0;
+      case 1: return 3;
+      case 2: return 9;
+      case 3: return 18;
+      case 4: return 30;
+      case 5: return 45;
+    }
+  }
+  xp += blockXP(attributes.block);
+
+  // Calculate XP of wealth
+  let wealthXP = function(w) {
+    switch (w) {
+      case 'None': return -2;
+      case 'Limited': return 0;
+      case 'Modest': return 2;
+      case 'Comfortable': return 8;
+      case 'Luxurious': return 18;
+      case 'Aristocratic': return 43;
+    }
+  };
+  xp += wealthXP(attributes.wealth);
+
+  // Calculate XP of other speeds
+  let speedXP = function(s, slow) {
+    switch (s) {
+      case 'N/A': return 0;
+      case 'Slow': return slow;
+      case 'Normal': return slow + 1;
+      case 'Fast': return slow + 2;
+    }
+  };
+  xp += speedXP(speeds.walk, -1);
+  xp += speedXP(speeds.climb, 6);
+  xp += speedXP(speeds.swim, 6);
+  xp += speedXP(speeds.burrow, 10);
+  xp += speedXP(speeds.fly, 16);
 
   // TODO: everything else
 
