@@ -100,7 +100,7 @@ function new_spec() {
   // Create the delete button
   let del = document.createElement('button');
   del.setAttribute("type", "button");
-  del.onclick = function() { deleteSpecialization(spec) };
+  del.onclick = function() { deleteSpecialization(spec); };
   del.textContent = "X";
   spec_div.appendChild(del);
 
@@ -119,6 +119,17 @@ function deleteSpecialization(spec) {
   specializations.splice(idx, 1); // delete the element
   spec.div.remove();
   updateXP();
+}
+
+// Used when the mode gets changed, the only thing we need to validate are
+// bonuses
+function validateSpecializations() {
+  for (spec of specializations) {
+    if (spec.bonus > 2 && creation_mode) {
+      spec.bonus = 2;
+      spec.div.children[3].value = 2;
+    }
+  }
 }
 
 function specBonusXP(n) {

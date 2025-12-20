@@ -1,65 +1,82 @@
 var experiences = [];
 
-function saveExperiences() {
-  for ([idx, spec] of experiences.entries()) {
-    spec.bonus = document.getElementById("ebonus" + idx).value;
-    spec.desc  = document.getElementById("edesc"  + idx).value;
-  }
-}
+function new_experience() {
+  let exp = { bonus: 0, desc: '' };
 
-function redrawExperiences() {
-  let exps = document.getElementById("experiences");
+  let exp_div = document.createElement('div');
+  exp_div.className = "experience";
 
-  while (exps.firstChild) {
-    exps.removeChild(exps.firstChild);
-  }
+  // Create the bonus input
+  let bonus = document.createElement('input');
+  bonus.setAttribute("type", "number");
+  bonus.className = "bonus";
+  bonus.value = exp.bonus;
+  bonus.onchange = function() {
+    let val = parseInt(bonus.value);
 
-  for (const [idx, exp] of experiences.entries()) {
-    let exp_div = document.createElement('div');
-    exp_div.className = "experience";
-    exp_div.setAttribute("id", "exp" + idx);
+    if (val == NaN) {
+      val = exp.bonus;
+    } else if (val < 0) {
+      val = 0;
+    } else if (val > 2 && creation_mode) {
+      val = 2;
+    } else if (val > 3) {
+      val = 3;
+    }
 
-    // Create the bonus input
-    let bonus = document.createElement('input');
-    bonus.setAttribute("name", "ebonus" + idx);
-    bonus.setAttribute("id", "ebonus" + idx);
-    bonus.setAttribute("type", "number");
-    bonus.className = "bonus";
-    bonus.value = exp.bonus;
-    exp_div.append(bonus);
+    exp.bonus = val;
+    bonus.value = val;
+    updateXP();
+  };
+  exp_div.appendChild(bonus);
 
-    // Create the description input
-    let desc = document.createElement('input');
-    desc.setAttribute("name", "edesc" + idx);
-    desc.setAttribute("id", "edesc" + idx);
-    desc.setAttribute("type", "string");
-    desc.className = "desc";
-    desc.value = exp.desc;
-    exp_div.append(desc);
+  // Create the description input
+  let desc = document.createElement('input');
+  desc.setAttribute("type", "string");
+  desc.className = "desc";
+  desc.value = exp.desc;
+  desc.onchange = function() { exp.desc = desc.value; };
+  exp_div.appendChild(desc);
 
-    // Create the delete button
-    let del = document.createElement('button');
-    del.setAttribute("type", "button");
-    del.setAttribute("onclick", "deleteExperience(" + idx + ")");
-    del.textContent = "X";
-    exp_div.append(del);
+  // Create the delete button
+  let del = document.createElement('button');
+  del.setAttribute("type", "button");
+  del.onclick = function() { deleteExperience(exp); };
+  del.textContent = "X";
+  exp_div.appendChild(del);
 
-    exps.appendChild(exp_div);
-  }
+  exp.div = exp_div;
+  return exp;
 }
 
 function addExperience() {
-  saveExperiences();
-  experiences.push({bonus: '', desc: ''});
-  redrawExperiences();
+  let exp = new_experience();
+  experiences.push(exp);
+  document.getElementById('experiences').append(exp.div);
 }
 
-function deleteExperience(n) {
-  saveExperiences();
-  experiences.splice(n, 1); // delete the element
-  redrawExperiences();
+function deleteExperience(exp) {
+  let idx = experiences.indexOf(exp);
+  experiences.splice(idx, 1);
+  exp.div.remove();
+  updateXP();
+}
+
+function validateExperiences() {
+  for (exp of experiences) {
+    if (exp.bonus > 2 && creation_mode) {
+      exp.bonus = 2;
+      exp.div.children[0].value = 2;
+    }
+  }
 }
 
 function experiencesXP() {
-  return 0;
+  var xp = 0;
+
+  for (exp of experiences) {
+    xp += specBonusXP(exp.bonus);
+  }
+
+  return xp;
 }

@@ -20,6 +20,10 @@ function modeChange() {
     updateAttr(document.getElementById('recovery'));
     updateAttr(document.getElementById('block'));
 
+    validateSpecializations();
+    validateExperiences();
+    // There are (currently) no restrictions on abilities, so no validation required
+
     updateXP();
   }
 }
@@ -200,6 +204,7 @@ function updateXP() {
   xp += specializationsXP();
   xp += experiencesXP();
   xp += abilitiesXP();
+
   // TODO: everything else
 
   document.getElementById('xp').textContent = xp;

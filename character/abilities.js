@@ -2,84 +2,101 @@ const ability_kinds = ["Take the Advantage", "Good Under Pressure", "Tank", "Nat
 
 var abilities = [];
 
-function saveAbilities() {
-  for ([idx, abil] of abilities.entries()) {
-    abil.kind  = document.getElementById("akind"  + idx).value;
-    abil.level = document.getElementById("alevel" + idx).value;
+function new_ability() {
+  let ability = { kind: '', level: 0 };
+
+  let abil_div = document.createElement('div');
+  abil_div.className = "ability";
+
+  // Create the ability kind drop-down
+  let kind = document.createElement('select');
+  kind.onchange = function() { ability.kind = kind.value; updateXP(); };
+
+  let kind_empty = document.createElement('option');
+  kind_empty.setAttribute("disabled", "");
+  kind_empty.setAttribute("selected", "");
+  kind_empty.setAttribute("value", "");
+  kind.appendChild(kind_empty);
+
+  for (const v of ability_kinds) {
+    let kind_option = document.createElement('option');
+    kind_option.setAttribute("value", v);
+    kind_option.textContent = v;
+    kind.appendChild(kind_option);
   }
-}
 
-function redrawAbilities() {
-  let abils = document.getElementById("abilities");
+  abil_div.appendChild(kind);
 
-  while (abils.firstChild) {
-    abils.removeChild(abils.firstChild);
-  }
+  // Create the level input
+  let level = document.createElement('input');
+  level.setAttribute("type", "number");
+  level.className = "bonus";
+  level.value = 0;
+  level.onchange = function() {
+    let val = parseInt(level.value);
 
-  for (const [idx, abil] of abilities.entries()) {
-    let abil_div = document.createElement('div');
-    abil_div.className = "ability";
-    abil_div.setAttribute("id", "ability" + idx);
-
-    // Create the ability kind drop-down
-    let kind = document.createElement('select');
-    kind.setAttribute("name", "akind" + idx);
-    kind.setAttribute("id", "akind" + idx);
-
-    let kind_empty = document.createElement('option');
-    kind_empty.setAttribute("disabled", "");
-    if (abil.kind == "") {
-      kind_empty.setAttribute("selected", "");
-    }
-    kind_empty.setAttribute("value", "");
-    kind.appendChild(kind_empty);
-
-    for (const v of ability_kinds) {
-      let kind_option = document.createElement('option');
-      kind_option.setAttribute("value", v);
-      kind_option.textContent = v;
-
-      if (abil.kind == v) {
-        kind_option.setAttribute("selected", "");
-      }
-
-      kind.appendChild(kind_option);
+    if (val == NaN) {
+      val = ability.level;
+    } else if (val < 0) {
+      val = 0;
     }
 
-    abil_div.append(kind);
+    ability.level = val;
+    level.value = val;
+    updateXP();
+  };
+  abil_div.appendChild(level);
 
-    // Create the level input
-    let level = document.createElement('input');
-    level.setAttribute("name", "alevel" + idx);
-    level.setAttribute("id", "alevel" + idx);
-    level.setAttribute("type", "number");
-    level.className = "bonus";
-    level.value = abil.level;
-    abil_div.append(level);
+  // Create the delete button
+  let del = document.createElement('button');
+  del.setAttribute("type", "button");
+  del.onclick = function() { deleteAbility(ability); };
+  del.textContent = "X";
+  abil_div.appendChild(del);
 
-    // Create the delete button
-    let del = document.createElement('button');
-    del.setAttribute("type", "button");
-    del.setAttribute("onclick", "deleteAbility(" + idx + ")");
-    del.textContent = "X";
-    abil_div.append(del);
-
-    abils.appendChild(abil_div);
-  }
+  ability.div = abil_div;
+  return ability;
 }
 
 function addAbility() {
-  saveAbilities();
-  abilities.push({kind: '', level: ''});
-  redrawAbilities();
+  let ability = new_ability();
+  abilities.push(ability);
+  document.getElementById('abilities').append(ability.div);
 }
 
-function deleteAbility(n) {
-  saveAbilities();
-  abilities.splice(n, 1); // delete the element
-  redrawAbilities();
+function deleteAbility(ability) {
+  let idx = abilities.indexOf(ability);
+  abilities.splice(idx, 1); // delete the element
+  ability.div.remove();
+  updateXP();
+}
+
+function np1XP(level) {
+  return level + level * (level + 1) / 2;
+}
+
+function nXP(level) {
+  return level * (level + 1) / 2;
+}
+
+function abilityXP(kind, n) {
+  switch (kind) {
+    case 'Take the Advantage':
+      return n + n * (n + 1) / 2;
+    case 'Good Under Pressure': case 'Tank': case 'Natural Healer':
+    case 'Powerful Healer': case 'Draw Blood':
+      return n * (n + 1) / 2;
+    case '':
+      return 0;
+  }
 }
 
 function abilitiesXP() {
-  return 0;
+  var xp = 0;
+
+  for (ability of abilities) {
+    xp += abilityXP(ability.kind, ability.level);
+  }
+
+  return xp;
 }
