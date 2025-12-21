@@ -44,9 +44,49 @@ function addOptions(select, options, selected=1, first='') {
   }
 }
 
-function new_offensive() {
-  let style = { kind: '', stat: '', bonus: 0, experience: '', spec: '', dice: 0, die: 0, range: '' };
+function spec_options(select, kind) {
+  if (kind != '') {
+    addOptions(select, specializations.flatMap((s) => (s.tag == kind ? [s.verb + " " + s.noun] : [])), 0);
+  }
+}
 
+function die_options(select, kind) {
+  switch (kind) {
+    case 'Melee':
+      addOptions(select, ['d8']);
+      break;
+    case 'Ranged':
+      addOptions(select, ['d6', 'd8']);
+      break;
+    case 'Simple & Weak':
+      addOptions(select, ['d4', 'd6']);
+      break;
+    case 'Complex & Powerful':
+      addOptions(select, ['d10']);
+      break;
+  }
+}
+
+function range_options(select, kind) {
+  switch (kind) {
+    case 'Melee':
+      addOptions(select, ['in hand-to-hand combat', 'just outside the reach of a similarly sized creature']);
+      break;
+    case 'Ranged':
+      addOptions(select, ['within a reasonable distance', 'from an unreasonable distance']);
+      break;
+    case 'Simple & Weak':
+      addOptions(select, ['nearby', 'in hand-to-hand combat', 'within a reasonable distance']);
+      break;
+    case 'Complex & Powerful':
+      addOptions(select, ['from an unreasonable distance*', 'from an unreasonable distance']);
+      break;
+  }
+}
+
+function new_offensive(
+  style = { kind: '', stat: '', bonus: 0, experience: '', spec: '', dice: 0, die: '', range: '' }
+) {
   let style_div = document.createElement('div');
   style_div.className = "combatStyle";
 
@@ -55,7 +95,6 @@ function new_offensive() {
 
   let kind_empty = document.createElement('option');
   kind_empty.setAttribute("disabled", "");
-  kind_empty.setAttribute("selected", "");
   kind_empty.setAttribute("value", "");
   kind.appendChild(kind_empty);
 
@@ -66,6 +105,7 @@ function new_offensive() {
     kind.appendChild(kind_option);
   }
 
+  kind.value = style.kind;
   style_div.appendChild(kind);
 
   // Add the stat drop down
@@ -77,7 +117,6 @@ function new_offensive() {
 
   let stat_empty = document.createElement('option');
   stat_empty.setAttribute("disabled", "");
-  stat_empty.setAttribute("selected", "");
   stat_empty.setAttribute("value", "");
   stat.appendChild(stat_empty);
 
@@ -88,6 +127,7 @@ function new_offensive() {
     stat.appendChild(stat_option);
   }
 
+  stat.value = style.stat;
   style_div.appendChild(stat);
 
   // The items below get updated based on the kind selected
@@ -96,8 +136,9 @@ function new_offensive() {
   let bonus = document.createElement('input');
   bonus.setAttribute("type", "number");
   bonus.className = "bonus";
-  bonus.value = 0;
-  bonus.style.display = 'none';
+  bonus.value = style.bonus;
+  bonus.style.display =
+    style.kind == 'Melee' || style.kind == 'Ranged' ? 'inline-block' : 'none';
   bonus.onchange = function() {
     let val = parseInt(bonus.value);
 
@@ -120,23 +161,27 @@ function new_offensive() {
   // Add an experience (for melee and ranged)
   let experience = document.createElement('input');
   experience.setAttribute('type', 'text');
-  experience.style.display = 'none';
+  experience.value = style.experience;
+  experience.style.display =
+    style.kind == 'Melee' || style.kind == 'Ranged' ? 'inline-block' : 'none';
   experience.onchange = function() { style.experience = experience.value; };
   style_div.appendChild(experience);
 
   // Add a specialization field (to select an appropriate specialization)
   let spec = document.createElement('select');
   spec.onchange = function() { style.spec = spec.value; };
-  spec.style.display = 'none';
-  // The items of this are updated at the selection of kind
+  spec.style.display =
+    style.kind == 'Simple & Weak' || style.kind == 'Complex & Powerful' ? 'inline-block' : 'none'; 
+  spec_options(spec, style.kind);
+  spec.value = style.spec;
   style_div.appendChild(spec);
 
   // Add dice number
   let dice = document.createElement('input');
   dice.setAttribute("type", "number");
   dice.className = "bonus";
-  dice.value = 0;
-  dice.style.display = 'none';
+  dice.value = style.dice;
+  dice.style.display = style.kind == '' ? 'none' : 'inline-block';
   dice.onchange = function() {
     let val = parseInt(dice.value);
 
@@ -155,15 +200,17 @@ function new_offensive() {
   // Add die type
   let die = document.createElement('select');
   die.onchange = function() { style.die = die.value; updateXP(); };
-  die.style.display = 'none';
-  // The items of this are updated at the selection of kind
+  die.style.display = style.kind == '' ? 'none' : 'inline-block';
+  die_options(die, style.kind);
+  die.value = style.die;
   style_div.appendChild(die);
 
   // Add range
   let range = document.createElement('select');
   range.onchange = function() { style.range = range.value; updateXP(); };
-  range.style.display = 'none';
-  // The items of this are updated at the selection of kind
+  range.style.display = style.kind == '' ? 'none' : 'inline-block';
+  range_options(range, style.kind);
+  range.value = style.range;
   style_div.appendChild(range);
 
   kind.onchange = function() {
@@ -282,9 +329,9 @@ function deleteOffensiveStyle(style) {
   updateXP();
 }
 
-function new_defensive() {
-  let style = { kind: '', stat: '', value: 0 };
-
+function new_defensive(
+  style = { kind: '', stat: '', value: 0 }
+) {
   let style_div = document.createElement('div');
   style_div.className = "combatStyle";
 
@@ -293,7 +340,6 @@ function new_defensive() {
 
   let kind_empty = document.createElement('option');
   kind_empty.setAttribute("disabled", "");
-  kind_empty.setAttribute("selected", "");
   kind_empty.setAttribute("value", "");
   kind.appendChild(kind_empty);
 
@@ -304,6 +350,7 @@ function new_defensive() {
     kind.appendChild(kind_option);
   }
 
+  kind.value = style.kind;
   style_div.appendChild(kind);
 
   // Add the stat drop down
@@ -315,7 +362,6 @@ function new_defensive() {
 
   let stat_empty = document.createElement('option');
   stat_empty.setAttribute("disabled", "");
-  stat_empty.setAttribute("selected", "");
   stat_empty.setAttribute("value", "");
   stat.appendChild(stat_empty);
 
@@ -326,14 +372,16 @@ function new_defensive() {
     stat.appendChild(stat_option);
   }
 
+  stat.value = style.stat;
   style_div.appendChild(stat);
 
   // Add a value field (used for evasive, armored, and shielded but for different purposes)
   let value = document.createElement('input');
   value.setAttribute("type", "number");
   value.className = "bonus";
-  value.value = 0;
-  value.style.display = 'none';
+  value.value = style.value;
+  value.style.display = 
+    style.kind == 'Evasive' || style.kind == 'Armored' || style.kind == 'Shielded' ? 'inline-block' : 'none';
   value.onchange = function() {
     let val = parseInt(value.value);
 

@@ -97,7 +97,23 @@ async function load() {
     document.getElementById('abilities').append(abil_obj.div);
   }
 
-  // TODO: handle combat styles, and items
+  offensives = [];
+  clearChildren(document.getElementById('offensives'));
+  for (const style of data.offns) {
+    let style_obj = new_offensive(style);
+    offensives.push(style_obj);
+    document.getElementById('offensives').append(style_obj.div);
+  }
+
+  defensives = [];
+  clearChildren(document.getElementById('defensives'));
+  for (const style of data.defns) {
+    let style_obj = new_defensive(style);
+    defensives.push(style_obj);
+    document.getElementById('defensives').append(style_obj.div);
+  }
+
+  // TODO: handle items
 
   input.value = '';
   updateXP();

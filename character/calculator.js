@@ -213,7 +213,7 @@ function updateXP() {
 }
 
 function clearChildren(node) {
-  while (node.nextChild) {
-    node.removeChild(node.nextChild);
+  while (node.firstChild) {
+    node.removeChild(node.firstChild);
   }
 }
