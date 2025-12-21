@@ -8,3 +8,5 @@
 *.ilg
 *.ind
 .*.swp
+
+latex/main.pdf
