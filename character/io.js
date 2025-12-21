@@ -45,7 +45,6 @@ async function load() {
   let text = await file.text();
 
   let data = JSON.parse(text);
-  console.log(data);
 
   creation_mode = data.in_create_mode;
   document.getElementById('mode').checked = data.in_create_mode;
@@ -113,7 +112,17 @@ async function load() {
     document.getElementById('defensives').append(style_obj.div);
   }
 
-  // TODO: handle items
+  items = [];
+  clearChildren(document.getElementById('items'));
+  for (const item of data.items) {
+    var item_obj;
+    switch (item.kind) {
+      case 'weapon': item_obj = new_weapon(item); break;
+      case 'relic':  item_obj = new_relic(item); break;
+    }
+    items.push(item_obj);
+    document.getElementById('items').append(item_obj.div);
+  }
 
   input.value = '';
   updateXP();

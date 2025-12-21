@@ -4,18 +4,278 @@ const defensive_addon_options = ['Ability', 'Attribute', 'Experience', 'Life', '
 
 var items = [];
 
-function new_weapon_style() {
-  let res = { style: '' };
-
+function new_weapon_style(res = { style: '' }) {
   let style = document.createElement('select');
   addOptions(style, offensives.map((s) => (s.kind)).concat(defensives.map((s) => (s.kind))), 0);
+  style.value = res.style;
   style.onchange = function() { res.style = style.value; };
 
   res.div = style;
   return res;
 }
 
-function new_item_adds(addon_options) {
+// The optional argument addon is used to build from an existing addon
+function new_addon(kind, addons_lst, addons_div, addon) {
+  switch (kind) {
+    case 'Ability':
+      let ability = new_ability((ability) =>
+        (() => {
+          let idx = addons_lst.indexOf(ability);
+          addons_lst.splice(idx, 1);
+          ability.div.remove();
+          updateXP();
+        }), addon);
+      ability.addon_kind = 'Ability';
+
+      addons_div.appendChild(ability.div);
+      addons_lst.push(ability);
+      break;
+    case 'Attribute':
+      if (addon == null) {
+        addon = { addon_kind: 'Attribute', stat: '', bonus: 0 };
+      }
+
+      let attribute_div = document.createElement('div');
+
+      let attribute_select = document.createElement('select');
+      addOptions(attribute_select, stats, selected=0);
+      attribute_select.value = addon.stat;
+      attribute_select.onchange = function() { addon.stat = attribute_select.value; };
+      attribute_div.appendChild(attribute_select);
+
+      let attribute_bonus = document.createElement('input');
+      attribute_bonus.setAttribute('type', 'number');
+      attribute_bonus.className = 'bonus';
+      attribute_bonus.value = addon.bonus;
+      attribute_bonus.onchange = function() {
+        let val = parseInt(attribute_bonus.value);
+
+        if (val == NaN) {
+          val = addon.bonus;
+        } else if (val < 0) {
+          val = 0;
+        } else if (val > 2 && creation_mode){
+          val = 2;
+        } else if (val > 3) {
+          val = 3;
+        }
+
+        addon.bonus = val;
+        attribute_bonus.value = val;
+        updateXP();
+      };
+      attribute_div.appendChild(attribute_bonus);
+
+      let attribute_del = document.createElement('button');
+      attribute_del.setAttribute('type', 'button');
+      attribute_del.textContent = 'X';
+      attribute_del.onclick = function() {
+        let idx = addons_lst.indexOf(addon);
+        addons_lst.splice(idx, 1);
+        attribute_div.remove();
+        updateXP();
+      };
+      attribute_div.appendChild(attribute_del);
+
+      addon.div = attribute_div;
+      addons_div.appendChild(attribute_div);
+      addons_lst.push(addon);
+      break;
+    case 'Block':
+      if (addon == null) {
+        addon = { addon_kind: 'Block', bonus: 0 };
+      }
+
+      let block_div = document.createElement('div');
+
+      let block_label = document.createElement('b');
+      block_label.textContent = 'Block ';
+      block_div.appendChild(block_label);
+
+      let block_bonus = document.createElement('input');
+      block_bonus.setAttribute('type', 'number');
+      block_bonus.className = 'bonus';
+      block_bonus.value = addon.bonus;
+      block_bonus.onchange = function() {
+        let val = parseInt(block_bonus.value);
+
+        if (val == NaN) {
+          val = addon.bonus;
+        } else if (val < 0) {
+          val = 0;
+        } else if (val > 2 && creation_mode) {
+          val = 2;
+        } else if (val > 3) {
+          val = 3;
+        }
+
+        addon.bonus = val;
+        block_bonus.value = val;
+        updateXP();
+      };
+      block_div.appendChild(block_bonus);
+
+      let block_del = document.createElement('button');
+      block_del.setAttribute('type', 'button');
+      block_del.textContent = 'X';
+      block_del.onclick = function() {
+        let idx = addons_lst.indexOf(addon);
+        addons_lst.splice(idx, 1);
+        block_div.remove();
+        updateXP();
+      };
+      block_div.appendChild(block_del);
+
+      addon.div = block_div;
+      addons_div.appendChild(block_div);
+      addons_lst.push(addon);
+      break;
+    case 'Experience':
+      let exp = new_experience((exp) =>
+        (() => {
+          let idx = addons_lst.indexOf(exp);
+          addons_lst.splice(idx, 1);
+          exp.div.remove();
+          updateXP();
+        }), addon);
+      exp.addon_kind = 'Experience';
+
+      addons_div.appendChild(exp.div);
+      addons_lst.push(exp);
+      break;
+    case 'Life':
+      if (addon == null) {
+        addon = { addon_kind: 'Life', bonus: 0 };
+      }
+
+      let life_div = document.createElement('div');
+
+      let life_label = document.createElement('b');
+      life_label.textContent = 'Life ';
+      life_div.appendChild(life_label);
+
+      let life_bonus = document.createElement('input');
+      life_bonus.setAttribute('type', 'number');
+      life_bonus.className = 'bonus';
+      life_bonus.value = addon.bonus;
+      life_bonus.onchange = function() {
+        let val = parseInt(life_bonus.value);
+
+        if (val == NaN) {
+          val = addon.bonus;
+        } else if (val < 0) {
+          val = 0;
+        } else if (val > 10) {
+          val = 10;
+        }
+
+        addon.bonus = val;
+        life_bonus.value = val;
+        updateXP();
+      };
+      life_div.appendChild(life_bonus);
+
+      let life_del = document.createElement('button');
+      life_del.setAttribute('type', 'button');
+      life_del.textContent = 'X';
+      life_del.onclick = function() {
+        let idx = addons_lst.indexOf(addon);
+        addons_lst.splice(idx, 1);
+        life_div.remove();
+        updateXP();
+      };
+      life_div.appendChild(life_del);
+
+      addon.div = life_div;
+      addons_div.appendChild(life_div);
+      addons_lst.push(addon);
+      break;
+    case 'Recovery':
+      if (addon == null) {
+        addon = { addon_kind: 'Recovery', bonus: 0 };
+      }
+
+      let recovery_div = document.createElement('div');
+
+      let recovery_label = document.createElement('b');
+      recovery_label.textContent = 'Recovery ';
+      recovery_div.appendChild(recovery_label);
+
+      let recovery_bonus = document.createElement('input');
+      recovery_bonus.setAttribute('type', 'number');
+      recovery_bonus.className = 'bonus';
+      recovery_bonus.value = addon.bonus;
+      recovery_bonus.onchange = function() {
+        let val = parseInt(recovery_bonus.value);
+
+        if (val == NaN) {
+          val = addon.bonus;
+        } else if (val < 0) {
+          val = 0;
+        } else if (val > 5) {
+          val = 5;
+        }
+
+        addon.bonus = val;
+        recovery_bonus.value = val;
+        updateXP();
+      };
+      recovery_div.appendChild(recovery_bonus);
+
+      let recovery_del = document.createElement('button');
+      recovery_del.setAttribute('type', 'button');
+      recovery_del.textContent = 'X';
+      recovery_del.onclick = function() {
+        let idx = addons_lst.indexOf(addon);
+        addons_lst.splice(idx, 1);
+        recovery_div.remove();
+        updateXP();
+      };
+      recovery_div.appendChild(recovery_del);
+
+      addon.div = recovery_div;
+      addons_div.appendChild(recovery_div);
+      addons_lst.push(addon);
+      break;
+    case 'Specialization':
+      let spec = new_spec((spec) =>
+        (() => {
+          let idx = addons_lst.indexOf(spec);
+          addons_lst.splice(idx, 1);
+          spec.div.remove();
+          updateXP();
+        }), addon);
+      spec.addon_kind = 'Specialization';
+
+      addons_div.appendChild(spec.div);
+      addons_lst.push(spec);
+      break;
+    case 'Style':
+      let style = new_weapon_style(addon);
+      style.addon_kind = 'Style';
+
+      let style_div = document.createElement('div');
+      style_div.appendChild(style.div);
+      style.div = style_div;
+
+      let style_del = document.createElement('button');
+      style_del.setAttribute('type', 'button');
+      style_del.textContent = 'X';
+      style_del.onclick = function() {
+        let idx = addons_lst.indexOf(style);
+        addons_lst.splice(idx, 1);
+        style_div.remove();
+        updateXP();
+      };
+      style_div.appendChild(style_del);
+
+      addons_div.appendChild(style_div);
+      addons_lst.push(style);
+      break;
+  }
+}
+
+function new_item_adds(addon_options, addons_lst = []) {
   let addons = { addons: [] };
 
   let res = document.createElement('div');
@@ -23,257 +283,14 @@ function new_item_adds(addon_options) {
   let addons_div = document.createElement('div');
   res.appendChild(addons_div);
 
+  for (const addon of addons_lst) {
+    new_addon(addon.addon_kind, addons.addons, addons_div, addon);
+  }
+
   let add = document.createElement('select');
   addOptions(add, addon_options, 0, 'Add...');
   add.onchange = function() {
-    switch (add.value) {
-      case 'Ability':
-        let ability = new_ability((ability) =>
-          (() => {
-            let idx = addons.addons.indexOf(ability);
-            addons.addons.splice(idx, 1);
-            ability.div.remove();
-            updateXP();
-          }));
-        ability.addon_kind = 'ability';
-
-        addons_div.appendChild(ability.div);
-        addons.addons.push(ability);
-        break;
-      case 'Attribute':
-        let attribute_addon = { addon_kind: 'attribute', stat: '', bonus: 0 };
-
-        let attribute_div = document.createElement('div');
-
-        let attribute_select = document.createElement('select');
-        addOptions(attribute_select, stats, selected=0);
-        attribute_select.onchange = function() { attribute_addon.stat = attribute_select.value; };
-        attribute_div.appendChild(attribute_select);
-
-        let attribute_bonus = document.createElement('input');
-        attribute_bonus.setAttribute('type', 'number');
-        attribute_bonus.className = 'bonus';
-        attribute_bonus.value = 0;
-        attribute_bonus.onchange = function() {
-          let val = parseInt(attribute_bonus.value);
-
-          if (val == NaN) {
-            val = attribute_addon.bonus;
-          } else if (val < 0) {
-            val = 0;
-          } else if (val > 2 && creation_mode){
-            val = 2;
-          } else if (val > 3) {
-            val = 3;
-          }
-
-          attribute_addon.bonus = val;
-          attribute_bonus.value = val;
-          updateXP();
-        };
-        attribute_div.appendChild(attribute_bonus);
-
-        let attribute_del = document.createElement('button');
-        attribute_del.setAttribute('type', 'button');
-        attribute_del.textContent = 'X';
-        attribute_del.onclick = function() {
-          let idx = addons.addons.indexOf(attribute_addon);
-          addons.addons.splice(idx, 1);
-          attribute_div.remove();
-          updateXP();
-        };
-        attribute_div.appendChild(attribute_del);
-
-        attribute_addon.div = attribute_div;
-        addons_div.appendChild(attribute_div);
-        addons.addons.push(attribute_addon);
-        break;
-      case 'Block':
-        let block_addon = { addon_kind: 'block', bonus: 0 };
-
-        let block_div = document.createElement('div');
-
-        let block_label = document.createElement('b');
-        block_label.textContent = 'Block ';
-        block_div.appendChild(block_label);
-
-        let block_bonus = document.createElement('input');
-        block_bonus.setAttribute('type', 'number');
-        block_bonus.className = 'bonus';
-        block_bonus.value = 0;
-        block_bonus.onchange = function() {
-          let val = parseInt(block_bonus.value);
-
-          if (val == NaN) {
-            val = block_addon.bonus;
-          } else if (val < 0) {
-            val = 0;
-          } else if (val > 2 && creation_mode) {
-            val = 2;
-          } else if (val > 3) {
-            val = 3;
-          }
-
-          block_addon.bonus = val;
-          block_bonus.value = val;
-          updateXP();
-        };
-        block_div.appendChild(block_bonus);
-
-        let block_del = document.createElement('button');
-        block_del.setAttribute('type', 'button');
-        block_del.textContent = 'X';
-        block_del.onclick = function() {
-          let idx = addons.addons.indexOf(block_addon);
-          addons.addons.splice(idx, 1);
-          block_div.remove();
-          updateXP();
-        };
-        block_div.appendChild(block_del);
-
-        block_addon.div = block_div;
-        addons_div.appendChild(block_div);
-        addons.addons.push(block_addon);
-        break;
-      case 'Experience':
-        let exp = new_experience((exp) =>
-          (() => {
-            let idx = addons.addons.indexOf(exp);
-            addons.addons.splice(idx, 1);
-            exp.div.remove();
-            updateXP();
-          }));
-        exp.addon_kind = 'experience';
-
-        addons_div.appendChild(exp.div);
-        addons.addons.push(exp);
-        break;
-      case 'Life':
-        let life_addon = { addon_kind: 'life', bonus: 0 };
-
-        let life_div = document.createElement('div');
-
-        let life_label = document.createElement('b');
-        life_label.textContent = 'Life ';
-        life_div.appendChild(life_label);
-
-        let life_bonus = document.createElement('input');
-        life_bonus.setAttribute('type', 'number');
-        life_bonus.className = 'bonus';
-        life_bonus.value = 0;
-        life_bonus.onchange = function() {
-          let val = parseInt(life_bonus.value);
-
-          if (val == NaN) {
-            val = life_addon.bonus;
-          } else if (val < 0) {
-            val = 0;
-          } else if (val > 10) {
-            val = 10;
-          }
-
-          life_addon.bonus = val;
-          life_bonus.value = val;
-          updateXP();
-        };
-        life_div.appendChild(life_bonus);
-
-        let life_del = document.createElement('button');
-        life_del.setAttribute('type', 'button');
-        life_del.textContent = 'X';
-        life_del.onclick = function() {
-          let idx = addons.addons.indexOf(life_addon);
-          addons.addons.splice(idx, 1);
-          life_div.remove();
-          updateXP();
-        };
-        life_div.appendChild(life_del);
-
-        life_addon.div = life_div;
-        addons_div.appendChild(life_div);
-        addons.addons.push(life_addon);
-        break;
-      case 'Recovery':
-        let recovery_addon = { addon_kind: 'recovery', bonus: 0 };
-
-        let recovery_div = document.createElement('div');
-
-        let recovery_label = document.createElement('b');
-        recovery_label.textContent = 'Recovery ';
-        recovery_div.appendChild(recovery_label);
-
-        let recovery_bonus = document.createElement('input');
-        recovery_bonus.setAttribute('type', 'number');
-        recovery_bonus.className = 'bonus';
-        recovery_bonus.value = 0;
-        recovery_bonus.onchange = function() {
-          let val = parseInt(recovery_bonus.value);
-
-          if (val == NaN) {
-            val = recovery_addon.bonus;
-          } else if (val < 0) {
-            val = 0;
-          } else if (val > 5) {
-            val = 5;
-          }
-
-          recovery_addon.bonus = val;
-          recovery_bonus.value = val;
-          updateXP();
-        };
-        recovery_div.appendChild(recovery_bonus);
-
-        let recovery_del = document.createElement('button');
-        recovery_del.setAttribute('type', 'button');
-        recovery_del.textContent = 'X';
-        recovery_del.onclick = function() {
-          let idx = addons.addons.indexOf(recovery_addon);
-          addons.addons.splice(idx, 1);
-          recovery_div.remove();
-          updateXP();
-        };
-        recovery_div.appendChild(recovery_del);
-
-        recovery_addon.div = recovery_div;
-        addons_div.appendChild(recovery_div);
-        addons.addons.push(recovery_addon);
-        break;
-      case 'Specialization':
-        let spec = new_spec((spec) =>
-          (() => {
-            let idx = addons.addons.indexOf(spec);
-            addons.addons.splice(idx, 1);
-            spec.div.remove();
-            updateXP();
-          }));
-        spec.addon_kind = 'specialization';
-
-        addons_div.appendChild(spec.div);
-        addons.addons.push(spec);
-        break;
-      case 'Style':
-        let style = new_weapon_style();
-        style.addon_kind = 'style';
-
-        let style_div = document.createElement('div');
-        style_div.appendChild(style.div);
-        style.div = style_div;
-
-        let style_del = document.createElement('button');
-        style_del.setAttribute('type', 'button');
-        style_del.textContent = 'X';
-        style_del.onclick = function() {
-          let idx = addons.addons.indexOf(style);
-          addons.addons.splice(idx, 1);
-          style_div.remove();
-          updateXP();
-        };
-        style_div.appendChild(style_del);
-
-        addons_div.appendChild(style_div);
-        addons.addons.push(style);
-        break;
-    }
+    new_addon(add.value, addons.addons, addons_div);
 
     // And reset the add button
     add.value = 'Add...';
@@ -284,12 +301,21 @@ function new_item_adds(addon_options) {
   return addons;
 }
 
-function new_weapon() {
-  let addons = new_item_adds([]);
-  let weapon = { kind: 'weapon', name: '', style: '', bonus: 0, feature: 0,
-                 addons: addons };
+function new_weapon(
+  weapon = { name: '', style: { style: '' }, bonus: 0, feature: 0, addons: { addons: [] } }
+) {
+  var addons;
+  if (isOffensive(weapon.style.style)) {
+    addons = new_item_adds(offensive_addon_options, weapon.addons.addons);
+  } else if (isDefensive(weapon.style.style)) {
+    addons = new_item_adds(defensive_addon_options, weapon.addons.addons);
+  } else {
+    addons = new_item_adds([]);
+  }
+  weapon.kind = 'weapon';
+  weapon.addons = addons;
 
-  addons.div.children[1].disabled = true; // Disable add-ons until style is selected
+  addons.div.children[1].disabled = (weapon.style.style == ''); // Disable add-ons until style is selected
 
   let weapon_div = document.createElement('div');
   weapon_div.className = 'item';
@@ -297,10 +323,11 @@ function new_weapon() {
   let name = document.createElement('input');
   name.setAttribute('type', 'text');
   name.className = 'itemName';
+  name.value = weapon.name;
   name.onchange = function() { weapon.name = name.value; };
   weapon_div.appendChild(name);
 
-  let style = new_weapon_style();
+  let style = new_weapon_style(weapon.style);
   weapon.style = style;
   weapon_div.appendChild(style.div);
 
@@ -323,7 +350,7 @@ function new_weapon() {
   let bonus = document.createElement('input');
   bonus.setAttribute('type', 'number');
   bonus.className='bonus';
-  bonus.value = 0;
+  bonus.value = weapon.bonus;
   bonus.onchange = function() {
     let val = parseInt(bonus.value);
 
@@ -344,12 +371,17 @@ function new_weapon() {
   property_div.appendChild(bonus);
 
   let feature_text = document.createElement('b');
+  if (isOffensive(weapon.style.style)) {
+    feature_text.textContent = ' Dice ';
+  } else if (isDefensive(weapon.style.style)) {
+    feature_text.textContent = ' Block ';
+  }
   property_div.appendChild(feature_text);
 
   let feature = document.createElement('input');
   feature.setAttribute('type', 'number');
-  feature.className='bonus';
-  feature.value = 0;
+  feature.className = 'bonus';
+  feature.value = weapon.feature;
   feature.onchange = function() {
     let val = parseInt(feature.value);
 
@@ -357,7 +389,7 @@ function new_weapon() {
       val = weapon.feature;
     } else if (val < 1) {
       val = 1;
-    } else if (val > 2 && isDefensive(weapon.style)) {
+    } else if (val > 2 && isDefensive(weapon.style.style)) {
       // If it's defensive, the maximum block bonus is +2
       val = 2;
     } else if (val > 3) {
@@ -371,7 +403,7 @@ function new_weapon() {
   };
   property_div.appendChild(feature);
 
-  property_div.style.display = 'none';
+  property_div.style.display = weapon.style.style == '' ? 'none' : 'inline';
   weapon_div.appendChild(property_div);
 
   style.div.onchange = function() {
@@ -416,10 +448,12 @@ function new_weapon() {
   return weapon;
 }
 
-function new_relic() {
-  let addons = new_item_adds(relic_addon_options);
-  let relic = { kind: 'relic', name: '', bonus: 1, experience: '',
-                addons: addons };
+function new_relic(
+  relic = { name: '', bonus: 1, experience: '', addons: { addons: [] } }
+) {
+  let addons = new_item_adds(relic_addon_options, relic.addons.addons);
+  relic.kind = 'relic';
+  relic.addons = addons;
 
   let relic_div = document.createElement('div');
   relic_div.className = 'item';
@@ -427,18 +461,19 @@ function new_relic() {
   let name = document.createElement('input');
   name.setAttribute('type', 'text');
   name.className = 'itemName';
-  name.onchange = function() { relic.name = name; };
+  name.value = relic.name;
+  name.onchange = function() { relic.name = name.value; };
   relic_div.appendChild(name);
 
   let bonus = document.createElement('input');
   bonus.setAttribute('type', 'number');
   bonus.className='bonus';
-  bonus.value = 1;
+  bonus.value = relic.bonus;
   bonus.onchange = function() {
     let val = parseInt(bonus.value);
 
     if (val == NaN) {
-      val = weapon.bonus;
+      val = relic.bonus;
     } else if (val < 1) {
       val = 1;
     } else if (val > 2 && creation_mode) {
@@ -455,6 +490,7 @@ function new_relic() {
 
   let experience = document.createElement('input');
   experience.setAttribute('type', 'text');
+  experience.value = relic.experience;
   experience.onchange = function() { relic.experience = experience.value; };
   relic_div.appendChild(experience);
 
@@ -621,7 +657,6 @@ function combatStylesChanged() {
         item.bonus = 0;
         item.feature = 0;
       }
-      console.log("HERE");
     }
   }
 }

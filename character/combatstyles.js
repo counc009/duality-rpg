@@ -8,6 +8,7 @@ function isOffensive(nm) {
       return true;
     case 'Evasive': case 'Armored': case 'Shielded': case 'Parry':
       return false;
+    default: return false;
   }
 }
 
@@ -17,6 +18,7 @@ function isDefensive(nm) {
       return true;
     case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
       return false;
+    default: return false;
   }
 }
 
@@ -161,6 +163,7 @@ function new_offensive(
   // Add an experience (for melee and ranged)
   let experience = document.createElement('input');
   experience.setAttribute('type', 'text');
+  experience.setAttribute('placeholder', 'Experience');
   experience.value = style.experience;
   experience.style.display =
     style.kind == 'Melee' || style.kind == 'Ranged' ? 'inline-block' : 'none';
