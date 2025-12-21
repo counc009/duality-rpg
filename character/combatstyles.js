@@ -519,7 +519,7 @@ function validateCombatStyles() {
 function specializationChange() {
   for (style of offensives) {
     if (style.kind == 'Simple & Weak' || style.kind == 'Complex & Powerful') {
-      let spec_select = style.div.children[3];
+      let spec_select = style.div.children[4];
       let selected = spec_select.value;
 
       let new_options = specializations.flatMap((s) => (s.tag == style.kind ? [s.verb + " " + s.noun] : []));
