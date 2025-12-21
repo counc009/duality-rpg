@@ -2,9 +2,10 @@ const ability_kinds = ["Take the Advantage", "Good Under Pressure", "Tank", "Nat
 
 var abilities = [];
 
-function new_ability(ondelete=(ability) => (() => { deleteAbility(ability); })) {
-  let ability = { kind: '', level: 0 };
-
+function new_ability(
+  ondelete=(ability) => (() => { deleteAbility(ability); }),
+  ability = { kind: '', level: 0 }
+) {
   let abil_div = document.createElement('div');
   abil_div.className = "ability";
 
@@ -14,7 +15,6 @@ function new_ability(ondelete=(ability) => (() => { deleteAbility(ability); })) 
 
   let kind_empty = document.createElement('option');
   kind_empty.setAttribute("disabled", "");
-  kind_empty.setAttribute("selected", "");
   kind_empty.setAttribute("value", "");
   kind.appendChild(kind_empty);
 
@@ -25,13 +25,14 @@ function new_ability(ondelete=(ability) => (() => { deleteAbility(ability); })) 
     kind.appendChild(kind_option);
   }
 
+  kind.value = ability.kind;
   abil_div.appendChild(kind);
 
   // Create the level input
   let level = document.createElement('input');
   level.setAttribute("type", "number");
   level.className = "bonus";
-  level.value = 0;
+  level.value = ability.level;
   level.onchange = function() {
     let val = parseInt(level.value);
 

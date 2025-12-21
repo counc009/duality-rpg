@@ -4,9 +4,10 @@ const tags  = ["Human", "Superhuman", "Simple & Weak", "Complex & Powerful"];
 
 var specializations = [];
 
-function new_spec(ondelete=(sepc) => (() => { deleteSpecialization(spec); })) {
-  let spec = { verb: '', noun: '', tag: 'Human', bonus: 0 };
-
+function new_spec(
+  ondelete=(spec) => (() => { deleteSpecialization(spec); }),
+  spec={ verb: '', noun: '', tag: 'Human', bonus: 0 }
+) {
   let spec_div = document.createElement('div');
   spec_div.className = "specialization";
 
@@ -27,6 +28,7 @@ function new_spec(ondelete=(sepc) => (() => { deleteSpecialization(spec); })) {
     verb.appendChild(verb_option);
   }
 
+  verb.value = spec.verb;
   spec_div.appendChild(verb);
 
   // Create the noun drop-down
@@ -46,6 +48,7 @@ function new_spec(ondelete=(sepc) => (() => { deleteSpecialization(spec); })) {
     noun.appendChild(noun_option);
   }
 
+  noun.value = spec.noun;
   spec_div.appendChild(noun);
 
   // Create the tag drop-down
@@ -69,13 +72,14 @@ function new_spec(ondelete=(sepc) => (() => { deleteSpecialization(spec); })) {
     tag.appendChild(tag_option);
   }
 
+  tag.value = spec.tag;
   spec_div.appendChild(tag);
 
   // Create the bonus input
   let bonus = document.createElement('input');
   bonus.setAttribute("type", "number");
   bonus.className = "bonus";
-  bonus.value = 0;
+  bonus.value = spec.bonus;
   bonus.onchange = function() {
     let val = parseInt(bonus.value);
 

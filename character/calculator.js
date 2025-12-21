@@ -211,3 +211,9 @@ function updateXP() {
 
   document.getElementById('xp').textContent = xp;
 }
+
+function clearChildren(node) {
+  while (node.nextChild) {
+    node.removeChild(node.nextChild);
+  }
+}

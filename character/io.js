@@ -73,7 +73,31 @@ async function load() {
   document.getElementById('burrow').value = data.speed.burrow;
   document.getElementById('fly').value = data.speed.fly;
 
-  // TODO: handle specializations, experiences, abilities, combat styles, and items
+  specializations = [];
+  clearChildren(document.getElementById('specializations'));
+  for (const spec of data.specs) {
+    let spec_obj = new_spec((spec) => (() => { deleteSpecialization(spec); }), spec);
+    specializations.push(spec_obj);
+    document.getElementById('specializations').append(spec_obj.div);
+  }
+
+  experiences = [];
+  clearChildren(document.getElementById('experiences'));
+  for (const expr of data.exprs) {
+    let expr_obj = new_experience((exp) => (() => { deleteExperience(exp); }), expr);
+    experiences.push(expr_obj);
+    document.getElementById('experiences').append(expr_obj.div);
+  }
+
+  abilities = [];
+  clearChildren(document.getElementById('abilities'));
+  for (const abil of data.abils) {
+    let abil_obj = new_ability((ability) => (() => { deleteAbility(ability); }), abil);
+    abilities.push(abil_obj);
+    document.getElementById('abilities').append(abil_obj.div);
+  }
+
+  // TODO: handle combat styles, and items
 
   input.value = '';
   updateXP();

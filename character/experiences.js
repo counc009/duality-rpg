@@ -1,8 +1,9 @@
 var experiences = [];
 
-function new_experience(ondelete=(exp) => (() => { deleteExperience(exp); })) {
-  let exp = { bonus: 0, desc: '' };
-
+function new_experience(
+  ondelete=(exp) => (() => { deleteExperience(exp); }),
+  exp = { bonus: 0, desc: '' }
+) {
   let exp_div = document.createElement('div');
   exp_div.className = "experience";
 
