@@ -3,6 +3,8 @@
 # A hook script to compile the PDF and add it to the commit
 
 set -e
-latexmk -pdf ./character.tex
-latexmk -pdf ./main.tex
-git add ./main.pdf ./character.pdf
+if [ ! -z "$(git diff HEAD --name-only latex/)" ]
+then
+  latexmk -cd -out2dir=.. -pdf ./latex/main.tex
+  git add ./main.pdf
+fi
