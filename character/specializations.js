@@ -1,12 +1,14 @@
 const verbs = ["Control", "Create", "Destroy", "Perceive", "Know", "Transform"];
 const nouns = ["Air", "Earth", "Fire", "Water", "Animals", "Plants", "Body", "Illusion", "Mind", "Arcana"];
 const tags  = ["Human", "Superhuman", "Simple & Weak", "Complex & Powerful"];
+const bonus_tags = ["Just Bonus", "Human", "Superhuman", "Simple & Weak", "Complex & Powerful"];
 
 var specializations = [];
 
 function new_spec(
+  bonus_spec=false,
   ondelete=(spec) => (() => { deleteSpecialization(spec); }),
-  spec={ verb: '', noun: '', tag: 'Human', bonus: 0 }
+  spec={ verb: '', noun: '', tag: (bonus_spec ? 'Just Bonus' : 'Human'), bonus: 0 }
 ) {
   let spec_div = document.createElement('div');
   spec_div.className = "specialization";
@@ -60,12 +62,12 @@ function new_spec(
   tag_empty.setAttribute("value", "");
   tag.appendChild(tag_empty);
 
-  for (const t of tags) {
+  for (const t of (bonus_spec ? bonus_tags : tags)) {
     let tag_option = document.createElement('option');
     tag_option.setAttribute("value", t);
     tag_option.textContent = t;
 
-    if (t == 'Human') {
+    if ((bonus_spec && t == 'Just Bonus') || (!bonus_spec && t == 'Human')) {
       tag_option.setAttribute("selected", "");
     }
 
@@ -142,6 +144,7 @@ function specBonusXP(n) {
 function specTagXP(t) {
   switch (t) {
     case 'Human':
+    case 'Just Bonus':
       return 0;
     case 'Superhuman': return 3;
     case 'Simple & Weak':

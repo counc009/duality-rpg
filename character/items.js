@@ -238,7 +238,7 @@ function new_addon(kind, addons_lst, addons_div, addon) {
       addons_lst.push(addon);
       break;
     case 'Specialization':
-      let spec = new_spec((spec) =>
+      let spec = new_spec(true, (spec) =>
         (() => {
           let idx = addons_lst.indexOf(spec);
           addons_lst.splice(idx, 1);

@@ -75,7 +75,7 @@ async function load() {
   specializations = [];
   clearChildren(document.getElementById('specializations'));
   for (const spec of data.specs) {
-    let spec_obj = new_spec((spec) => (() => { deleteSpecialization(spec); }), spec);
+    let spec_obj = new_spec(false, (spec) => (() => { deleteSpecialization(spec); }), spec);
     specializations.push(spec_obj);
     document.getElementById('specializations').append(spec_obj.div);
   }
