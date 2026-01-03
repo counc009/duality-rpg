@@ -12,6 +12,8 @@
     <script src="items.js"></script>
     <script src="calculator.js"></script>
     <script src="io.js"></script>
+
+    <script src="analysis.js"></script>
   </head>
   <body>
     <b>Character Name</b>
@@ -149,5 +151,75 @@
     <label for="load">Load Character</label>
     <input type="file" id="load" accept="application/json" onchange="load()" />
     <span style="float: right;">For version 0.3.1</span>
+
+    <hr>
+    <b>Character Name: </b><span id="sheet-name"></span>
+
+    <table>
+      <tr>
+        <th>Strength</th>
+        <th>Finesse</th>
+        <th>Willpower</th>
+        <th>Instinct</th>
+        <th>Presence</th>
+        <th>Knowledge</th>
+      </tr>
+      <tr>
+        <td id="sheet-strength"></td>
+        <td id="sheet-finesse"></td>
+        <td id="sheet-willpower"></td>
+        <td id="sheet-instinct"></td>
+        <td id="sheet-presence"></td>
+        <td id="sheet-knowledge"></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>Max Life</th>
+        <th>Cur Life</th>
+        <th>Recovery</th>
+        <th>Block</th>
+        <th>Wealth</th>
+      </tr>
+      <tr>
+        <td id="sheet-life"></td>
+        <td id="sheet-curlife">TODO</td>
+        <td id="sheet-recovery"></td>
+        <td id="sheet-block"></td>
+        <td id="sheet-wealth"></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>Speeds</th>
+        <th>Walk</th>
+        <th>Climb</th>
+        <th>Swim</th>
+        <th>Burrow</th>
+        <th>Fly</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="sheet-walk"></td>
+        <td id="sheet-climb"></td>
+        <td id="sheet-swim"></td>
+        <td id="sheet-burrow"></td>
+        <td id="sheet-fly"></td>
+      </tr>
+    </table>
+
+    <h3>Specializations</h3>
+    <table id="sheet-specializations" style="text-align: left;"></table>
+
+    <h3>Experiences</h3>
+    <table id="sheet-experiences" style="text-align: left;"></table>
+
+    <h3>Abilities</h3>
+    <table id="sheet-abilities" style="text-align: left;"></table>
+
+    <h3>Weapons</h3>
+    <div id="sheet-weapons"></div>
   </body>
 </html>
