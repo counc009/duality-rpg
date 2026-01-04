@@ -302,7 +302,7 @@ function new_item_adds(addon_options, addons_lst = []) {
 }
 
 function new_weapon(
-  weapon = { name: '', style: { style: '' }, bonus: 0, feature: 0, addons: { addons: [] } }
+  weapon = { name: '', style: { style: '' }, bonus: 0, feature: 0, equipped: true, addons: { addons: [] } }
 ) {
   var addons;
   if (isOffensive(weapon.style.style)) {
@@ -333,10 +333,23 @@ function new_weapon(
 
   let del = document.createElement('button');
   del.setAttribute('type', 'button');
-  del.style.float = 'right';
   del.onclick = function() { deleteItem(weapon); };
   del.textContent = 'X';
+  del.style.float = 'right';
   weapon_div.appendChild(del);
+
+  let equipped_label = document.createElement('div');
+  equipped_label.textContent = 'Equipped';
+  equipped_label.style.float = 'right';
+  equipped_label.style.paddingRight = '5pt';
+  weapon_div.appendChild(equipped_label);
+
+  let equipped = document.createElement('input');
+  equipped.setAttribute('type', 'checkbox');
+  equipped.checked = weapon.equipped;
+  equipped.onchange = function() { weapon.equipped = equipped.checked; updateXP(); };
+  equipped.style.float = 'right';
+  weapon_div.appendChild(equipped);
 
   // Add a line break
   weapon_div.appendChild(document.createElement('br'));
@@ -449,7 +462,7 @@ function new_weapon(
 }
 
 function new_relic(
-  relic = { name: '', bonus: 1, experience: '', addons: { addons: [] } }
+  relic = { name: '', bonus: 1, experience: '', equipped: true, addons: { addons: [] } }
 ) {
   let addons = new_item_adds(relic_addon_options, relic.addons.addons);
   relic.kind = 'relic';
@@ -496,10 +509,23 @@ function new_relic(
 
   let del = document.createElement('button');
   del.setAttribute('type', 'button');
-  del.style.float = 'right';
   del.onclick = function() { deleteItem(relic); };
   del.textContent = 'X';
+  del.style.float = 'right';
   relic_div.appendChild(del);
+
+  let equipped_label = document.createElement('div');
+  equipped_label.textContent = 'Equipped';
+  equipped_label.style.float = 'right';
+  equipped_label.style.paddingRight = '5pt';
+  relic_div.appendChild(equipped_label);
+
+  let equipped = document.createElement('input');
+  equipped.setAttribute('type', 'checkbox');
+  equipped.checked = relic.equipped;
+  equipped.onchange = function() { relic.equipped = equipped.checked; updateXP(); };
+  equipped.style.float = 'right';
+  relic_div.appendChild(equipped);
 
   relic_div.appendChild(addons.div);
 
@@ -534,8 +560,12 @@ function itemsXP() {
   // Everything after the first item costs 1 XP to get
   if (items.length > 1) { xp += items.length - 1; }
 
+  let num_equipped = 0;
+
   for (const item of items) {
     var totalBonus = 0; // Total bonus the weapon grants
+
+    if (item.equipped) { num_equipped += 1; }
 
     for (const addon of item.addons.addons) {
       switch (addon.addon_kind) {
@@ -596,6 +626,10 @@ function itemsXP() {
     }
   }
 
+  if (num_equipped > 2) {
+    xp += num_equipped - 2;
+  }
+
   return xp;
 }
 
@@ -604,7 +638,7 @@ function validateItems() {
     if (item.bonus > 2 && creation_mode) {
       item.bonus = 2;
       if (item.kind == 'weapon') {
-        item.div.children[4].children[1].value = 2;
+        item.div.children[6].children[1].value = 2;
       } else {
         item.div.children[1].value = 2;
       }
@@ -653,7 +687,7 @@ function combatStylesChanged() {
       } else {
         item.style.style = '';
         selector.value = '';
-        item.div.children[4].style.display = 'none';
+        item.div.children[6].style.display = 'none';
         item.bonus = 0;
         item.feature = 0;
       }

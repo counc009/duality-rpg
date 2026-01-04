@@ -3,9 +3,11 @@ function dump() {
 
   let data = {
     in_create_mode: creation_mode,
+    num_xp: num_xp,
     name: name,
     stats: statistics,
     attrs: attributes,
+    curlife: curlife,
     speed: speeds,
     specs: specializations,
     exprs: experiences,
@@ -49,6 +51,9 @@ async function load() {
   creation_mode = data.in_create_mode;
   document.getElementById('mode').checked = data.in_create_mode;
 
+  num_xp = ('num_xp' in data) ? data.num_xp : 0;
+  document.getElementById('num-xp').value = num_xp;
+
   document.getElementById('name').value = data.name;
 
   statistics = data.stats;
@@ -64,6 +69,8 @@ async function load() {
   document.getElementById('recovery').value = data.attrs.recovery;
   document.getElementById('block').value = data.attrs.block;
   document.getElementById('wealth').value = data.attrs.wealth;
+
+  curlife = ('curlife' in data) ? data.curlife : attributes.life;
 
   speeds = data.speed;
   document.getElementById('walk').value = data.speed.walk;
@@ -116,6 +123,8 @@ async function load() {
   clearChildren(document.getElementById('items'));
   for (const item of data.items) {
     var item_obj;
+    if (!('equipped' in item)) { item.equipped = true; }
+
     switch (item.kind) {
       case 'weapon': item_obj = new_weapon(item); break;
       case 'relic':  item_obj = new_relic(item); break;

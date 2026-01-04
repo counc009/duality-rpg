@@ -12,142 +12,225 @@
     <script src="items.js"></script>
     <script src="calculator.js"></script>
     <script src="io.js"></script>
+
+    <script src="sheet.js"></script>
   </head>
   <body>
-    <b>Character Name</b>
-    <input type="text" id="name">
-    <b>Character Creation</b>
-    <input type="checkbox" id="mode" checked onchange="modeChange()">
-    <br>
-    <b>XP Used:</b> <span id="xp">0</span>
+    <div class="tab">
+      <button class="tablinks active" onclick="gotoBuilder(event)">Builder</button>
+      <button class="tablinks" onclick="gotoSheet(event)">Sheet</button>
+    </div>
 
-    <table>
-      <tr>
-        <th>Strength</th>
-        <th>Finesse</th>
-        <th>Willpower</th>
-        <th>Instinct</th>
-        <th>Presence</th>
-        <th>Knowledge</th>
-      </tr>
-      <tr>
-        <td><input type="number" id="strength" class="bonus" value="0" onchange="statChange(event)"></td>
-        <td><input type="number" id="finesse" class="bonus" value="0" onchange="statChange(event)"></td>
-        <td><input type="number" id="willpower" class="bonus" value="0" onchange="statChange(event)"></td>
-        <td><input type="number" id="instinct" class="bonus" value="0" onchange="statChange(event)"></td>
-        <td><input type="number" id="presence" class="bonus" value="0" onchange="statChange(event)"></td>
-        <td><input type="number" id="knowledge" class="bonus" value="0" onchange="statChange(event)"></td>
-      </tr>
-    </table>
+    <div class="content" id="builder">
+      <b>Character Name</b>
+      <input type="text" id="name">
+      <b>Character Creation</b>
+      <input type="checkbox" id="mode" checked onchange="modeChange()">
+      <br>
+      <b>XP</b>
+      <input type="number" id="num-xp" class="counter" value="0" onchange="xpChange()">
+      <b>XP Used:</b> <span id="xp">0</span>
+      <b>XP Remaining:</b> <span id="rem-xp">0</span>
 
-    <table>
-      <tr>
-        <th>Max Life</th>
-        <th>Recovery</th>
-        <th>Block</th>
-        <th>Wealth</th>
-      </tr>
-      <tr>
-        <td><input type="number" id="life" class="value" value="20" onchange="attrChange(event)"></td>
-        <td><input type="number" id="recovery" class="value" value="10" onchange="attrChange(event)"></td>
-        <td><input type="number" id="block" class="value" value="0" onChange="attrChange(event)"></td>
-        <td>
-          <select name="wealth" id="wealth" onchange="wealthChange()">
-            <option value="None">None</option>
-            <option selected="selected" value="Limited">Limited</option>
-            <option value="Modest">Modest</option>
-            <option value="Comfortable">Comfortable</option>
-            <option value="Luxurious">Luxurious</option>
-            <option value="Aristocratic">Aristocratic</option>
-          </select>
-        </td>
-      </tr>
-    </table>
+      <table>
+        <tr>
+          <th>Strength</th>
+          <th>Finesse</th>
+          <th>Willpower</th>
+          <th>Instinct</th>
+          <th>Presence</th>
+          <th>Knowledge</th>
+        </tr>
+        <tr>
+          <td><input type="number" id="strength" class="bonus" value="0" onchange="statChange(event)"></td>
+          <td><input type="number" id="finesse" class="bonus" value="0" onchange="statChange(event)"></td>
+          <td><input type="number" id="willpower" class="bonus" value="0" onchange="statChange(event)"></td>
+          <td><input type="number" id="instinct" class="bonus" value="0" onchange="statChange(event)"></td>
+          <td><input type="number" id="presence" class="bonus" value="0" onchange="statChange(event)"></td>
+          <td><input type="number" id="knowledge" class="bonus" value="0" onchange="statChange(event)"></td>
+        </tr>
+      </table>
 
-    <table>
-      <tr>
-        <th>Speeds</th>
-        <th>Walk</th>
-        <th>Climb</th>
-        <th>Swim</th>
-        <th>Burrow</th>
-        <th>Fly</th>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <select name="walk" id="walk" onchange="speedChange(event)">
-            <option value="N/A">N/A</option>
-            <option value="Slow">Slow</option>
-            <option selected="selected" value="Normal">Normal</option>
-            <option value="Fast">Fast</option>
-          </select>
-        </td>
-        <td>
-          <select name="climb" id="climb" onchange="speedChange(event)">
-            <option selected="selected" value="N/A">N/A</option>
-            <option value="Slow">Slow</option>
-            <option value="Normal">Normal</option>
-            <option value="Fast">Fast</option>
-          </select>
-        </td>
-        <td>
-          <select name="swim" id="swim" onchange="speedChange(event)">
-            <option selected="selected" value="N/A">N/A</option>
-            <option value="Slow">Slow</option>
-            <option value="Normal">Normal</option>
-            <option value="Fast">Fast</option>
-          </select>
-        </td>
-        <td>
-          <select name="burrow" id="burrow" onchange="speedChange(event)">
-            <option selected="selected" value="N/A">N/A</option>
-            <option value="Slow">Slow</option>
-            <option value="Normal">Normal</option>
-            <option value="Fast">Fast</option>
-          </select>
-        </td>
-        <td>
-          <select name="fly" id="fly" onchange="speedChange(event)">
-            <option selected="selected" value="N/A">N/A</option>
-            <option value="Slow">Slow</option>
-            <option value="Normal">Normal</option>
-            <option value="Fast">Fast</option>
-          </select>
-        </td>
-      </tr>
-    </table>
+      <table>
+        <tr>
+          <th>Max Life</th>
+          <th>Recovery</th>
+          <th>Block</th>
+          <th>Wealth</th>
+        </tr>
+        <tr>
+          <td><input type="number" id="life" class="value" value="20" onchange="attrChange(event)"></td>
+          <td><input type="number" id="recovery" class="value" value="10" onchange="attrChange(event)"></td>
+          <td><input type="number" id="block" class="value" value="0" onChange="attrChange(event)"></td>
+          <td>
+            <select name="wealth" id="wealth" onchange="wealthChange()">
+              <option value="None">None</option>
+              <option selected="selected" value="Limited">Limited</option>
+              <option value="Modest">Modest</option>
+              <option value="Comfortable">Comfortable</option>
+              <option value="Luxurious">Luxurious</option>
+              <option value="Aristocratic">Aristocratic</option>
+            </select>
+          </td>
+        </tr>
+      </table>
 
-    <h3>Specializations</h3>
-    <div id="specializations"></div>
-    <button type="button" onclick="addSpecialization()">+</button>
+      <table>
+        <tr>
+          <th>Speeds</th>
+          <th>Walk</th>
+          <th>Climb</th>
+          <th>Swim</th>
+          <th>Burrow</th>
+          <th>Fly</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <select name="walk" id="walk" onchange="speedChange(event)">
+              <option value="N/A">N/A</option>
+              <option value="Slow">Slow</option>
+              <option selected="selected" value="Normal">Normal</option>
+              <option value="Fast">Fast</option>
+            </select>
+          </td>
+          <td>
+            <select name="climb" id="climb" onchange="speedChange(event)">
+              <option selected="selected" value="N/A">N/A</option>
+              <option value="Slow">Slow</option>
+              <option value="Normal">Normal</option>
+              <option value="Fast">Fast</option>
+            </select>
+          </td>
+          <td>
+            <select name="swim" id="swim" onchange="speedChange(event)">
+              <option selected="selected" value="N/A">N/A</option>
+              <option value="Slow">Slow</option>
+              <option value="Normal">Normal</option>
+              <option value="Fast">Fast</option>
+            </select>
+          </td>
+          <td>
+            <select name="burrow" id="burrow" onchange="speedChange(event)">
+              <option selected="selected" value="N/A">N/A</option>
+              <option value="Slow">Slow</option>
+              <option value="Normal">Normal</option>
+              <option value="Fast">Fast</option>
+            </select>
+          </td>
+          <td>
+            <select name="fly" id="fly" onchange="speedChange(event)">
+              <option selected="selected" value="N/A">N/A</option>
+              <option value="Slow">Slow</option>
+              <option value="Normal">Normal</option>
+              <option value="Fast">Fast</option>
+            </select>
+          </td>
+        </tr>
+      </table>
 
-    <h3>Experiences</h3>
-    <div id="experiences"></div>
-    <button type="button" onclick="addExperience()">+</button>
+      <h3>Specializations</h3>
+      <div id="specializations"></div>
+      <button type="button" onclick="addSpecialization()">+</button>
 
-    <h3>Abilities</h3>
-    <div id="abilities"></div>
-    <button type="button" onclick="addAbility()">+</button>
+      <h3>Experiences</h3>
+      <div id="experiences"></div>
+      <button type="button" onclick="addExperience()">+</button>
 
-    <h3>Combat Styles</h3>
-    <h4>Offensive</h4>
-    <div id="offensives"></div>
-    <button type="button" onclick="addOffensiveStyle()">+</button>
+      <h3>Abilities</h3>
+      <div id="abilities"></div>
+      <button type="button" onclick="addAbility()">+</button>
 
-    <h4>Defensive</h4>
-    <div id="defensives"></div>
-    <button type="button" onclick="addDefensiveStyle()">+</button>
+      <h3>Combat Styles</h3>
+      <h4>Offensive</h4>
+      <div id="offensives"></div>
+      <button type="button" onclick="addOffensiveStyle()">+</button>
 
-    <h3>Items</h3>
-    <div id="items"></div>
-    <button type="button" onclick="addWeapon()">+ Weapon</button>
-    <button type="button" onclick="addRelic()">+ Relic</button>
+      <h4>Defensive</h4>
+      <div id="defensives"></div>
+      <button type="button" onclick="addDefensiveStyle()">+</button>
+
+      <h3>Items</h3>
+      <div id="items"></div>
+      <button type="button" onclick="addWeapon()">+ Weapon</button>
+      <button type="button" onclick="addRelic()">+ Relic</button>
+    </div>
+
+    <div class="content" id="sheet">
+      <b>Character Name: </b><span id="sheet-name"></span>
+
+      <table>
+        <tr>
+          <th>Strength</th>
+          <th>Finesse</th>
+          <th>Willpower</th>
+          <th>Instinct</th>
+          <th>Presence</th>
+          <th>Knowledge</th>
+        </tr>
+        <tr>
+          <td id="sheet-strength"></td>
+          <td id="sheet-finesse"></td>
+          <td id="sheet-willpower"></td>
+          <td id="sheet-instinct"></td>
+          <td id="sheet-presence"></td>
+          <td id="sheet-knowledge"></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Max Life</th>
+          <th>Cur Life</th>
+          <th>Recovery</th>
+          <th>Block</th>
+          <th>Wealth</th>
+        </tr>
+        <tr>
+          <td id="sheet-life"></td>
+          <td><input type="number" id="sheet-curlife" class="value" onchange="curlifeChange()"></td>
+          <td id="sheet-recovery"></td>
+          <td id="sheet-block"></td>
+          <td id="sheet-wealth"></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Speeds</th>
+          <th>Walk</th>
+          <th>Climb</th>
+          <th>Swim</th>
+          <th>Burrow</th>
+          <th>Fly</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="sheet-walk"></td>
+          <td id="sheet-climb"></td>
+          <td id="sheet-swim"></td>
+          <td id="sheet-burrow"></td>
+          <td id="sheet-fly"></td>
+        </tr>
+      </table>
+
+      <h3>Specializations</h3>
+      <table id="sheet-specializations" class="spacedTable"></table>
+
+      <h3>Experiences</h3>
+      <table id="sheet-experiences" class="spacedTable"></table>
+
+      <h3>Abilities</h3>
+      <table id="sheet-abilities" class="spacedTable"></table>
+
+      <h3>Weapons</h3>
+      <div id="sheet-weapons"></div>
+    </div>
 
     <hr>
     <button type="button" onclick="dump()">Save Character</button>
     <label for="load">Load Character</label>
     <input type="file" id="load" accept="application/json" onchange="load()" />
-    <span style="float: right;">For version 0.3.1</span>
+    <span style="float: right;">For version 0.3.2</span>
   </body>
 </html>
