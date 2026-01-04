@@ -7,6 +7,7 @@ function dump() {
     name: name,
     stats: statistics,
     attrs: attributes,
+    curlife: curlife,
     speed: speeds,
     specs: specializations,
     exprs: experiences,
@@ -68,6 +69,8 @@ async function load() {
   document.getElementById('recovery').value = data.attrs.recovery;
   document.getElementById('block').value = data.attrs.block;
   document.getElementById('wealth').value = data.attrs.wealth;
+
+  curlife = ('curlife' in data) ? data.curlife : attributes.life;
 
   speeds = data.speed;
   document.getElementById('walk').value = data.speed.walk;

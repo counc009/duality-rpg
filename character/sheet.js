@@ -1,3 +1,21 @@
+// A character's current life (starts at 20 to match the initial max life)
+var curlife = 20;
+
+function curlifeChange() {
+  let val = parseInt(document.getElementById('sheet-curlife').value);
+
+  if (val == NaN) {
+    val = curlife;
+  } else if (val < 0) {
+    val = 0;
+  } else if (val > attributes.life) {
+    val = attributes.life;
+  }
+
+  curlife = val;
+  document.getElementById('sheet-curlife').value = val;
+}
+
 function gotoBuilder(evt) {
   document.getElementById('builder').style.display = 'block';
   document.getElementById('sheet').style.display = 'none';
@@ -39,7 +57,6 @@ function setupSheet() {
   };
   let attrs = {
     life: attributes.life,
-    //curlife: attributes.life, /* TODO: FIX, this needs to be a separate value that gets stored */
     recovery: attributes.recovery,
     block: attributes.block,
     wealth: attributes.wealth,
@@ -195,6 +212,8 @@ function setupSheet() {
   for (const [attr, value] of Object.entries(attrs)) {
     document.getElementById('sheet-' + attr).textContent = value;
   }
+
+  document.getElementById('sheet-curlife').value = curlife;
 
   for (const [kind, speed] of Object.entries(speeds)) {
     document.getElementById('sheet-' + kind).textContent = speed;
