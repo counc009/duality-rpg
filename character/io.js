@@ -3,6 +3,7 @@ function dump() {
 
   let data = {
     in_create_mode: creation_mode,
+    num_xp: num_xp,
     name: name,
     stats: statistics,
     attrs: attributes,
@@ -48,6 +49,9 @@ async function load() {
 
   creation_mode = data.in_create_mode;
   document.getElementById('mode').checked = data.in_create_mode;
+
+  num_xp = ('num_xp' in data) ? data.num_xp : 0;
+  document.getElementById('num-xp').value = num_xp;
 
   document.getElementById('name').value = data.name;
 

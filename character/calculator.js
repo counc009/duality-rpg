@@ -1,3 +1,4 @@
+var num_xp = 0;
 var statistics = { strength: 0, finesse: 0, willpower: 0, instinct: 0, presence: 0, knowledge: 0 };
 var attributes = { life: 20, recovery: 10, block: 0, wealth: 'Limited' };
 var speeds = { walk: 'Normal', climb: 'N/A', swim: 'N/A', burrow: 'N/A', fly: 'N/A' };
@@ -28,6 +29,21 @@ function modeChange() {
 
     updateXP();
   }
+}
+
+function xpChange() {
+  let val = parseInt(document.getElementById('num-xp').value);
+
+  if (val == NaN) {
+    val = num_xp;
+  } else if (val < 0) {
+    val = 0;
+  }
+
+  num_xp = val;
+  document.getElementById('num-xp').value = val;
+
+  updateXP();
 }
 
 function updateStat(src) {
@@ -210,6 +226,14 @@ function updateXP() {
   xp += itemsXP();
 
   document.getElementById('xp').textContent = xp;
+
+  let xp_left = num_xp - xp;
+  document.getElementById('rem-xp').textContent = xp_left;
+  if (xp_left >= 0) {
+    document.getElementById('rem-xp').style.color = 'black';
+  } else {
+    document.getElementById('rem-xp').style.color = 'red';
+  }
 }
 
 function clearChildren(node) {

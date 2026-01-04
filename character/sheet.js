@@ -11,6 +11,10 @@ function gotoBuilder(evt) {
 
 function gotoSheet(evt) {
   setupSheet();
+  // Hacky way of determining if we have negative XP left
+  if (document.getElementById('rem-xp').style.color == 'red') {
+    alert('Character has negative XP left');
+  }
 
   document.getElementById('builder').style.display = 'none';
   document.getElementById('sheet').style.display = 'block';
@@ -40,10 +44,6 @@ function setupSheet() {
     block: attributes.block,
     wealth: attributes.wealth,
   };
-
-  // Speeds (don't need to do anything with them)
-
-  // TODO: Add XP counter or something
 
   let specs = {};
   for (const spec of specializations) {
