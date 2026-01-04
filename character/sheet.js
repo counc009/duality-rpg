@@ -102,6 +102,8 @@ function setupSheet() {
   for (const item of items) {
     let styles = [];
 
+    if (!item.equipped) { continue; }
+
     switch (item.kind) {
       case 'weapon':
         styles.push(item.style.style); // Add our initial style

@@ -116,6 +116,8 @@ async function load() {
   clearChildren(document.getElementById('items'));
   for (const item of data.items) {
     var item_obj;
+    if (!('equipped' in item)) { item.equipped = true; }
+
     switch (item.kind) {
       case 'weapon': item_obj = new_weapon(item); break;
       case 'relic':  item_obj = new_relic(item); break;
