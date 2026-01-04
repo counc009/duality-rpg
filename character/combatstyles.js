@@ -1,12 +1,12 @@
 const offensive_styles = ["Melee", "Ranged", "Simple & Weak", "Complex & Powerful"];
-const defensive_styles = ["Evasive", "Armored", "Shielded", "Parry"];
+const defensive_styles = ["Evasive", "Armored", "Shielded", "Riposte"];
 const stats = ["Strength", "Finesse", "Willpower", "Instinct", "Presence", "Knowledge"];
 
 function isOffensive(nm) {
   switch (nm) {
     case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
       return true;
-    case 'Evasive': case 'Armored': case 'Shielded': case 'Parry':
+    case 'Evasive': case 'Armored': case 'Shielded': case 'Riposte':
       return false;
     default: return false;
   }
@@ -14,7 +14,7 @@ function isOffensive(nm) {
 
 function isDefensive(nm) {
   switch (nm) {
-    case 'Evasive': case 'Armored': case 'Shielded': case 'Parry':
+    case 'Evasive': case 'Armored': case 'Shielded': case 'Riposte':
       return true;
     case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
       return false;
@@ -378,13 +378,12 @@ function new_defensive(
   stat.value = style.stat;
   style_div.appendChild(stat);
 
-  // Add a value field (used for evasive, armored, and shielded but for different purposes)
+  // Add a value field (used for all the styles but for different purposes)
   let value = document.createElement('input');
   value.setAttribute("type", "number");
   value.className = "bonus";
   value.value = style.value;
-  value.style.display = 
-    style.kind == 'Evasive' || style.kind == 'Armored' || style.kind == 'Shielded' ? 'inline-block' : 'none';
+  value.style.display = style.kind == '' ? 'none' : 'inline-block';
   value.onchange = function() {
     let val = parseInt(value.value);
 
@@ -398,7 +397,7 @@ function new_defensive(
       val = 4;
     } else if (style.kind == 'Armored' && val > 5) {
       val = 5
-    } else if (style.kind == 'Shielded' && val > 2) {
+    } else if ((style.kind == 'Shielded' || style.kind == 'Riposte') && val > 2) {
       val = 2;
     }
 
@@ -417,15 +416,9 @@ function new_defensive(
     value.value = 0;
     value.style.display = 'none';
 
-    switch (style.kind) {
-      case 'Evasive': case 'Armored': case 'Shielded':
-        value.style.display = 'inline-block';
-        style.value = 1;
-        value.value = 1;
-        break;
-      case 'Parry':
-        break;
-    }
+    value.style.display = 'inline-block';
+    style.value = 1;
+    value.value = 1;
 
     combatStylesChanged();
     updateXP();
@@ -526,7 +519,8 @@ function combatStylesXP() {
       case 'Shielded':
         if (style.value == 2) { xp += 2; }
         break;
-      case 'Parry':
+      case 'Riposte':
+        if (style.value == 2) { xp += 10; }
         break;
     }
   }
@@ -557,7 +551,7 @@ function validateCombatStyles() {
   }
 
   for (style of defensives) {
-    // Since Parry doesn't use the value field and Shielded's max value is 2 anyways we don't need to check the kind
+    // The bonus for Evasive and Armored is capped at 2 during character creation and is a max of 2 for Riposte and Shielded
     if (style.value > 2 && creation_mode) {
       style.value = 2;
       style.div.children[2].value = 2;

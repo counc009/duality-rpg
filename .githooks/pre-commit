@@ -5,6 +5,6 @@
 set -e
 if [ ! -z "$(git diff HEAD --name-only latex/)" ]
 then
-  latexmk -cd -out2dir=.. -pdf ./latex/main.tex
+  latexmk -cd -outdir=.. -pdf ./latex/main.tex
   git add ./main.pdf
 fi
