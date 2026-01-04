@@ -397,8 +397,10 @@ function new_defensive(
       val = 4;
     } else if (style.kind == 'Armored' && val > 5) {
       val = 5
-    } else if ((style.kind == 'Shielded' || style.kind == 'Riposte') && val > 2) {
+    } else if (style.kind == 'Shielded' && val > 2) {
       val = 2;
+    } else if (style.kind == 'Riposte' && val > 3) {
+      val = 3;
     }
 
     style.value = val;
@@ -521,6 +523,7 @@ function combatStylesXP() {
         break;
       case 'Riposte':
         if (style.value == 2) { xp += 10; }
+        else if (style.value == 3) { xp += 25; }
         break;
     }
   }
@@ -551,7 +554,7 @@ function validateCombatStyles() {
   }
 
   for (style of defensives) {
-    // The bonus for Evasive and Armored is capped at 2 during character creation and is a max of 2 for Riposte and Shielded
+    // The bonus for Evasive, Armored, and Riposte is capped at 2 during character creation and is a max of 2 for Shielded
     if (style.value > 2 && creation_mode) {
       style.value = 2;
       style.div.children[2].value = 2;
