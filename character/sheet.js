@@ -1,4 +1,28 @@
-function collect() {
+function gotoBuilder(evt) {
+  document.getElementById('builder').style.display = 'block';
+  document.getElementById('sheet').style.display = 'none';
+
+  for (const tab of document.getElementsByClassName('tablinks')) {
+    tab.className = tab.className.replace(' active', '');
+  }
+
+  evt.currentTarget.className += " active";
+}
+
+function gotoSheet(evt) {
+  setupSheet();
+
+  document.getElementById('builder').style.display = 'none';
+  document.getElementById('sheet').style.display = 'block';
+
+  for (const tab of document.getElementsByClassName('tablinks')) {
+    tab.className = tab.className.replace(' active', '');
+  }
+
+  evt.currentTarget.className += " active";
+}
+
+function setupSheet() {
   let name = document.getElementById('name').value;
 
   let stats = {
@@ -224,12 +248,12 @@ function collect() {
     let weapon_info = document.createElement('div');
 
     // Name
-    let weapon_name = document.createElement('b');
+    let weapon_name = document.createElement('h4');
     weapon_name.textContent = weapon.name;
     weapon_info.appendChild(weapon_name);
 
     let styles = document.createElement('table');
-    styles.setAttribute('style', 'text-align: left;');
+    styles.className = 'spacedTable';
     weapon_info.append(styles);
 
     let offensive_lst = [];
@@ -282,8 +306,20 @@ function collect() {
         style_block.textContent = block + ' Block';
         style_info.appendChild(style_block);
 
-        // TODO: Other notes on the associated stat?
-        // TODO: Damage on rebut?
+        if (style == 'Shielded') {
+          let shield_note = document.createElement('td');
+          let bonus = stats[defns[style].stat.toLowerCase()];
+          shield_note.textContent =
+            'spend (up to ' + defns[style].value + ') Advantage for ' + bonus + ' additional block each';
+          style_info.appendChild(shield_note);
+        } else if (style == 'Riposte') {
+          let riposte_note = document.createElement('td');
+          let bonus = stats[defns[style].stat.toLowerCase()];
+          let dice = defns[style].value;
+          riposte_note.textContent =
+            'deal ' + dice + 'd6 + ' + bonus + ' to attacker';
+          style_info.appendChild(riposte_note);
+        }
       }
     }
 
