@@ -5,6 +5,7 @@ function dump() {
     in_create_mode: creation_mode,
     num_xp: num_xp,
     name: name,
+    advantage: advantage,
     stats: statistics,
     attrs: attributes,
     curlife: curlife,
@@ -55,6 +56,8 @@ async function load() {
   document.getElementById('num-xp').value = num_xp;
 
   document.getElementById('name').value = data.name;
+
+  advantage = ('advantage' in data) ? data.advantage : 0;
 
   statistics = data.stats;
   document.getElementById('strength').value = data.stats.strength;

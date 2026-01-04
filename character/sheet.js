@@ -1,5 +1,7 @@
 // A character's current life (starts at 20 to match the initial max life)
 var curlife = 20;
+// The number of advantage the character has
+var advantage = 0;
 
 function curlifeChange() {
   let val = parseInt(document.getElementById('sheet-curlife').value);
@@ -16,6 +18,19 @@ function curlifeChange() {
   document.getElementById('sheet-curlife').value = val;
 }
 
+function advantageChange() {
+  let val = parseInt(document.getElementById('sheet-advantage').value);
+
+  if (val == NaN) {
+    val = advantage;
+  } else if (val < 0) {
+    val = 0;
+  }
+
+  advantage = val;
+  document.getElementById('sheet-advantage').value = val;
+}
+
 function gotoBuilder(evt) {
   document.getElementById('builder').style.display = 'block';
   document.getElementById('sheet').style.display = 'none';
@@ -29,6 +44,7 @@ function gotoBuilder(evt) {
 
 function gotoSheet(evt) {
   setupSheet();
+
   // Hacky way of determining if we have negative XP left
   if (document.getElementById('rem-xp').style.color == 'red') {
     alert('Character has negative XP left');
@@ -204,6 +220,8 @@ function setupSheet() {
   }
 
   document.getElementById('sheet-name').textContent = name;
+
+  document.getElementById('sheet-advantage').value = advantage;
 
   for (const [stat, bonus] of Object.entries(stats)) {
     document.getElementById('sheet-' + stat).textContent = bonus >= 0 ? ('+' + bonus) : bonus;
