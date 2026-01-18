@@ -5,6 +5,15 @@ var speeds = { walk: 'Normal', climb: 'N/A', swim: 'N/A', burrow: 'N/A', fly: 'N
 
 var creation_mode = true;
 
+function nameChange() {
+  let name = document.getElementById('name').value;
+  if (name == '') {
+    document.title = 'Character Sheet';
+  } else {
+    document.title = 'Character Sheet - ' + name;
+  }
+}
+
 function modeChange() {
   creation_mode = document.getElementById('mode').checked;
 
