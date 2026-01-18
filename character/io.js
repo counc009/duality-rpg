@@ -138,4 +138,5 @@ async function load() {
 
   input.value = '';
   updateXP();
+  nameChange();
 }
