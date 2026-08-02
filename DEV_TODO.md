@@ -25,6 +25,8 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
   + Default 1 Attack Action and 1 Defend Action
   + Attach Actions can be used to Defend but not vice-versa
   + XP is probably around 8n for an additional Defend and 10n for an additional Attack
+  + Maybe you can save unused actions between rounds, or there's a character option that lets you
+    * This creates possibilities for enemies to collect actions to activate more powerful attacks as combat progresses
   + Defensive styles define what benefit you get on a Defend Action
     * Evasive decreases your difficulty to avoid the hit by your selected statistic
     * Armored means that anytime you are targeted you get to roll to avoid the hit even if you don't spend a Defend Action (though the difficulty is increased by 1 level, basically a -3 penalty), but you cannot hit back or gain Advantage from it unless you use a Defend Action
@@ -32,9 +34,14 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
     * Riposte causes the attacker (if they are within range) to take damage equal to your selected statistic regardless of the outcome
 - [ ] Potentially uses of action economy for different stronger attacks
   + Spend two Attack Actions on one attack so opponent has to use two Defend Actions to defend
-  + Maybe can spend an Attack Action to gain two Advantage
+  + Can spend an Attack Action to gain two Advantage
+  + Can spend two Attack Actions to target a group that are all clumped together (probably all within melee range of each other)
+  + Can spend two Attack Actions to take an attack with Advanced attack options
 - ~~[ ] Potentially modifying combat to use the attack roll result to determine damage~~
 - [ ] Add rules for travel (or a more general progress system)
 - [ ] Potentially add advanced character options which you have to spend XP to unlock before you can gain (and the GM must approve)
   + [ ] **Blink**: advanced defensive style, when you use a Defend Action to activate it you can teleport a certain distance and avoid damage (maybe some additional restriction as otherwise this is very strong)
     * For a player to take this they may have to get GM approval and then describe, for example, the place they travel through in between and how they avoid the madness it causes
+  + Advanced Attack Options (can acquire multiple and choose per attack which to use; or you spend an action for each you want to activate; essentially designed to give us mechanics for dragon breath)
+    * [ ] Multiple Targets at increased ranged
+    * [ ] Additional Damage
