@@ -42,6 +42,7 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
 - [ ] Potentially add advanced character options which you have to spend XP to unlock before you can gain (and the GM must approve)
   + [ ] **Blink**: advanced defensive style, when you use a Defend Action to activate it you can teleport a certain distance and avoid damage (maybe some additional restriction as otherwise this is very strong)
     * For a player to take this they may have to get GM approval and then describe, for example, the place they travel through in between and how they avoid the madness it causes
+  + [ ] An Advanced Character Option that grants an additional Attack/Defend action
   + Advanced Attack Options (can acquire multiple and choose per attack which to use; or you spend an action for each you want to activate; essentially designed to give us mechanics for dragon breath)
     * [ ] Multiple Targets at increased ranged
     * [ ] Additional Damage
