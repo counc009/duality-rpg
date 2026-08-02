@@ -27,16 +27,16 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
   + XP is probably around 8n for an additional Defend and 10n for an additional Attack
   + Maybe you can save unused actions between rounds, or there's a character option that lets you
     * This creates possibilities for enemies to collect actions to activate more powerful attacks as combat progresses
-  + Defensive styles define what benefit you get on a Defend Action
+  + [X] Defensive styles define what benefit you get on a Defend Action
     * Evasive decreases your difficulty to avoid the hit by your selected statistic
     * Armored means that anytime you are targeted you get to roll to avoid the hit even if you don't spend a Defend Action (though the difficulty is increased by 1 level, basically a -3 penalty), but you cannot hit back or gain Advantage from it unless you use a Defend Action
     * Shielded grants you block equal to your selected statistic
     * Riposte causes the attacker (if they are within range) to take damage equal to your selected statistic regardless of the outcome
 - [ ] Potentially uses of action economy for different stronger attacks
-  + Spend two Attack Actions on one attack so opponent has to use two Defend Actions to defend
-  + Can spend an Attack Action to gain two Advantage
-  + Can spend two Attack Actions to target a group that are all clumped together (probably all within melee range of each other)
-  + Can spend two Attack Actions to take an attack with Advanced attack options
+  + [ ] Spend two Attack Actions on one attack so opponent has to use two Defend Actions to defend
+  + [ ] Can spend an Attack Action to gain two Advantage
+  + [ ] Can spend two Attack Actions to target a group that are all clumped together (probably all within melee range of each other)
+  + [ ] Can spend two Attack Actions to take an attack with Advanced attack options
 - ~~[ ] Potentially modifying combat to use the attack roll result to determine damage~~
 - [ ] Add rules for travel (or a more general progress system)
 - [ ] Potentially add advanced character options which you have to spend XP to unlock before you can gain (and the GM must approve)
