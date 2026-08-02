@@ -7,20 +7,20 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
   + For a PC attacking an NPC
     1. The NPC determines whether to take a Defend Action, which may impact the PC's difficulty of hitting them or granting the NPC some other benefit.
     2. The PC rolls against the NPC's difficulty and determines what happens based on the outcome
-       a. Very Bad: The GM gains an Advantage. If the NPC took a Defend Action, and can reasonably do so, they can deal damage to the PC and otherwise the GM gains another Advantage.
-       b. Bad: If the NPC took a Defend Action, and can reasonably do so, they can deal damage to the PC and otherwise the GM gains an Advantage.
-       c. Mixed: The PC deals damage to the target. If the NPC took a Defend Action, and can reasonably do so, they can deal damage to the PC and otherwise the GM gains an Advantage.
-       d. Good: The PC deals damage to the target.
-       e. Very Good: The PC gains an Advantage and deals damage to the target.
+       1. Very Bad: The GM gains an Advantage. If the NPC took a Defend Action, and can reasonably do so, they can deal damage to the PC and otherwise the GM gains another Advantage.
+       1. Bad: If the NPC took a Defend Action, and can reasonably do so, they can deal damage to the PC and otherwise the GM gains an Advantage.
+       1. Mixed: The PC deals damage to the target. If the NPC took a Defend Action, and can reasonably do so, they can deal damage to the PC and otherwise the GM gains an Advantage.
+       1. Good: The PC deals damage to the target.
+       1. Very Good: The PC gains an Advantage and deals damage to the target.
   + For an NPC attacking a PC
     1. The PC decides whether or not to take a Defend Action.
-       a. If not, the NPC automatically hits and deals damage to the PC.
-       b. If the PC does take a Defend Action they rolls against a difficulty to avoid the hit (with the difficulty determined by the NPC's statistics), and determines what happens based on the outcome
-          i. Very Bad: The GM gains an Advantage and the NPC deals damage.
-          ii. Bad: The NPC deals damage.
-          iii. Mixed: The NPC deals damage. If the PC reasonably can, they can deal damage to the NPC or instead gain an Advantage.
-          iv. Good: If the PC reasonably can, they can deal damage to the NPC or instead gain an Advantage.
-          v. Very Good: The PC gains an Advantage and, if they reasonably can, they can deal damage to the NPC or instead gain an additional Advantage.
+       1. If not, the NPC automatically hits and deals damage to the PC.
+       1. If the PC does take a Defend Action they rolls against a difficulty to avoid the hit (with the difficulty determined by the NPC's statistics), and determines what happens based on the outcome
+          1. Very Bad: The GM gains an Advantage and the NPC deals damage.
+          1. Bad: The NPC deals damage.
+          1. Mixed: The NPC deals damage. If the PC reasonably can, they can deal damage to the NPC or instead gain an Advantage.
+          1. Good: If the PC reasonably can, they can deal damage to the NPC or instead gain an Advantage.
+          1. Very Good: The PC gains an Advantage and, if they reasonably can, they can deal damage to the NPC or instead gain an additional Advantage.
 - [ ] Introduction of some action economy that limits number of attacks/defends per turn
   + Default 1 Attack Action and 1 Defend Action
   + Attach Actions can be used to Defend but not vice-versa
