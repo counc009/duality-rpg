@@ -1,8 +1,8 @@
 # Development To-Do List
 Version 0.4.0 will be a major rebalance of the game; the current ideas for this rebalance are
 - [ ] Rebalancing weapon damage (likely some limit as well as an XP price increase)
-  + Have a damage die for the offensive style like current (d8 melee, d6 ranged, d4 simple & weak, d10 complex & powerful) with an option for like 5 XP to increase the die one size
-  + Separately, weapons can add additional damage, 5 XP for a d4, 15 XP (10 XP more than d4) for a d6, 30 XP for a d8, 50 XP for a d10, and 75 XP for a d12
+  + [X] Have a damage die for the offensive style like current (d8 melee, d6 ranged, d4 simple & weak, d10 complex & powerful) with an option for like 5 XP to increase the die one size
+  + [ ] Separately, weapons can add additional damage, 5 XP for a d4, 15 XP (10 XP more than d4) for a d6, 30 XP for a d8, 50 XP for a d10, and 75 XP for a d12
 - [X] Modifying combat to one roll rather than an attack and defend roll
   + [X] For a PC attacking an NPC
     1. The NPC determines whether to take a Defend Action, which may impact the PC's difficulty of hitting them or granting the NPC some other benefit.
