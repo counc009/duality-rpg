@@ -45,6 +45,9 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
   + [X] Option that grants the ability to save unspent Main/Defend actions between rounds
     * This creates possibilities for enemies to collect actions to activate more powerful attacks as combat progresses
     * Having Advanced Attack Options use Main Actions instead of just Advantage means that have to be built up to in combat and allows characters to wait for several rounds and then take otherwise impossible turns which is kinda cool.
-  + Advanced Attack Options (can acquire multiple; spend an additional Main Action on an attack to activate one; the goal of these is essentially to give us mechanics for things like dragons' breath)
-    * [ ] Multiple Targets at increased ranged
-    * [ ] Additional Damage
+  + [X] Advanced Attack Options (can acquire multiple; spend an additional Main Action on an attack to activate one; the goal of these is essentially to give us mechanics for things like dragons' breath)
+    * [X] Multiple Targets at increased ranged
+    * [X] Additional Damage
+  + [ ] Advanced Offensive Combat Styles
+    * [ ] Maybe something involving healing
+    * [ ] Maybe something involving druidic transformation
