@@ -1,8 +1,8 @@
 # Development To-Do List
 Version 0.4.0 will be a major rebalance of the game; the current ideas for this rebalance are
-- [ ] Rebalancing weapon damage (likely some limit as well as an XP price increase)
+- [X] Rebalancing weapon damage (likely some limit as well as an XP price increase)
   + [X] Have a damage die for the offensive style like current (d8 melee, d6 ranged, d4 simple & weak, d10 complex & powerful) with an option for like 5 XP to increase the die one size
-  + [ ] Separately, weapons can add additional damage, 5 XP for a d4, 15 XP (10 XP more than d4) for a d6, 30 XP for a d8, 50 XP for a d10, and 75 XP for a d12
+  + [X] Separately, weapons can add additional damage, 5 XP for a d4, 15 XP (10 XP more than d4) for a d6, 30 XP for a d8, 50 XP for a d10, and 75 XP for a d12
 - [X] Modifying combat to one roll rather than an attack and defend roll
   + [X] For a PC attacking an NPC
     1. The NPC determines whether to take a Defend Action, which may impact the PC's difficulty of hitting them or granting the NPC some other benefit.
@@ -36,7 +36,7 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
   + [X] Can spend two Main Actions to take an attack with Advanced attack options
 - ~~[ ] Potentially modifying combat to use the attack roll result to determine damage~~
 - [ ] Add rules for travel (or a more general progress system)
-- [ ] Update rules for additional or reduced damage to address heterogeneous damage dice
+- [X] Update rules for additional or reduced damage to address heterogeneous damage dice
 - [ ] Potentially add advanced character options which you have to spend XP to unlock before you can gain (and the GM must approve)
   + [ ] **Blink**: advanced defensive style, when you use a Defend Action to activate it you can teleport a certain distance and avoid damage (maybe some additional restriction as otherwise this is very strong)
     * For a player to take this they may have to get GM approval and then describe, for example, the place they travel through in between and how they avoid the madness it causes
