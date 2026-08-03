@@ -38,11 +38,11 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
 - [ ] Add rules for travel (or a more general progress system)
 - [X] Update rules for additional or reduced damage to address heterogeneous damage dice
 - [ ] Potentially add advanced character options which you have to spend XP to unlock before you can gain (and the GM must approve)
-  + [ ] **Blink**: advanced defensive style, when you use a Defend Action to activate it you can teleport a certain distance and avoid damage (maybe some additional restriction as otherwise this is very strong)
+  + [X] **Blink**: advanced defensive style, when you use a Defend Action to activate it you can teleport a certain distance and avoid damage (maybe some additional restriction as otherwise this is very strong)
     * For a player to take this they may have to get GM approval and then describe, for example, the place they travel through in between and how they avoid the madness it causes
-  + [ ] Option that grants an additional Main/Defend action
+  + [X] Option that grants an additional Main/Defend action
     * XP is probably around 8n for an additional Defend and 10n for an additional Main
-  + [ ] Option that grants the ability to save unspent Main/Defend actions between rounds
+  + [X] Option that grants the ability to save unspent Main/Defend actions between rounds
     * This creates possibilities for enemies to collect actions to activate more powerful attacks as combat progresses
     * Having Advanced Attack Options use Main Actions instead of just Advantage means that have to be built up to in combat and allows characters to wait for several rounds and then take otherwise impossible turns which is kinda cool.
   + Advanced Attack Options (can acquire multiple; spend an additional Main Action on an attack to activate one; the goal of these is essentially to give us mechanics for things like dragons' breath)
