@@ -37,7 +37,7 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
 - ~~[ ] Potentially modifying combat to use the attack roll result to determine damage~~
 - [ ] Add rules for travel (or a more general progress system)
 - [X] Update rules for additional or reduced damage to address heterogeneous damage dice
-- [ ] Potentially add advanced character options which you have to spend XP to unlock before you can gain (and the GM must approve)
+- [X] Potentially add advanced character options which you have to spend XP to unlock before you can gain (and the GM must approve)
   + [X] **Blink**: advanced defensive style, when you use a Defend Action to activate it you can teleport a certain distance and avoid damage (maybe some additional restriction as otherwise this is very strong)
     * For a player to take this they may have to get GM approval and then describe, for example, the place they travel through in between and how they avoid the madness it causes
   + [X] Option that grants an additional Main/Defend action
@@ -48,6 +48,6 @@ Version 0.4.0 will be a major rebalance of the game; the current ideas for this 
   + [X] Advanced Attack Options (can acquire multiple; spend an additional Main Action on an attack to activate one; the goal of these is essentially to give us mechanics for things like dragons' breath)
     * [X] Multiple Targets at increased ranged
     * [X] Additional Damage
-  + [ ] Advanced Offensive Combat Styles
-    * [ ] Maybe something involving healing
-    * [ ] Maybe something involving druidic transformation
+  + [X] Advanced Offensive Combat Styles
+    * [X] Maybe something involving healing
+    * [X] Maybe something involving druidic transformation
