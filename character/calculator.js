@@ -37,6 +37,9 @@ function modeChange() {
     validateItems();
 
     updateXP();
+    document.getElementById('addAdvanced').setAttribute('disabled', '');
+  } else {
+    document.getElementById('addAdvanced').removeAttribute('disabled');
   }
 }
 

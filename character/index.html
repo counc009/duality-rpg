@@ -9,6 +9,7 @@
     <script src="experiences.js"></script>
     <script src="abilities.js"></script>
     <script src="combatstyles.js"></script>
+    <script src="advanced.js"></script>
     <script src="items.js"></script>
     <script src="calculator.js"></script>
     <script src="io.js"></script>
@@ -150,6 +151,10 @@
       <div id="defensives"></div>
       <button type="button" onclick="addDefensiveStyle()">+</button>
 
+      <h3>Advanced Options</h3>
+      <div id="advanced"></div>
+      <button id="addAdvanced" type="button" onclick="addAdvanced()" disabled>+</button>
+
       <h3>Items</h3>
       <div id="items"></div>
       <button type="button" onclick="addWeapon()">+ Weapon</button>
@@ -234,6 +239,6 @@
     <button type="button" onclick="dump()">Save Character</button>
     <label for="load">Load Character</label>
     <input type="file" id="load" accept="application/json" onchange="load()" />
-    <span style="float: right;">For version 0.3.5</span>
+    <span style="float: right;">For version 0.4.0 alpha-1</span>
   </body>
 </html>
