@@ -28,6 +28,18 @@ th { padding: 0 10px; }
   margin-right: 10pt;
 }
 
+.advancedOption {
+  background: #e0e0f0;
+  padding: 5px;
+  border: black;
+  border-style: solid;
+  border-width: 1pt;
+}
+
+.advancedOption select {
+  margin-right: 5px;
+}
+
 .spacedTable {
   text-align: left;
 }
@@ -66,4 +78,8 @@ th { padding: 0 10px; }
 
 #sheet {
   display: none; /* Hide the sheet initially */
+}
+
+label {
+  margin-right: 5px;
 }

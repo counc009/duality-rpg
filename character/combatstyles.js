@@ -45,26 +45,6 @@ function isDefensive(nm) {
 var offensives = [];
 var defensives = [];
 
-function addOptions(select, options, selected=1, first='') {
-  let empty = document.createElement('option');
-  empty.setAttribute('disabled', '');
-  empty.setAttribute('value', first);
-  empty.textContent = first;
-  if (selected == 0) {
-    empty.setAttribute('selected', '');
-  }
-  select.appendChild(empty);
-
-  for (const [idx, o] of options.entries()) {
-    let option = document.createElement('option');
-    option.setAttribute('value', o);
-    option.textContent = o;
-    if (idx + 1 == selected) {
-      option.setAttribute('selected', '');
-    }
-    select.appendChild(option);
-  }
-}
 
 function spec_options(select, kind) {
   if (kind != '') {
@@ -649,7 +629,7 @@ function specializationChange() {
 }
 
 // Called when an advanced combat style is acquired or removed
-function advancedCombatStyleChange() {
+function advancedCombatStylesChanged() {
   for (style of offensives) {
     let kind = style.div.children[0];
     let selected = kind.value;
@@ -661,6 +641,7 @@ function advancedCombatStyleChange() {
       kind.value = selected;
     } else {
       style.kind = '';
+      kind.value = '';
       kind.onchange();
     }
   }
@@ -676,6 +657,7 @@ function advancedCombatStyleChange() {
       kind.value = selected;
     } else {
       style.kind = '';
+      kind.value = '';
       kind.onchange();
     }
   }
