@@ -99,7 +99,6 @@ function setupSheet() {
     offns[style.kind] = {
       stat: style.stat,
       bonus: style.bonus,
-      dice: style.dice,
       die: style.die,
       range: style.range,
       spec: style.spec
@@ -311,17 +310,20 @@ function setupSheet() {
         let bonus = stats[offns[style].stat.toLowerCase()] + weapon.bonus;
         if (style == 'Simple & Weak' || style == 'Complex & Powerful') {
           bonus += specs[offns[style].spec].bonus;
-        } else {
+        } else if (style == 'Melee' || style == 'Ranged') {
           bonus += offns[style].bonus;
         }
         let style_bonus = document.createElement('td');
-        style_bonus.textContent = bonus >= 0 ? ('+' + bonus) : bonus;
+        style_bonus.textContent = (bonus >= 0 ? ('+' + bonus) : bonus)
+                                + ' to attack';
         style_info.appendChild(style_bonus);
 
-        let dice = offns[style].dice + weapon.dice;
-        let die = offns[style].die;
+        let dice =
+          (offns[style].die == weapon.feature)
+          ? ('2' + offns[style].die)
+          : (offns[style].die + ' + ' + weapon.feature);
         let style_damage = document.createElement('td');
-        style_damage.textContent = dice + die + ' + ' + stats[offns[style].stat.toLowerCase()];
+        style_damage.textContent = dice + ' + ' + bonus;
         style_info.appendChild(style_damage);
 
         let style_range = document.createElement('td');
@@ -335,29 +337,30 @@ function setupSheet() {
         style_info.appendChild(style_name);
         
         let bonus = stats[defns[style].stat.toLowerCase()] + weapon.bonus;
-        if (style == 'Evasive') { bonus += defns[style].value; }
+        if (style == 'Evasive') { bonus += defns[style].extra; }
         let style_bonus = document.createElement('td');
-        style_bonus.textContent = bonus >= 0 ? ('+' + bonus) : bonus;
+        style_bonus.textContent = (bonus >= 0 ? ('+' + bonus) : bonus)
+                                + ' to defend';
         style_info.appendChild(style_bonus);
 
-        let block = attrs.block + (style == 'Armored' ? defns[style].value : 0);
+        let block = attrs.block + (style == 'Shielded' ? defns[style].extra : 0)
+                  + weapon.feature;
         let style_block = document.createElement('td');
         style_block.textContent = block + ' Block';
         style_info.appendChild(style_block);
 
-        if (style == 'Shielded') {
-          let shield_note = document.createElement('td');
-          let bonus = stats[defns[style].stat.toLowerCase()];
-          shield_note.textContent =
-            'spend (up to ' + defns[style].value + ') Advantage for ' + bonus + ' additional block each';
-          style_info.appendChild(shield_note);
+        if (style == 'Armored') {
+          let note = document.createElement('td');
+          let ab = bonus - 3;
+          note.textContent =
+            '(or ' + (ab >= 0 ? ('+' + ab) : ab)
+            + ' to defend without using a Defend Action)';
+          style_info.appendChild(note);
         } else if (style == 'Riposte') {
-          let riposte_note = document.createElement('td');
-          let bonus = stats[defns[style].stat.toLowerCase()];
-          let dice = defns[style].value;
-          riposte_note.textContent =
-            'deal ' + dice + 'd6 + ' + bonus + ' to attacker';
-          style_info.appendChild(riposte_note);
+          let note = document.createElement('td');
+          let die = defns[style].extra;
+          note.textContent = 'always deal ' + die + ' to attacker';
+          style_info.appendChild(note);
         }
       }
     }
