@@ -16,6 +16,7 @@ function dump() {
     offns: offensives,
     defns: defensives,
     items: items,
+    advanced: advanced,
   };
 
   let json = JSON.stringify(data, (key, value) => (key == 'div' ? undefined : value));
@@ -104,6 +105,16 @@ async function load() {
     let abil_obj = new_ability((ability) => (() => { deleteAbility(ability); }), abil);
     abilities.push(abil_obj);
     document.getElementById('abilities').append(abil_obj.div);
+  }
+
+  // We process advanced options before combat styles so that the list of
+  // available combat styles is correct
+  advanced = [];
+  clearChildren(document.getElementById('advanced'));
+  for (const option of data.advanced) {
+    let option_obj = new_advanced(option);
+    advanced.push(option_obj);
+    document.getElementById('advanced').append(option_obj.div);
   }
 
   offensives = [];

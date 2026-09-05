@@ -75,7 +75,7 @@ function clear_selectors(elems) {
 
 // SELECTOR
 // SELECTORS <1> <2>  CHECK <3>   NUMBER <4>
-// CHECKS <A> <B> <C>
+// CHECKS <A> <B> <C> <D>
 // CHECKS <W> <X> <Y> <Z>
 // SELECTORS <P> <Q> <R> <S>
 
@@ -102,7 +102,7 @@ function clear_selectors(elems) {
 //   - Frequency (selector 1)
 //   - Number of options (selector 2)
 //   - Keep Specializations (check 3)
-//   - Swim/Climb/Fly speed (checks A, B, C)
+//   - Swim/Climb/Burrow/Fly speed (checks A, B, C, D)
 //   - Option upgrades (checks W, X, Y, Z)
 //   - Option downside (selectors P, Q, R, S)
 
@@ -142,6 +142,7 @@ function new_advanced(
   let checkA = create_check(row2);
   let checkB = create_check(row2);
   let checkC = create_check(row2);
+  let checkD = create_check(row2);
 
   div.appendChild(row2);
 
@@ -168,7 +169,7 @@ function new_advanced(
     updateAdvancedCombatStyles();
 
     none_displays([ selector1, selector2, check3, number4,
-                    checkA, checkB, checkC,
+                    checkA, checkB, checkC, checkD,
                     checkW, checkX, checkY, checkZ,
                     selectorP, selectorQ, selectorR, selectorS ]);
 
@@ -246,9 +247,13 @@ function new_advanced(
         checkB.checked = false;
         checkB.display = 'inline-block';
 
-        checkC.text = 'Fly';
+        checkC.text = 'Burrow';
         checkC.checked = false;
         checkC.display = 'inline-block';
+
+        checkD.text = 'Fly';
+        checkD.checked = false;
+        checkD.display = 'inline-block';
 
         checkW.text = 'Option Upgrades: Life';
         checkW.checked = false;
@@ -287,6 +292,7 @@ function new_advanced(
         option.keep = false;
         option.swim = false;
         option.climb = false;
+        option.burrow = false;
         option.fly = false;
         option.up_life = false;
         option.up_damage = false;
@@ -318,7 +324,11 @@ function new_advanced(
           updateXP();
         };
         checkC.onchange = function() {
-          option.fly = checkC.checked;
+          option.burrow = checkC.checked;
+          updateXP();
+        };
+        checkD.onchange = function() {
+          option.fly = checkD.checked;
           updateXP();
         };
         checkW.onchange = function() {
@@ -360,6 +370,105 @@ function new_advanced(
     updateXP();
   };
 
+  kind.value = option.kind;
+
+  switch (option.kind) {
+    case 'Blink':
+    case 'Undying Fortitude':
+    case 'Critical Attack':
+      kind.onchange();
+      break;
+    case 'Assassin':
+    case 'Dedicated Healer': {
+      let upgraded = option.upgraded;
+      kind.onchange();
+      selector1.checked = upgraded;
+      option.upgraded = upgraded;
+      break;
+    }
+    case 'Wide Barrage': {
+      let range = option.range;
+      kind.onchange();
+      selector1.value = range;
+      option.range = range;
+      break;
+    }
+    case 'Additional Defend Actions':
+    case 'Additional Main Actions':
+    case 'Action Carryover': {
+      let count = option.count;
+      kind.onchange();
+      number4.value = count;
+      option.count = count;
+      break;
+    }
+    case 'Transformation': {
+      let uses = option.uses;
+      let count = option.count;
+      let keep = option.keep;
+      let swim = option.swim;
+      let climb = option.climb;
+      let burrow = option.burrow;
+      let fly = option.fly;
+      let up_life = option.up_life;
+      let up_damage = option.up_damage;
+      let up_agility = option.up_agility;
+      let up_senses = option.up_senses;
+      let neg_life = option.neg_life;
+      let neg_damage = option.neg_damage;
+      let neg_agility = option.neg_agility;
+      let neg_senses = option.neg_senses;
+
+      kind.onchange();
+
+      selector1.value = uses;
+      option.uses = uses;
+
+      selector2.value = count;
+      option.count = count;
+
+      check3.checked = keep;
+      option.keep = keep;
+
+      checkA.checked = swim;
+      option.swim = swim;
+
+      checkB.checked = climb;
+      option.climb = climb;
+
+      checkC.checked = burrow;
+      option.burrow = burrow;
+
+      checkD.checked = fly;
+      option.fly = fly;
+
+      checkW.checked = up_life;
+      option.up_life = up_life;
+
+      checkX.checked = up_damage;
+      option.up_damage = up_damage;
+
+      checkY.checked = up_agility;
+      option.up_agility = up_agility;
+
+      checkZ.checked = up_senses;
+      option.up_senses = up_senses;
+
+      selectorP.value = neg_life;
+      option.neg_life = neg_life;
+
+      selectorQ.value = neg_damage;
+      option.neg_damage = neg_damage;
+
+      selectorR.value = neg_agility;
+      option.neg_agility = neg_agility;
+
+      selectorS.value = neg_senses;
+      option.neg_senses = neg_senses;
+      break;
+    }
+  }
+
   option.div = div;
   return option;
 }
@@ -368,6 +477,7 @@ function addAdvanced() {
   let option = new_advanced();
   advanced.push(option);
   document.getElementById('advanced').append(option.div);
+  updateXP();
 }
 
 function deleteAdvanced(option) {
@@ -460,6 +570,7 @@ function advancedXP() {
         xp += option.keep ? 4 : 0;
         xp += option.swim ? 2 : 0;
         xp += option.climb ? 2 : 0;
+        xp += option.burrow ? 2 : 0;
         xp += option.fly ? 2 : 0;
         switch (option.count) {
           case '2 options':
