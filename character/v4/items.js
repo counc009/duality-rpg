@@ -418,7 +418,7 @@ function new_weapon(
 
   let feature_dice = document.createElement('select');
   feature_dice.value = weapon.feature;
-  addOptions(feature_dice, ['d4', 'd6', 'd8', 'd10', 'd12'], 0);
+  addOptions(feature_dice, ['d4', 'd6', 'd8', 'd10', 'd12'], 0, '', false);
   feature_dice.style.display =
     isOffensive(weapon.style.style) ? 'inline' : 'none';
   feature_dice.onchange = function() {

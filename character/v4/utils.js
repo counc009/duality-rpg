@@ -1,6 +1,6 @@
-function addOptions(select, options, selected=1, first='') {
+function addOptions(select, options, selected=1, first='', disabled=true) {
   let empty = document.createElement('option');
-  empty.setAttribute('disabled', '');
+  if (disabled) { empty.setAttribute('disabled', ''); }
   empty.setAttribute('value', first);
   empty.textContent = first;
   if (selected == 0) {
