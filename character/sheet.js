@@ -158,7 +158,8 @@ function setupSheet() {
     name: "Unarmed",
     styles: Object.keys(offns).concat(Object.keys(defns)), 
     bonus: 0,
-    extra: 0
+    block: 0,
+    die: '',
   });
 
   let advncd = {};
@@ -258,7 +259,7 @@ function setupSheet() {
       case 'weapon':
         styles.push(item.style.style); // Add our initial style
         weapons.push({ name: item.name, styles: styles, bonus: item.bonus,
-                        extra: item.feature });
+                        block: item.block, die: item.die });
         break;
       case 'relic':
         if (!(item.experience in item_bonuses.exprs)
@@ -452,12 +453,12 @@ function setupSheet() {
         let base_dice =
           style == 'Assassin' && advncd['Assassin'].upgraded ? 2 : 1;
         let dice =
-          weapon.extra == 0
+          weapon.die == ''
           ? (base_dice == 1 ? '' : base_dice) + offns[style].die
-          : (offns[style].die == weapon.extra
+          : (offns[style].die == weapon.die
             ? (base_dice + 1) + offns[style].die
             : ((base_dice == 1 ? '' : base_dice) + offns[style].die 
-              + ' + ' + weapon.extra));
+              + ' + ' + weapon.die));
         let style_damage = document.createElement('td');
         style_damage.textContent = dice + ' + ' + bonus;
         style_info.appendChild(style_damage);
@@ -480,7 +481,7 @@ function setupSheet() {
         style_info.appendChild(style_bonus);
 
         let block = attrs.block + (style == 'Shielded' ? defns[style].extra : 0)
-                  + weapon.extra;
+                  + weapon.block;
         let style_block = document.createElement('td');
         style_block.textContent = block + ' Block';
         style_info.appendChild(style_block);
