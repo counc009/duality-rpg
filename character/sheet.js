@@ -131,6 +131,11 @@ function setupSheet() {
     extra: 0
   });
 
+  let advncd = {};
+  for (const option of advanced) {
+    advncd[option.kind] = option;
+  }
+
   for (const item of items) {
     let styles = [];
 
@@ -315,16 +320,20 @@ function setupSheet() {
           bonus += offns[style].bonus;
         }
         let style_bonus = document.createElement('td');
-        style_bonus.textContent = (bonus >= 0 ? ('+' + bonus) : bonus)
-                                + ' to attack';
+        style_bonus.textContent =
+          style == 'Assassin' ? 'auto hit'
+          : (bonus >= 0 ? ('+' + bonus) : bonus) + ' to attack';
         style_info.appendChild(style_bonus);
 
+        let base_dice =
+          style == 'Assassin' && advncd['Assassin'].upgraded ? 2 : 1;
         let dice =
-          (weapon.extra == 0)
-          ? offns[style].die
+          weapon.extra == 0
+          ? (base_dice == 1 ? '' : base_dice) + offns[style].die
           : (offns[style].die == weapon.extra
-            ? '2' + offns[style].die
-            : (offns[style].die + ' + ' + weapon.extra));
+            ? (base_dice + 1) + offns[style].die
+            : ((base_dice == 1 ? '' : base_dice) + offns[style].die 
+              + ' + ' + weapon.extra));
         let style_damage = document.createElement('td');
         style_damage.textContent = dice + ' + ' + bonus;
         style_info.appendChild(style_damage);
@@ -363,6 +372,15 @@ function setupSheet() {
           let note = document.createElement('td');
           let die = defns[style].extra;
           note.textContent = 'always deal ' + die + ' to attacker';
+          style_info.appendChild(note);
+        } else if (style == 'Blink') {
+          let note = document.createElement('td');
+          note.textContent = 'teleport a ' + defns['Blink'].extra
+                           + ' and potentially reduce damage';
+          style_info.appendChild(note);
+        } else if (style == 'Undying Fortitude') {
+          let note = document.createElement('td');
+          note.textContent = 'life cannot be reduced below 1 except on a Very Bad outcome';
           style_info.appendChild(note);
         }
       }
