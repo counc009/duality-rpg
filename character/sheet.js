@@ -1,6 +1,10 @@
-// A character's current life (starts at 20 to match the initial max life)
-var curlife = 20;
-// The number of advantage the character has
+// Initialize these numbers with -1 so that we can identify if they should be
+// reset by loading the character sheet
+var curlife = -1;
+var curmain = -1;
+var curdefend = -1;
+
+// Advantage is 0 until the user increases it
 var advantage = 0;
 
 function curlifeChange() {
@@ -29,6 +33,32 @@ function advantageChange() {
 
   advantage = val;
   document.getElementById('sheet-advantage').value = val;
+}
+
+function curmainChange() {
+  let val = parseInt(document.getElementById('sheet-curmain').value);
+
+  if (val == NaN) {
+    val = curmain;
+  } else if (val < 0) {
+    val = 0;
+  }
+
+  curmain = val;
+  document.getElementById('sheet-curmain').value = val;
+}
+
+function curdefendChange() {
+  let val = parseInt(document.getElementById('sheet-curdefend').value);
+
+  if (val == NaN) {
+    val = curdefend;
+  } else if (val < 0) {
+    val = 0;
+  }
+
+  curdefend = val;
+  document.getElementById('sheet-curdefend').value = val;
 }
 
 function gotoBuilder(evt) {
@@ -132,8 +162,23 @@ function setupSheet() {
   });
 
   let advncd = {};
+  let n_main = 1;
+  let n_defend = 1;
+  let n_carryover = 0;
   for (const option of advanced) {
     advncd[option.kind] = option;
+
+    switch (option.kind) {
+      case 'Additional Defend Actions':
+        n_defend += option.count;
+        break;
+      case 'Additional Main Actions':
+        n_main += option.count;
+        break;
+      case 'Action Carryover':
+        n_carryover += option.count;
+        break;
+    }
   }
 
   for (const item of items) {
@@ -236,11 +281,22 @@ function setupSheet() {
     document.getElementById('sheet-' + attr).textContent = value;
   }
 
+  curlife = curlife < 0 ? attrs.life : curlife;
   document.getElementById('sheet-curlife').value = curlife;
 
   for (const [kind, speed] of Object.entries(speeds)) {
     document.getElementById('sheet-' + kind).textContent = speed;
   }
+
+  document.getElementById('sheet-mains').textContent = n_main;
+  document.getElementById('sheet-defends').textContent = n_defend;
+  document.getElementById('sheet-carryover').textContent = n_carryover;
+
+  curmain = curmain < 0 ? n_main : curmain;
+  curdefend = curdefend < 0 ? n_defend : curdefend;
+
+  document.getElementById('sheet-curmain').value = curmain;
+  document.getElementById('sheet-curdefend').value = curdefend;
 
   clearChildren(document.getElementById('sheet-specializations'));
   for (const [spec, info] of Object.entries(specs)) {

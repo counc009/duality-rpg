@@ -9,6 +9,8 @@ function dump() {
     stats: statistics,
     attrs: attributes,
     curlife: curlife,
+    curmain: curmain,
+    curdefend: curdefend,
     speed: speeds,
     specs: specializations,
     exprs: experiences,
@@ -81,6 +83,8 @@ async function load() {
   document.getElementById('wealth').value = data.attrs.wealth;
 
   curlife = ('curlife' in data) ? data.curlife : attributes.life;
+  curmain = ('curmain' in data) ? data.curmain : -1;
+  curdefend = ('curdefend' in data) ? data.curdefend : -1;
 
   speeds = data.speed;
   document.getElementById('walk').value = data.speed.walk;

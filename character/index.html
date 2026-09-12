@@ -223,6 +223,25 @@
         </tr>
       </table>
 
+      <table>
+        <tr>
+          <th>Actions</th>
+          <th>Main</th>
+          <th>Cur Main</th>
+          <th>Defend</th>
+          <th>Cur Defend</th>
+          <th>Carryover</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="sheet-mains"></td>
+          <td><input type="number" id="sheet-curmain" class="value" onchange="curmainChange()"></td>
+          <td id="sheet-defends"></td>
+          <td><input type="number" id="sheet-curdefend" class="value" onchange="curdefendChange()"></td>
+          <td id="sheet-carryover"></td>
+        </tr>
+      </table>
+
       <h3>Specializations</h3>
       <table id="sheet-specializations" class="spacedTable"></table>
 
@@ -234,6 +253,9 @@
 
       <h3>Weapons</h3>
       <div id="sheet-weapons"></div>
+
+      <h3>Advanced Actions</h3>
+      <table id="sheet-advanced-actions" class="spacedTable"></table>
     </div>
 
     <hr>
