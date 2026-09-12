@@ -162,6 +162,8 @@ function setupSheet() {
   });
 
   let advncd = {};
+  clearChildren(document.getElementById('sheet-advanced-actions'));
+
   let n_main = 1;
   let n_defend = 1;
   let n_carryover = 0;
@@ -178,6 +180,25 @@ function setupSheet() {
       case 'Action Carryover':
         n_carryover += option.count;
         break;
+      case 'Wide Barrage': {
+        let row = createTextRow(['Wide Barrage', '(Main)',
+                                  'target multiple enemies ' + option.range]);
+        document.getElementById('sheet-advanced-actions').appendChild(row);
+        break;
+      }
+      case 'Critical Attack': {
+        let row = createTextRow(['Critical Attack', '(Main)',
+                                  'double damage']);
+        document.getElementById('sheet-advanced-actions').appendChild(row);
+        break;
+      }
+      case 'Dedicated Healer': {
+        let row = createTextRow(['Dedicated Healer', '(Defend)',
+                                  ('ignore advantage cost of triage'
+                                  + (option.upgraded ? ' and increase roll' : ''))]);
+        document.getElementById('sheet-advanced-actions').appendChild(row);
+        break;
+      }
     }
   }
 
@@ -447,4 +468,16 @@ function setupSheet() {
 
     document.getElementById('sheet-weapons').appendChild(weapon_info);
   }
+}
+
+function createTextRow(cols) {
+  let row = document.createElement('tr');
+
+  for (const text of cols) {
+    let col = document.createElement('td');
+    col.textContent = text;
+    row.appendChild(col);
+  }
+
+  return row;
 }
