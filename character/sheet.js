@@ -199,6 +199,53 @@ function setupSheet() {
         document.getElementById('sheet-advanced-actions').appendChild(row);
         break;
       }
+      case 'Transformation': {
+        let row = document.createElement('tr');
+
+        row.insertCell().textContent = 'Transformation';
+        row.insertCell().textContent = '(Main + Defend)';
+
+        let desc = row.insertCell();
+        desc.appendChild(document.createTextNode(`(or ${option.uses})`));
+        desc.appendChild(document.createElement('br'));
+        desc.appendChild(document.createTextNode('For the remainder of the scene or until you end the transformation:'));
+        let details = document.createElement('ul');
+        desc.appendChild(details);
+
+        if (!option.keep) {
+          details.appendChild(textListElem('You cannot use any Specialization except any granted by the Senses option'));
+        }
+        if (option.swim) {
+          details.appendChild(textListElem(`You gain a swim speed of ${speeds.walk}`));
+        }
+        if (option.climb) {
+          details.appendChild(textListElem(`You gain a climb speed of ${speeds.walk}`));
+        }
+        if (option.burrow) {
+          details.appendChild(textListElem(`You gain a burrow speed of ${speeds.walk}`));
+        }
+        if (option.fly) {
+          details.appendChild(textListElem(`You gain a fly speed of ${speeds.walk}`));
+        }
+
+        let option_label = document.createElement('li');
+        let options = document.createElement('ul');
+        option_label.appendChild(document.createTextNode(`Pick ${option.count} of the following`));
+        option_label.appendChild(options);
+        details.appendChild(option_label);
+
+        options.appendChild(textListElemLabeled('Defense',
+          `current and max Life increase by ${option.up_life ? 20 : 10}${option.neg_life == 'none' ? '' : option.neg_life == 'reduced' ? ' but cannot use benefits other than die, range, and basic statistic of Offensive combat styles' : ' but cannot use benefits other than range and basic statistic of offensive combat styles'}`));
+        options.appendChild(textListElemLabeled('Offense',
+          `add ${option.up_damage ? 'two damage dice' : 'one damage die'} to all damage rolls${option.neg_damage == 'reduced' ? ' and gain +1 bonus to all rolls to defend' : ''}${option.neg_damage == 'none' ? '' : ' but cannot use benefits other than basic statistic of Defensive combat styles'}`));
+        options.appendChild(textListElemLabeled('Agility',
+          `speed is doubled and gain a +${option.up_agility ? 4 : 2} bonus to all Finesse rolls${option.neg_agility == 'none' ? '' : ' but suffer a -1 penalty to Strength ' + (option.neg_agility == 'reduced' ? 'or' : 'and') + ' Willpower rolls'}`));
+        options.appendChild(textListElemLabeled('Senses',
+          `gain a +${option.up_senses ? 4 : 2} bonus to all Instinct rolls and a +1 bonus to a single Perceive specialization with the Superhuman tag${option.neg_senses == 'none' ? '' : ' but suffer a -1 penalty to Presence ' + (option.neg_senses == 'reduced' ? 'or' : 'and') + ' Knowledge rolls'}`));
+
+        document.getElementById('sheet-advanced-actions').appendChild(row);
+        break;
+      }
     }
   }
 
@@ -480,4 +527,20 @@ function createTextRow(cols) {
   }
 
   return row;
+}
+
+function textListElem(txt) {
+  let elem = document.createElement('li');
+  elem.textContent = txt;
+  return elem;
+}
+
+function textListElemLabeled(label, body) {
+  let elem = document.createElement('li');
+  let label_node = document.createElement('strong');
+  label_node.appendChild(document.createTextNode(label));
+  label_node.appendChild(document.createTextNode(': '));
+  elem.appendChild(label_node);
+  elem.appendChild(document.createTextNode(body));
+  return elem;
 }

@@ -46,6 +46,7 @@ th { padding: 0 10px; }
 
 .spacedTable td {
   padding: 0 8pt 0 0;
+  vertical-align: top;
 }
 
 .tab {
