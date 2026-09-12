@@ -122,6 +122,7 @@ async function load() {
     advanced.push(option_obj);
     document.getElementById('advanced').append(option_obj.div);
   }
+  updateAdvancedCombatStyles();
 
   offensives = [];
   clearChildren(document.getElementById('offensives'));
