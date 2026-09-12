@@ -382,7 +382,7 @@ function new_advanced(
     case 'Dedicated Healer': {
       let upgraded = option.upgraded;
       kind.onchange();
-      selector1.checked = upgraded;
+      check3.checked = upgraded;
       option.upgraded = upgraded;
       break;
     }
