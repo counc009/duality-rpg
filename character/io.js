@@ -53,6 +53,12 @@ async function load() {
   creation_mode = data.in_create_mode;
   document.getElementById('mode').checked = data.in_create_mode;
 
+  if (creation_mode) {
+    document.getElementById('addAdvanced').setAttribute('disabled', '');
+  } else {
+    document.getElementById('addAdvanced').removeAttribute('disabled');
+  }
+
   num_xp = ('num_xp' in data) ? data.num_xp : 0;
   document.getElementById('num-xp').value = num_xp;
 
