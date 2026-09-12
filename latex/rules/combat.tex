@@ -4,23 +4,88 @@ During each round, the GM and Players alternate taking turns to have one creatur
 Either side may also spend \Advantage{} once each turn to have two creatures go instead of just one.
 No creature can act more than once per round, except as allowed by an \Ability{} or other rule.
 
-On a creature's turn, they can move to any point the GM deems they could reasonably reach in a few moments without needing to make a roll, take an \textbf{Action}\index{Action}, any take any reasonable number of \textbf{Quick Actions}\index{Action!Quick Action}.
-An action can be to make an attack, to move more or take movement that would require a roll, to \emph{Help} someone else, to interact with a complex object, or similar actions that the GM may permit.
-Quick Actions include simple tasks like drinking a potion or drawing a weapon.
+On a creature's turn, they can move to any point the GM deems they could reasonably reach in a few moments without needing to make a roll and take \textbf{Actions} as described in Section~\ref{sec:actions}.
 
-\subsection{Making Attacks}
-When a creature makes an attack against another creature, the attacker and target make an opposed roll.
-The attacker chooses one of their Offensive \emph{Combat Styles} for the attack and rolls the specified \Attribute{} plus any bonus for the \emph{Combat Style} and Weapon if they are using one associated with that \emph{Combat Style}.
-The target chooses one of their Defensive \emph{Combat Styles} and rolls the specified \Attribute{} plus any bonus for the \emph{Combat Style} and Weapon if they are using one associated with that \emph{Combat Style}.
-A target may have multiple Defensive \emph{Combat Styles} that could be useful to them; before rolling they may choose to use multiple by spending an \Advantage{} for each additional they want to activate; if doing this they must choose one which is used for the roll to defend and bonuses to the same statistics from multiple \emph{Combat Styles} do not stack.
-Some creatures may have abilities that allow them to attack multiple targets simultaneously, in such cases the attacker rolls once and then computes and resolves their \Outcome{} against each target separately.
+\subsection{Actions}\label{sec:actions}\index{Action}
+There are three kinds of actions that characters can take during combat: \textbf{Main Actions}, \textbf{Quick Actions}, and \textbf{Defend Actions}.
+Main Actions and Quick Actions are taken on a character's turn in combat while Defend Actions can be taken when they are attacked.
+Each turn, every character gains a certain number of Main and Defend Actions they can use that round (generally one of each) and any unused actions at the end of round are wasted.
+Characters can use any number of Quick Actions per turn, though, with the GM's permission.
 
-If the attacker's result is \Mixed{} or better, they roll damage based on the \emph{Combat Style} and any relevant Weapon and add the same \Attribute{} bonus as on the attack (though they do not add the other bonuses to the attack).
-The target subtracts their \Block{}\index{Attribute!Block} from this number and any remaining damage is subtracted from its \Life{}\index{Attribute!Life}.
-If the attacker's result is \VeryGood{} they gain an \Advantage{} as normal, which can be spent to gain an additional damage die on their damage roll.
-If the result is \Mixed{} or worse then the target has the chance to strike back if it reasonably can; if it does it deals damage in the same manner based on the weapon used (and using one of its \emph{Combat Styles}), alternatively it can take \Advantage{} as usual.
+\paragraph{Main Actions}\index{Main Action|see(Action)}\index{Action!Main}
+Main Actions represent significant things that a character can do on their turn.
+This includes making an attack, taking more movement or movement that would require a roll (like moving over very rough terrain), \emph{Helping} another character, interacting with a complex object, or other similar actions that the GM may permit.
 
-While \Advantage{} can be spent on any damage roll to add a damage die to it, the GM cannot spend more \Advantage{} for additional damage on a single damage roll than the current round number (where the first round of combat is round 1).
+Additionally, instead of taking a main action, a character can spend a Main Action in the following (or as allowed by another rule):
+\begin{itemize}
+  \item[-] When making an attack, a character can spend any number of additional Main Actions and to defend against the attack the target must use the same number of Defend Actions.
+  \item[-] When making an attack, a character can spend an additional Main Action to target a group of opponents that are clumped together within melee range (at the attacker's size) of each other.
+  \item[-] When performing triage, a character can spend an additional Main Action to target a group of creatures that are clumped together within melee range of each other.
+  \item[-] To take a Defend Action.
+  \item[-] To gain 2 Advantage.
+\end{itemize}
+For uses of a main action to boost an attack, the character must declare that use before any rolls for resolving the attack.
+
+\paragraph{Quick Actions}\index{Quick Action|see(Action)}\index{Action!Quick}
+Quick Actions represent simple tasks like drinking a potion or drawing a weapon that a character can perform on their turn easily.
+A character can take any reasonable number of Quick Actions on their turn, as determined by the GM.
+
+\paragraph{Defend Actions}\index{Defend Action|see(Action)}\index{Action!Defend}
+Defend Actions represent a character's ability to defend themself from an attack.
+Using a Defend Action impacts the chances of the attack succeed and allows them, if they succesfully avoid the attack, to hit back.
+Using a Defend Action also allows the character to activate a Defensive Combat Style which can provide additional bonuses like to the roll or other statistics.
+
+\subsection{Attacks}
+The mechanics of an attack depends on whether a Player Character (PC) is attacking a Non-Player Character (NPC) or vice-versa\footnotemark.
+\footnotetext{These mechanics do not provide a mechanism for Player vs Player combat. If PvP arises, first the group should discuss if everyone is okay with it and if so what the goal or outcome of the combat will be. Then, these rules can be applied but using Opposed Rolls between the attacking and defending characters.}
+The process of resolving an attack in each of these circumstances are described below.
+
+\paragraph{PC Attacking NPC}
+\begin{enumerate}
+  \item The PC spends a Main Action and identifies the NPC (or NPCs) they are targeting, the weapon and the supported Offensive Combat Style they are using, and whether they are using any special features (such as expending additional Main Actions).
+  \item The GM determines, for each NPC being targeted, whether they will expend a Defend Action and if so the Defensive Combat Style they are using. The NPC will have a different difficulty to hit based on whether or not they use a Defend Action (generally the difficulty to hit is $-1$ if the NPC did not use a Defend Action).
+  \item The PC then makes a single roll against the difficulty to hit the NPCs, and the attack is resolved for each NPC based on the Outcome:
+    \begin{itemize}
+      \item \textbf{Very Bad}: The GM gains an Advantage. If the NPC took a Defend Action, and have an attack that could target the PC, they may deal damage to the PC and otherwise the GM gains another Advantage.
+      \item \textbf{Bad}: If the NPC took a Defend Action, and have an attack that could target the PC, they may deal damage to the PC and otherwise the GM gains an Advantage.
+      \item \textbf{Mixed}: The PC deals damage to the NPC. If the NPC took a Defend Action, and have an attack that could target the PC, they may deal damage to the PC and otherwise the GM gains an Advantage.
+      \item \textbf{Good}: The PC deals damage to the NPC.
+      \item \textbf{Very Good}: The PC gains an Advantage and deals damage to the NPC.
+    \end{itemize}
+    Once the PC rolls and determines the outcome, they can choose to spend additional Advantage to gain additional damage dice; if multiple NPCs were targeted by the attack the PC must spend an Advantage for an additional damage die for \emph{each} NPC they wish to do the additional damage to.
+\end{enumerate}
+
+When a PC deals damage to an NPC, the damage is determined by their Offensive Combat Style and their Weapon.
+The damage that an NPC does to a PC on a Mixed or worse result is determined by the NPC's statistics, and is generally less than they would deal on an attack against a PC.
+A PC can also spend Advantage (including the Advantage they receive on a Very Good result) to add additional damage dice, as described in Section~\ref{sec:advantage}.
+
+\paragraph{NPC Attacking PC}
+\begin{enumerate}
+  \item The NPC spends a Main Action and identifies the PC (or PCs) they are targeting, the attack they are using (and any of its special features), and whether they are using any special features (such as expending additional Main Actions).
+  \item Each PC being targeted determines whether they will expend a Defend Action and if so the Defensive Combat Style they are using.
+    \begin{enumerate}
+      \item If a PC does not use a Defend Action, the NPC automatically hits (unless the PC has the Armored Defensive Combat Style)\footnotemark and the NPC deals damage to them.
+        \footnotetext{This is an asymmetry to the system, PCs always have to roll to hit while NPCs do not. If a group does not like this rule you can instead simply use a higher Difficulty to avoid the hit if the PC does not use a Defend Action. This asymmetric rule is intentional and intended to reflect the danger and chaos of the world and to express that it is not necessarily fair to the PCs.}
+      \item If a PC does use a Defend Action they determine the Defensive Combat Style they are using and any associated weapon they are using.
+        A PC may also have multiple Defensive Combat Styles that could be helpful, they may spend an Advantage to receive the benefits (other than benefits to the roll) of an additional Defensive Combat Style.
+        The PC then gets to roll to avoid the hit using the Basic Statistic of their selected Defensive Combat Style and any bonuses it or their weapon grant, the difficulty of this roll is determined by the NPC's statistics.
+        The attack is resolved based on the Outcome:
+        \begin{itemize}
+          \item \textbf{Very Bad}: The GM gains an Advantage and the NPC deals damage to the PC.
+          \item \textbf{Bad}: The NPC deals damage to the PC.
+          \item \textbf{Mixed}: The NPC deals damage to the PC. If the PC took a Defend Action, and have an attack that could target the NPC, they may deal damage to the NPC or gain an Advantage.
+          \item \textbf{Good}: If the PC took a Defend Action, and have an attack that could target the NPC, they may deal damage to the NPC or gain an Advantage.
+          \item \textbf{Very Good}: If the PC took a Defend Action, they gain an Advantage and, if they have an attack that could target the NPC, they may deal damage to the NPC or gain an additional Advantage.
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+
+When an NPC deals damage to a PC, the amount of the damage is determined by their statistics.
+The damage a PC does to an NPC on a Mixed or better result is determined by any damage dice granted by their Weapon and their bonus to avoid the attack granted by the Defensive Combat Style they used; it does not include any dice granted by their Offensive Combat Style.
+The GM can also spend Advantage to add additional damage dice but cannot spend more Advantage for additional damage on a single roll than the current round number (where the first round of combat is round 1).
+
+\paragraph{Taking Damage}
+Once an attack has been resolved, if the attacker deals damage to the target, the target first subtracts their \Block{}\index{Attribute!Block} from the damage rolled by the attacker and then any remaining damage is subtracted from its \Life{}\index{Attribute!Life}.
 
 \subsection{Healing}\index{Healing}
 To recover \Life{} lost during combat or otherwise during their adventures, creatures will need to \textbf{Heal}.
@@ -38,7 +103,7 @@ A creature can only benefit from the effects of a night's rest or a successful r
 
 \subsubsection{Triaging}\index{Triaging}\label{sec:triage}
 Sometime quicker healing is needed, especially if someone needs to be healed in the midst of combat.
-To attempt healing in the midst of combat, the healer must spend an \Advantage{} and requires a relevant \Specialization{} that can be used to help heal.
+To attempt healing in the midst of combat, the healer must use a Main Action and spend an \Advantage{} and must have a relevant \Specialization{} that can be used to help heal.
 The difficulty of the healing is generally \emph{Medium}; on a success the target gains number of \Life{} equal to the healer's specialization bonus.
 On a success, the healer can also spend \Advantage{} to heal an additional \Life{} per \Advantage{}.
 

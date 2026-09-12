@@ -37,6 +37,9 @@ function modeChange() {
     validateItems();
 
     updateXP();
+    document.getElementById('addAdvanced').setAttribute('disabled', '');
+  } else {
+    document.getElementById('addAdvanced').removeAttribute('disabled');
   }
 }
 
@@ -233,6 +236,7 @@ function updateXP() {
   xp += abilitiesXP();
   xp += combatStylesXP();
   xp += itemsXP();
+  xp += advancedXP();
 
   document.getElementById('xp').textContent = xp;
 
@@ -242,11 +246,5 @@ function updateXP() {
     document.getElementById('rem-xp').style.color = 'black';
   } else {
     document.getElementById('rem-xp').style.color = 'red';
-  }
-}
-
-function clearChildren(node) {
-  while (node.firstChild) {
-    node.removeChild(node.firstChild);
   }
 }

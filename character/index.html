@@ -5,10 +5,12 @@
 
     <link rel="stylesheet" href="stylesheet.css">
 
+    <script src="utils.js"></script>
     <script src="specializations.js"></script>
     <script src="experiences.js"></script>
     <script src="abilities.js"></script>
     <script src="combatstyles.js"></script>
+    <script src="advanced.js"></script>
     <script src="items.js"></script>
     <script src="calculator.js"></script>
     <script src="io.js"></script>
@@ -154,6 +156,10 @@
       <div id="items"></div>
       <button type="button" onclick="addWeapon()">+ Weapon</button>
       <button type="button" onclick="addRelic()">+ Relic</button>
+
+      <h3>Advanced Options</h3>
+      <div id="advanced"></div>
+      <button id="addAdvanced" type="button" onclick="addAdvanced()" disabled>+</button>
     </div>
 
     <div class="content" id="sheet">
@@ -217,6 +223,25 @@
         </tr>
       </table>
 
+      <table>
+        <tr>
+          <th>Actions</th>
+          <th>Main</th>
+          <th>Cur Main</th>
+          <th>Defend</th>
+          <th>Cur Defend</th>
+          <th>Carryover</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="sheet-mains"></td>
+          <td><input type="number" id="sheet-curmain" class="value" onchange="curmainChange()"></td>
+          <td id="sheet-defends"></td>
+          <td><input type="number" id="sheet-curdefend" class="value" onchange="curdefendChange()"></td>
+          <td id="sheet-carryover"></td>
+        </tr>
+      </table>
+
       <h3>Specializations</h3>
       <table id="sheet-specializations" class="spacedTable"></table>
 
@@ -228,12 +253,15 @@
 
       <h3>Weapons</h3>
       <div id="sheet-weapons"></div>
+
+      <h3>Advanced Actions</h3>
+      <table id="sheet-advanced-actions" class="spacedTable" border=1 frame=void rules=rows></table>
     </div>
 
     <hr>
     <button type="button" onclick="dump()">Save Character</button>
     <label for="load">Load Character</label>
     <input type="file" id="load" accept="application/json" onchange="load()" />
-    <span style="float: right;">For version 0.3.5</span>
+    <span style="float: right;">For version 0.4.0</span>
   </body>
 </html>

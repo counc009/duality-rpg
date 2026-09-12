@@ -1,6 +1,5 @@
 const relic_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization']
-const offensive_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
-const defensive_addon_options = ['Ability', 'Attribute', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
+const weapon_addon_options = ['Ability', 'Attribute', 'Block', 'Experience', 'Life', 'Recovery', 'Specialization', 'Style']
 
 var items = [];
 
@@ -294,6 +293,7 @@ function new_item_adds(addon_options, addons_lst = []) {
 
     // And reset the add button
     add.value = 'Add...';
+    updateXP();
   };
   res.appendChild(add);
 
@@ -302,13 +302,11 @@ function new_item_adds(addon_options, addons_lst = []) {
 }
 
 function new_weapon(
-  weapon = { name: '', style: { style: '' }, bonus: 0, feature: 0, equipped: true, addons: { addons: [] } }
+  weapon = { name: '', style: { style: '' }, bonus: 0, die: '', block: 0, equipped: true, addons: { addons: [] } }
 ) {
   var addons;
-  if (isOffensive(weapon.style.style)) {
-    addons = new_item_adds(offensive_addon_options, weapon.addons.addons);
-  } else if (isDefensive(weapon.style.style)) {
-    addons = new_item_adds(defensive_addon_options, weapon.addons.addons);
+  if (weapon.style.style != '') {
+    addons = new_item_adds(weapon_addon_options, weapon.addons.addons);
   } else {
     addons = new_item_adds([]);
   }
@@ -383,74 +381,72 @@ function new_weapon(
   };
   property_div.appendChild(bonus);
 
-  let feature_text = document.createElement('b');
-  if (isOffensive(weapon.style.style)) {
-    feature_text.textContent = ' Dice ';
-  } else if (isDefensive(weapon.style.style)) {
-    feature_text.textContent = ' Block ';
-  }
-  property_div.appendChild(feature_text);
+  let block_text = document.createElement('b');
+  block_text.textContent = ' Block ';
+  property_div.appendChild(block_text);
 
-  let feature = document.createElement('input');
-  feature.setAttribute('type', 'number');
-  feature.className = 'bonus';
-  feature.value = weapon.feature;
-  feature.onchange = function() {
-    let val = parseInt(feature.value);
+  let block_num = document.createElement('input');
+  block_num.setAttribute('type', 'number');
+  block_num.className = 'bonus';
+  block_num.value = weapon.block;
+  block_num.style.display = weapon.style.style == '' ? 'none' : 'inline';
+  block_num.onchange = function() {
+    let val = parseInt(block_num.value);
 
     if (val == NaN) {
-      val = weapon.feature;
+      val = weapon.block;
     } else if (val < 1) {
       val = 1;
-    } else if (val > 2 && isDefensive(weapon.style.style)) {
-      // If it's defensive, the maximum block bonus is +2
+    } else if (val > 2 && creation_mode) {
       val = 2;
     } else if (val > 3) {
-      // If it's offensive, the maximum number of dice is 3
       val = 3;
     }
 
-    weapon.feature = val;
-    feature.value = val;
+    weapon.block = val;
+    block_num.value = val;
     updateXP();
   };
-  property_div.appendChild(feature);
+  property_div.appendChild(block_num);
+
+  let damage_text = document.createElement('b');
+  damage_text.textContent = ' Damage ';
+  property_div.appendChild(damage_text);
+
+  let damage_die = document.createElement('select');
+  damage_die.value = weapon.die;
+  addOptions(damage_die, ['d4', 'd6', 'd8', 'd10', 'd12'], 0);
+  damage_die.style.display = weapon.style.style == '' ? 'none' : 'inline';
+  damage_die.onchange = function() {
+    weapon.die = damage_die.value;
+    updateXP();
+  };
+  property_div.appendChild(damage_die);
 
   property_div.style.display = weapon.style.style == '' ? 'none' : 'inline';
   weapon_div.appendChild(property_div);
 
   style.div.onchange = function() {
     style.style = style.div.value;
-    weapon.bonus = 1;
-    weapon.feature = 1;
 
+    weapon.bonus = 1;
     bonus.value = 1;
-    feature.value = 1;
+
+    weapon.block = 1;
+    block_num.value = 1;
+
+    weapon.die = '';
+    damage_die.value = '';
+
+    block_num.style.display = 'inline';
+    damage_die.style.display = 'inline';
 
     let addon_select = addons.div.children[1];
     addon_select.disabled = false;
     while (addon_select.firstChild) {
       addon_select.removeChild(addon_select.firstChild);
     }
-
-    if (isDefensive(style.style)) {
-      feature_text.textContent = ' Block ';
-      addOptions(addon_select, defensive_addon_options, 0, 'Add...');
-
-      var res_addons = [];
-      for (addon of weapon.addons.addons) {
-        if (addon.addon_kind == 'block') {
-          addon.div.remove();
-        } else {
-          res_addons.push(addon);
-        }
-      }
-      weapon.addons.addons = res_addons;
-      updateXP();
-    } else {
-      feature_text.textContent = ' Dice ';
-      addOptions(addon_select, offensive_addon_options, 0, 'Add...');
-    }
+    addOptions(addon_select, weapon_addon_options, 0, 'Add...');
 
     property_div.style.display = 'inline';
   };
@@ -595,26 +591,40 @@ function itemsXP() {
           totalBonus += addon.bonus;
           xp += specTagXP(addon.tag);
           break;
-        case 'Style': xp += 3;
+        case 'Style':
+          xp += 3;
           break;
       }
     }
 
     switch (item.kind) {
       case 'weapon':
-        totalBonus += item.bonus;
+        if (item.style.style != '') {
+          totalBonus += item.bonus;
 
-        if (isDefensive(item.style.style)) {
-          // Defensive, so feature is block
-          let n = item.feature;
-          totalBonus += n;
-          xp += 2 * n * (n + 1) / 2 - 2; // -2 since first block is free
-          xp -= 2; // -2 since we start with one to defend and one to block
-        } else if (isOffensive(item.style.style)) {
-          // Offensive, so feature is damage dice
-          let n = item.feature;
-          xp += 5 * n * (n + 1) / 2 - 5; // -5 since first die is free
+          totalBonus += item.block;
+          xp += 2 * item.block * (item.block + 1) / 2 - 2; // +1 to block doesn't count
+          xp -= 2; // -2 since the initial weapon has +1 bonus and +1 to block but should cost 0 XP
+
+          switch (item.die) {
+            case 'd4':
+              xp += 5;
+              break;
+            case 'd6':
+              xp += 15;
+              break;
+            case 'd8':
+              xp += 30;
+              break;
+            case 'd10':
+              xp += 50;
+              break;
+            case 'd12':
+              xp += 75;
+              break;
+          }
         }
+
         break;
       case 'relic':
         totalBonus += item.bonus;
@@ -642,6 +652,11 @@ function validateItems() {
       } else {
         item.div.children[1].value = 2;
       }
+    }
+
+    if (item.kind == 'weapon' && creation_mode && item.block > 2) {
+      item.block = 2;
+      item.div.children[6].children[3].value = 2;
     }
 
     for (addon of item.addons.addons) {

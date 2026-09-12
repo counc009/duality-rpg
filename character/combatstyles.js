@@ -1,50 +1,50 @@
-const offensive_styles = ["Melee", "Ranged", "Simple & Weak", "Complex & Powerful"];
-const defensive_styles = ["Evasive", "Armored", "Shielded", "Riposte"];
+var offensive_styles = ["Melee", "Ranged", "Simple & Weak", "Complex & Powerful"];
+var defensive_styles = ["Evasive", "Armored", "Shielded", "Riposte"];
 const stats = ["Strength", "Finesse", "Willpower", "Instinct", "Presence", "Knowledge"];
 
 function isOffensive(nm) {
   switch (nm) {
-    case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
+    case 'Melee':
+    case 'Ranged':
+    case 'Simple & Weak':
+    case 'Complex & Powerful':
+    case 'Assassin':
       return true;
-    case 'Evasive': case 'Armored': case 'Shielded': case 'Riposte':
+    case 'Evasive':
+    case 'Armored':
+    case 'Shielded':
+    case 'Riposte':
+    case 'Blink':
+    case 'Undying Fortitude':
       return false;
-    default: return false;
+    default:
+      return false;
   }
 }
 
 function isDefensive(nm) {
   switch (nm) {
-    case 'Evasive': case 'Armored': case 'Shielded': case 'Riposte':
-      return true;
-    case 'Melee': case 'Ranged': case 'Simple & Weak': case 'Complex & Powerful':
+    case 'Melee':
+    case 'Ranged':
+    case 'Simple & Weak':
+    case 'Complex & Powerful':
+    case 'Assassin':
       return false;
-    default: return false;
+    case 'Evasive':
+    case 'Armored':
+    case 'Shielded':
+    case 'Riposte':
+    case 'Blink':
+    case 'Undying Fortitude':
+      return true;
+    default:
+      return false;
   }
 }
 
 var offensives = [];
 var defensives = [];
 
-function addOptions(select, options, selected=1, first='') {
-  let empty = document.createElement('option');
-  empty.setAttribute('disabled', '');
-  empty.setAttribute('value', first);
-  empty.textContent = first;
-  if (selected == 0) {
-    empty.setAttribute('selected', '');
-  }
-  select.appendChild(empty);
-
-  for (const [idx, o] of options.entries()) {
-    let option = document.createElement('option');
-    option.setAttribute('value', o);
-    option.textContent = o;
-    if (idx + 1 == selected) {
-      option.setAttribute('selected', '');
-    }
-    select.appendChild(option);
-  }
-}
 
 function spec_options(select, kind) {
   if (kind != '') {
@@ -55,7 +55,7 @@ function spec_options(select, kind) {
 function die_options(select, kind) {
   switch (kind) {
     case 'Melee':
-      addOptions(select, ['d8']);
+      addOptions(select, ['d8', 'd10']);
       break;
     case 'Ranged':
       addOptions(select, ['d6', 'd8']);
@@ -64,7 +64,10 @@ function die_options(select, kind) {
       addOptions(select, ['d4', 'd6']);
       break;
     case 'Complex & Powerful':
-      addOptions(select, ['d10']);
+      addOptions(select, ['d10', 'd12']);
+      break;
+    case 'Assassin':
+      addOptions(select, ['d8', 'd10']);
       break;
   }
 }
@@ -83,11 +86,14 @@ function range_options(select, kind) {
     case 'Complex & Powerful':
       addOptions(select, ['from an unreasonable distance*', 'from an unreasonable distance']);
       break;
+    case 'Assassin':
+      addOptions(select, ['in point-blank range', 'within a short distance']);
+      break;
   }
 }
 
 function new_offensive(
-  style = { kind: '', stat: '', bonus: 0, experience: '', spec: '', dice: 0, die: '', range: '' }
+  style = { kind: '', stat: '', bonus: 0, experience: '', spec: '', die: '', range: '' }
 ) {
   let style_div = document.createElement('div');
   style_div.className = "combatStyle";
@@ -179,27 +185,6 @@ function new_offensive(
   spec.value = style.spec;
   style_div.appendChild(spec);
 
-  // Add dice number
-  let dice = document.createElement('input');
-  dice.setAttribute("type", "number");
-  dice.className = "bonus";
-  dice.value = style.dice;
-  dice.style.display = style.kind == '' ? 'none' : 'inline-block';
-  dice.onchange = function() {
-    let val = parseInt(dice.value);
-
-    if (val == NaN) {
-      val = style.dice;
-    } else if (val < 0) {
-      val = 0;
-    }
-
-    style.dice = val;
-    dice.value = val;
-    updateXP();
-  };
-  style_div.appendChild(dice);
-
   // Add die type
   let die = document.createElement('select');
   die.onchange = function() { style.die = die.value; updateXP(); };
@@ -235,23 +220,29 @@ function new_offensive(
     }
     spec.style.display = 'none';
 
-    style.dice = 0;
-    dice.value = 0;
-    dice.style.display = 'inline-block';
-
     style.die = '';
     die.value = '';
     while (die.firstChild) {
       die.removeChild(die.firstChild);
     }
-    die.style.display = 'inline-block';
+    if (style.kind == '') {
+      die.style.display = 'none';
+    } else {
+      die_options(die, style.kind);
+      die.style.display = 'inline-block';
+    }
 
     style.range = '';
     range.value = '';
     while (range.firstChild) {
       range.removeChild(range.firstChild);
     }
-    range.style.display = 'inline-block';
+    if (style.kind == '') {
+      range.style.display = 'none';
+    } else {
+      range_options(range, style.kind);
+      range.style.display = 'inline-block';
+    }
 
     switch (style.kind) {
       case 'Melee':
@@ -262,10 +253,7 @@ function new_offensive(
         experience.style.display = 'inline-block';
 
         style.die = 'd8';
-        addOptions(die, ['d8']);
-
         style.range = 'in hand-to-hand combat';
-        addOptions(range, ['in hand-to-hand combat', 'just outside the reach of a similarly sized creature']);
         break;
       case 'Ranged':
         style.bonus = 1;
@@ -275,30 +263,25 @@ function new_offensive(
         experience.style.display = 'inline-block';
 
         style.die = 'd6';
-        addOptions(die, ['d6', 'd8']);
-
         style.range = 'within a reasonable distance';
-        addOptions(range, ['within a reasonable distance', 'from an unreasonable distance']);
         break;
       case 'Simple & Weak':
         spec.style.display = 'inline-block';
         addOptions(spec, specializations.flatMap((s) => (s.tag == 'Simple & Weak' ? [s.verb + " " + s.noun] : [] )), 0);
 
         style.die = 'd4';
-        addOptions(die, ['d4', 'd6']);
-
         style.range = 'nearby';
-        addOptions(range, ['nearby', 'in hand-to-hand combat', 'within a reasonable distance']);
         break;
       case 'Complex & Powerful':
         spec.style.display = 'inline-block';
         addOptions(spec, specializations.flatMap((s) => (s.tag == 'Complex & Powerful' ? [s.verb + " " + s.noun] : [] )), 0);
 
         style.die = 'd10';
-        addOptions(die, ['d10']);
-
         style.range = 'from an unreasonable distance*';
-        addOptions(range, ['from an unreasonable distance*', 'from an unreasonable distance']);
+        break;
+      case 'Assassin':
+        style.die = 'd8';
+        style.range = 'in point-blank range';
         break;
     }
 
@@ -333,7 +316,7 @@ function deleteOffensiveStyle(style) {
 }
 
 function new_defensive(
-  style = { kind: '', stat: '', value: 0 }
+  style = { kind: '', stat: '', extra: '' }
 ) {
   let style_div = document.createElement('div');
   style_div.className = "combatStyle";
@@ -378,49 +361,96 @@ function new_defensive(
   stat.value = style.stat;
   style_div.appendChild(stat);
 
-  // Add a value field (used for all the styles but for different purposes)
+  // Evasive  : bonus to defend
+  // Armored  : NONE
+  // Shielded : bonus to block
+  // Riposte  : damage die
+  // Blink    : distance (short distance / long distance)
+  // Undying  : NONE
+
+  // Add a value field (used for Evasive and Shielded)
   let value = document.createElement('input');
   value.setAttribute("type", "number");
   value.className = "bonus";
-  value.value = style.value;
-  value.style.display = style.kind == '' ? 'none' : 'inline-block';
+  value.value = style.kind == 'Evasive' || style.kind == 'Shielded'
+              ? style.extra : 0;
+  value.style.display = style.kind == 'Evasive' || style.kind == 'Shielded'
+                      ? 'inline-block' : 'none';
   value.onchange = function() {
     let val = parseInt(value.value);
 
     if (val == NaN) {
-      val = style.value;
+      val = style.extra;
     } else if (val < 1) {
       val = 1;
     } else if (val > 2 && creation_mode) {
       val = 2;
     } else if (style.kind == 'Evasive' && val > 4) {
       val = 4;
-    } else if (style.kind == 'Armored' && val > 5) {
-      val = 5
     } else if (style.kind == 'Shielded' && val > 2) {
       val = 2;
-    } else if (style.kind == 'Riposte' && val > 3) {
-      val = 3;
     }
 
-    style.value = val;
+    style.extra = val;
     value.value = val;
     updateXP();
   };
   style_div.appendChild(value);
 
+  // Add a dropdown field (used for Riposte and Blink)
+  let dropdown = document.createElement('select');
+  dropdown.onchange = function() {
+    style.extra = dropdown.value;
+    updateXP();
+  };
+  dropdown.style.display = style.kind == 'Riposte' || style.kind == 'Blink'
+                         ? 'inline-block' : 'none';
+  if (style.kind == 'Riposte') {
+    addOptions(dropdown, ['d4', 'd6', 'd8', 'd10', 'd12']);
+    dropdown.value = style.extra;
+  } else if (style.kind == 'Blink') {
+    addOptions(dropdown, ['short distance', 'long distance']);
+    dropdown.value = style.extra;
+  } else {
+    addOptions(dropdown, []);
+    dropdown.value = '';
+  }
+  style_div.appendChild(dropdown);
+
   kind.onchange = function() {
     style.kind = kind.value;
 
     // Reset everything 
-    style.value = 0;
 
     value.value = 0;
     value.style.display = 'none';
 
-    value.style.display = 'inline-block';
-    style.value = 1;
-    value.value = 1;
+    dropdown.value = '';
+    dropdown.style.display = 'none';
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+
+    switch (style.kind) {
+      case 'Evasive':
+      case 'Shielded':
+        style.extra = 1;
+        value.value = 1;
+        value.style.display = 'inline-block';
+        break;
+      case 'Riposte':
+        addOptions(dropdown, ['d4', 'd6', 'd8', 'd10', 'd12']);
+        style.extra = 'd4';
+        dropdown.value = 'd4';
+        dropdown.style.display = 'inline-block';
+        break;
+      case 'Blink':
+        addOptions(dropdown, ['short distance', 'long distance']);
+        style.extra = 'short distance';
+        dropdown.value = 'short distance';
+        dropdown.style.display = 'inline-block';
+        break;
+    }
 
     combatStylesChanged();
     updateXP();
@@ -463,10 +493,6 @@ function combatBonusXP(n) {
   }
 }
 
-function damageDiceXP(n) {
-  return 5 * n * (n + 1) / 2;
-}
-
 function combatStylesXP() {
   var xp = 0;
 
@@ -476,12 +502,14 @@ function combatStylesXP() {
     stat_counts[style.stat] += 1;
 
     xp += combatBonusXP(style.bonus);
-    xp += damageDiceXP(style.dice);
 
     switch (style.kind) {
       case 'Melee':
         if (style.range == 'just outside the reach of a similarly sized creature') {
           xp += 2;
+        }
+        if (style.die == 'd10') {
+          xp += 5;
         }
         break;
       case 'Ranged':
@@ -504,6 +532,17 @@ function combatStylesXP() {
         if (style.range == 'from an unreasonable distance') {
           xp += 2;
         }
+        if (style.die == 'd12') {
+          xp += 5;
+        }
+        break;
+      case 'Assassin':
+        if (style.range == 'within a short distance') {
+          xp += 3;
+        }
+        if (style.die == 'd10') {
+          xp += 5;
+        }
         break;
     }
   }
@@ -513,17 +552,20 @@ function combatStylesXP() {
 
     switch (style.kind) {
       case 'Evasive':
-        xp += combatBonusXP(style.value);
+        xp += combatBonusXP(style.extra);
         break;
       case 'Armored':
-        xp += 3 * combatBonusXP(style.value);
         break;
       case 'Shielded':
-        if (style.value == 2) { xp += 2; }
+        xp += 3 * combatBonusXP(style.extra);
         break;
       case 'Riposte':
-        if (style.value == 2) { xp += 10; }
-        else if (style.value == 3) { xp += 25; }
+        switch (style.extra) {
+          case 'd6': xp += 5; break;
+          case 'd8': xp += 15; break;
+          case 'd10': xp += 30; break;
+          case 'd12': xp += 50; break;
+        }
         break;
     }
   }
@@ -554,10 +596,12 @@ function validateCombatStyles() {
   }
 
   for (style of defensives) {
-    // The bonus for Evasive, Armored, and Riposte is capped at 2 during character creation and is a max of 2 for Shielded
-    if (style.value > 2 && creation_mode) {
-      style.value = 2;
-      style.div.children[2].value = 2;
+    // The bonus for Evasive and Riposte is capped at 2 during character creation
+    if (style.kind == 'Evasive' || style.kind == 'Riposte') {
+      if (style.extra > 2 && creation_mode) {
+        style.extra = 2;
+        style.div.children[2].value = 2;
+      }
     }
   }
 }
@@ -580,6 +624,41 @@ function specializationChange() {
       } else {
         style.spec = '';
       }
+    }
+  }
+}
+
+// Called when an advanced combat style is acquired or removed
+function advancedCombatStylesChanged() {
+  for (style of offensives) {
+    let kind = style.div.children[0];
+    let selected = kind.value;
+
+    while (kind.firstChild) { kind.removeChild(kind.firstChild); }
+    addOptions(kind, offensive_styles, 0);
+
+    if (offensive_styles.includes(selected)) {
+      kind.value = selected;
+    } else {
+      style.kind = '';
+      kind.value = '';
+      kind.onchange();
+    }
+  }
+
+  for (style of defensives) {
+    let kind = style.div.children[0];
+    let selected = kind.value;
+
+    while (kind.firstChild) { kind.removeChild(kind.firstChild); }
+    addOptions(kind, defensive_styles, 0);
+
+    if (defensive_styles.includes(selected)) {
+      kind.value = selected;
+    } else {
+      style.kind = '';
+      kind.value = '';
+      kind.onchange();
     }
   }
 }

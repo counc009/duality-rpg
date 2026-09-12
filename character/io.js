@@ -9,6 +9,8 @@ function dump() {
     stats: statistics,
     attrs: attributes,
     curlife: curlife,
+    curmain: curmain,
+    curdefend: curdefend,
     speed: speeds,
     specs: specializations,
     exprs: experiences,
@@ -16,6 +18,7 @@ function dump() {
     offns: offensives,
     defns: defensives,
     items: items,
+    advanced: advanced,
   };
 
   let json = JSON.stringify(data, (key, value) => (key == 'div' ? undefined : value));
@@ -52,6 +55,12 @@ async function load() {
   creation_mode = data.in_create_mode;
   document.getElementById('mode').checked = data.in_create_mode;
 
+  if (creation_mode) {
+    document.getElementById('addAdvanced').setAttribute('disabled', '');
+  } else {
+    document.getElementById('addAdvanced').removeAttribute('disabled');
+  }
+
   num_xp = ('num_xp' in data) ? data.num_xp : 0;
   document.getElementById('num-xp').value = num_xp;
 
@@ -74,6 +83,8 @@ async function load() {
   document.getElementById('wealth').value = data.attrs.wealth;
 
   curlife = ('curlife' in data) ? data.curlife : attributes.life;
+  curmain = ('curmain' in data) ? data.curmain : -1;
+  curdefend = ('curdefend' in data) ? data.curdefend : -1;
 
   speeds = data.speed;
   document.getElementById('walk').value = data.speed.walk;
@@ -105,6 +116,17 @@ async function load() {
     abilities.push(abil_obj);
     document.getElementById('abilities').append(abil_obj.div);
   }
+
+  // We process advanced options before combat styles so that the list of
+  // available combat styles is correct
+  advanced = [];
+  clearChildren(document.getElementById('advanced'));
+  for (const option of data.advanced) {
+    let option_obj = new_advanced(option);
+    advanced.push(option_obj);
+    document.getElementById('advanced').append(option_obj.div);
+  }
+  updateAdvancedCombatStyles();
 
   offensives = [];
   clearChildren(document.getElementById('offensives'));
